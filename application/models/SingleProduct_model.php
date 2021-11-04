@@ -2,8 +2,8 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class SingleProduct_model extends CI_Model
 {
-
-	public function getProductPageList($pro_list_id)
+	// ....................
+	public function getProductPageList($pro_list_id)
 	{
 
     // $this->db->select('product_list.pro_list_name ,product_list.pro_list_details ,product_list.prod_list_price_original ,product_list.pro_list_dicount_price ,product_list.pro_list_stock ,product_list.pro_list_img ,productlist_images.proli_img_name, product_sub_category.pro_sub_cat_name, users.first_name, productlist_review.prolist_re_comment');
