@@ -176,11 +176,29 @@ class Productpage extends CI_Controller
 
 				'chat_date' =>date("Y-m-d"));
 
+			$data1  = array(
+
+				
+
+				'enq_user_id_fk' => $from_id,
+
+				'enq_seller_id_fk' =>$to_id,
+
+				// 'chat_to_msg' =>$to_msg,
+
+				'enq_product_id_fk' =>$product_id,
+
+				'enq_status' =>1,
+
+				'enq_created_at' =>date("Y-m-d"));
+
 
 
 
 
 				$result = $this->General_model->add_returnID('tbl_chat_box',$data);
+
+				$result = $this->General_model->add_returnID('tbl_enquiry',$data1);
 
 				$response_text = 'Message Sent';
 
