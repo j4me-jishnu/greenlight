@@ -384,6 +384,65 @@ class Productpage extends CI_Controller
 
 			}
 
+			public function getAllPostsOfSeller($seller_id){
+				@$user_id = $this->session->userdata('user_id');
+				$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+				$data['user_name'] = $this->Home_model->getUsername($user_id);
+				$data['menu_cate'] = $this->Home_model->getMenuCategory();
+				$data['menu'] = $this->Home_model->getMenuHome();
+				$data['submenu'] = $this->Home_model->getSubMenuHome();
+				$data['location'] = $this->Home_model->getLocationDetails();
+				$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+				$data['all_seller_posts']=$this->Home_model->getSellerPosts($seller_id);
+				$data['seller_details']=$this->Home_model->getSellerDetails($seller_id);
+				$data['footer_details'] = $this->Home_model->getFooterDetail();
+				$data['logo'] =$this->Home_model->getLogo();
+				$data['chat'] =$this->Home_model->getChat($user_id);
+		    $data['chat1'] =$this->Home_model->getChatbox($user_id);
+
+				$this->load->view('Headers/header_home',$data);
+				$this->load->view('Sellers_details',$data);
+				$this->load->view('Footers/footer_home',$data);
+
+			}
+
+			public function checkFollowerStatus(){
+				$user_id=$this->input->post("user_id");
+				$seller_id=$this->input->post("seller_id");
+				$result=$this->Home_model->check_follower_status($seller_id,$user_id);
+				$json_data = json_encode($result);
+	    	echo $json_data;
+			}
+
+			public function unfollow(){
+				$user_id=$this->input->post("user_id");
+				$seller_id=$this->input->post("seller_id");
+				$result=$this->Home_model->unfollow_seller($user_id,$seller_id);
+				$json_data = json_encode($result);
+	    	echo $json_data;
+			}
+
+			public function follow(){
+				$user_id=$this->input->post("user_id");
+				$seller_id=$this->input->post("seller_id");
+				$result=$this->Home_model->follow_seller($user_id,$seller_id);
+				$json_data = json_encode($result);
+	    	echo $json_data;
+			}
+
+			public function getTotalFollowers(){
+				$seller_id=$this->input->post("seller_id");
+				$result=$this->Home_model->getTotalFollowerCount($seller_id);
+				$json_data = json_encode($result);
+	    	echo $json_data;
+			}
+
+			public function getTotalFollowing(){
+				$seller_id=$this->input->post("seller_id");
+				$result=$this->Home_model->getTotalFollowingCount($seller_id);
+				$json_data = json_encode($result);
+	    	echo $json_data;
+			}
 
 
 		}

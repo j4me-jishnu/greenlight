@@ -191,7 +191,7 @@ class Category extends CI_Controller{
 
 			$data['chat'] =$this->Home_model->getChat($user_id);
         $data['chat1'] =$this->Home_model->getChatbox($user_id);
-        
+
 			$this->load->view('Headers/header_home',$data);
 			$this->load->view('Single_event',$data);
 			$this->load->view('Footers/footer_home',$data);

@@ -115,7 +115,7 @@
                 </ul>
               </div>
               <br><br>
-              <a href="#" class="btn-solid with-line ml-2">View seller - <?php echo $pages1->first_name." ".$pages1->last_name; ?></a>
+              <a href="<?php echo base_url() ?>Productpage/getAllPostsOfSeller/<? echo $pages1->id; ?>" class="btn-solid with-line ml-2">View seller - <?php echo $pages1->first_name." ".$pages1->last_name; ?></a>
               <div class="product-btn mt-20">
                 <a href="#" class="btn-solid with-line ml-2" data-toggle="modal" data-target="#myModal">Chat with Seller</a>
               </div>
