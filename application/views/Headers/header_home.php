@@ -86,7 +86,7 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  
+
 
 
 
@@ -229,7 +229,7 @@
         <nav class="main ser-home">
           <?php $url = $this->uri->segment(2);
           $formAction = base_url()."Category/CategoryMenu/18";
-            if($url){ 
+            if($url){
                 if($url == 'CategoryMenu')
                 $formAction = base_url()."Category/CategoryMenu/".$this->uri->segment(3);
                 else
@@ -436,7 +436,7 @@
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        <?php foreach($chat1 as $msg){ ?>  
+                        <?php foreach($chat1 as $msg){ ?>
 
                         <a class="dropdown-item" href="<?php echo base_url() ?>chatmsg/<?php echo $msg->chat_id;?>/<?php echo $msg->chat_product_id;?>" style="font-size: 12px;"><img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $msg->pro_list_img ?>" style="width:50px;height: 50px;"><?php echo $msg->first_name; ?></a>
 
@@ -658,7 +658,7 @@
 
       <div class="sidenavHeader">
 
-        
+
 
           <?php if($user_name != ""){ ?>
 
@@ -770,4 +770,3 @@ $('#cur_loc').click(function(){
 
 
 </script>
-

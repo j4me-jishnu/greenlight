@@ -42,7 +42,7 @@
         <div class="col-lg-5">
           <div class="gallery-top">
             <!-- <?php var_dump($product_page[0]->pro_list_img) ?> -->
-            <img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $product_page[0]->pro_list_img; ?>" alt=""><br>
+            <img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $product_page[0]->pro_list_img; ?>" alt=""><br><br>
           </div>
         </div>
         <div class="col-lg-7">
@@ -51,7 +51,10 @@
               <div class="shop-detail-content-wrapper">
 
                 <h3 class="text-custom-black"><?php echo $pages1->pro_list_name ?></h3>
-              </div>
+                <div id="star" class="">
+                  <!-- Here comes the rating -->
+                </div>
+              </div><br>
 
               <!-- session userd id -->
               <input type="hidden" id="sess_user_id" value="<?php echo $this->session->userdata('user_id')  ?>">
@@ -65,9 +68,9 @@
               </div>
               <div class="availibity mt-20">
                 <?php if($pages1->pro_list_stock >0){ ?>
-                  <h6 class="text-custom-black fw-600">Avability: <span class="text-success ml-2">In Stock</span></h6>
+                  <h6 class="text-custom-black fw-600">Availability: <span class="text-success ml-2">In Stock</span></h6>
                 <?php }else{ ?>
-                  <h6 class="text-custom-black fw-600">Avability: <span class="text-danger ml-2">No Stock</span></h6>
+                  <h6 class="text-custom-black fw-600">Availability: <span class="text-danger ml-2">No Stock</span></h6>
                 <?php } ?>
               </div>
               <div class="quantity mb-xl-20">
@@ -115,9 +118,9 @@
                 </ul>
               </div>
               <br><br>
-              <a href="<?php echo base_url() ?>Productpage/getAllPostsOfSeller/<? echo $pages1->id; ?>" class="btn-solid with-line ml-2">View seller - <?php echo $pages1->first_name." ".$pages1->last_name; ?></a>
-              <div class="product-btn mt-20">
-                <a href="#" class="btn-solid with-line ml-2" data-toggle="modal" data-target="#myModal">Chat with Seller</a>
+              <a href="<?php echo base_url() ?>Productpage/getAllPostsOfSeller/<? echo $pages1->id; ?>" class="btn-solid btn-info ">View seller - <?php echo $pages1->first_name." ".$pages1->last_name; ?></a>
+              <div class="product-btn mt-20 ">
+                <a href="#" class="btn-solid with-line ml-2 btn-success" data-toggle="modal" data-target="#myModal">Chat with Seller</a>
               </div>
             </div>
           </div>
@@ -142,7 +145,7 @@
           <form class="" action="<?php echo base_url(); ?>Comments/addProductComment" method="post">
             <div class="row">
               <div class="form-group col-md-8">
-                <input type="hidden" class="" name="product_id" value="<?php echo $pro_list_id; ?>">
+                <input type="hidden" class="" id="product_list_id" name="product_id" value="<?php echo $pro_list_id; ?>">
                 <input type="text" class="form-control" name="post_comment" placeholder="Leave a comment..." required>
               </div>
               <div class="form-group col-md-2">
@@ -263,5 +266,30 @@
       </section>
       <!-- Shop-Details-Description END -->
       <script type="text/javascript">
+      $(document).ready(function(){
+        var product_id=$('#product_list_id').val();
+        // console.log(parseFloat(product_id));
+        $.ajax({
+          url:"<?php echo base_url();?>Productpage/getStarRating",
+          type: 'POST',
+          data:{
+            product_id:product_id,
+          },
+          dataType: 'json',
+          success:function(data){
+            if(data.status){
+              var a=document.getElementById("star");
+              for(i=0;i<data.total_rating;i++){
+                a.insertAdjacentHTML("beforebegin", "<span style='color:orange'><i class='fas fa-star'></i></span>");
+              }
+            }
+            else{
+              console.log(data);
+              var a=document.getElementById("star");
+              a.insertAdjacentHTML("beforebegin", "<span style='color:grey'><i class='fas fa-star'></i></i><i class='fas fa-star'></i></i><i class='fas fa-star'></i></i><i class='fas fa-star'></i></i><i class='fas fa-star'></i></i></span>");
+            }
 
+          }
+        });
+      });
       </script>

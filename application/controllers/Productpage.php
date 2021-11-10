@@ -176,291 +176,362 @@ class Productpage extends CI_Controller
 
 				'chat_date' =>date("Y-m-d"));
 
-			$data1  = array(
-
-				
-
-				'enq_user_id_fk' => $from_id,
-
-				'enq_seller_id_fk' =>$to_id,
-
-				// 'chat_to_msg' =>$to_msg,
-
-				'enq_product_id_fk' =>$product_id,
-
-				'enq_status' =>1,
-
-				'enq_created_at' =>date("Y-m-d"));
+				$data1  = array(
 
 
 
+					'enq_user_id_fk' => $from_id,
+
+					'enq_seller_id_fk' =>$to_id,
+
+					// 'chat_to_msg' =>$to_msg,
+
+					'enq_product_id_fk' =>$product_id,
+
+					'enq_status' =>1,
+
+					'enq_created_at' =>date("Y-m-d"));
 
 
-				$result = $this->General_model->add_returnID('tbl_chat_box',$data);
 
-				$result = $this->General_model->add_returnID('tbl_enquiry',$data1);
 
-				$response_text = 'Message Sent';
 
-				if($result)
+					$result = $this->General_model->add_returnID('tbl_chat_box',$data);
 
-				{
+					$result = $this->General_model->add_returnID('tbl_enquiry',$data1);
 
-					// $this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");?>
+					$response_text = 'Message Sent';
 
-					<script type="text/javascript">
+					if($result)
 
-					alert('Success:Message Sent');
+					{
 
-					</script> <?php
+						// $this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");?>
 
-					redirect('/Home', 'refresh');
+						<script type="text/javascript">
+
+						alert('Success:Message Sent');
+
+						</script> <?php
+
+						redirect('/Home', 'refresh');
+
+					}
+
+
+
+					else
+
+					{
+
+						?> <script type="text/javascript">
+
+						alert('Something went wrong,please try again');
+
+						</script> <?php
+
+						redirect('/singleProduct/'.$product_id, 'refresh');
+
+					}
 
 				}
 
 
 
-				else
+				public function chatmsg($chat_id,$chat_product_id)
 
 				{
 
-					?> <script type="text/javascript">
+					//
 
-					alert('Something went wrong,please try again');
+					$data=array('chat_status'=>1);
 
-					</script> <?php
+					$result=$this->General_model->update('tbl_chat_box',$data,'chat_id',$chat_id);
 
-					redirect('/singleProduct/'.$product_id, 'refresh');
+					//$result=$this->Home_model->update($data,$user_id,$pro_list_id);
+
+
+
+					//echo $chat_product_id;exit;
+
+					@$user_id = $this->session->userdata('user_id');
+
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+
+					$data['menu'] = $this->Home_model->getMenuHome();
+
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+
+					$data['location'] = $this->Home_model->getLocationDetails();
+
+					$data['menu_cat'] =$this->Home_model->getMenuCatTable();
+
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+
+					$data['logo'] =$this->Home_model->getLogo();
+
+					$data['chat'] =$this->Home_model->getChat($user_id);
+
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
+					$data['chat_msg'] =$this->Home_model->getChatbox1($user_id,$chat_product_id);
+
+					$data['chat_msgs'] =$this->Home_model->getChatboxs($user_id,$chat_product_id);
+
+					// $data['chats'] =$this->Home_model->chats($user_id,$pro_list_id);
+
+					$data['chat2'] =$this->Home_model->getChatbox2($user_id,$chat_product_id);
+
+					$data['chat3'] =$this->Home_model->getChatbox3($user_id,$chat_product_id);
+
+
+
+					$this->load->view('Headers/header_home',$data);
+
+					$this->load->view('Chat',$data);
+
+					$this->load->view('Footers/footer_home',$data);
+
+
 
 				}
 
+
+
+				public function mychat()
+
+				{
+
+					@$user_id = $this->session->userdata('user_id');
+
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+
+					$data['menu'] = $this->Home_model->getMenuHome();
+
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+
+					$data['location'] = $this->Home_model->getLocationDetails();
+
+					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+
+					$data['logo'] =$this->Home_model->getLogo();
+
+					$data['chat'] =$this->Home_model->getChat($user_id);
+
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
+
+
+					$data['mychat'] =$this->Home_model->getMychat($user_id);
+
+
+
+
+
+					$this->load->view('Headers/header_home',$data);
+
+					$this->load->view('Mychat',$data);
+
+					$this->load->view('Footers/footer_home',$data);
+
+				}
+
+
+
+
+
+				public function viewchat($chat_id,$chat_product_id)
+
+				{
+
+
+
+					@$user_id = $this->session->userdata('user_id');
+
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+
+					$data['menu'] = $this->Home_model->getMenuHome();
+
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+
+					$data['location'] = $this->Home_model->getLocationDetails();
+
+					$data['menu_cat'] =$this->Home_model->getMenuCatTable();
+
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+
+					$data['logo'] =$this->Home_model->getLogo();
+
+					$data['chat'] =$this->Home_model->getChat($user_id);
+
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
+					$data['chat_msg'] =$this->Home_model->getChatbox1($user_id,$chat_product_id);
+
+					$data['chat_msgs'] =$this->Home_model->getChatboxs($user_id,$chat_product_id);
+
+					// $data['chats'] =$this->Home_model->chats($user_id,$pro_list_id);
+
+					$data['chat2'] =$this->Home_model->getChatbox2($user_id,$chat_product_id);
+
+					$data['chat3'] =$this->Home_model->getChatbox3($user_id,$chat_product_id);
+
+
+
+					$this->load->view('Headers/header_home',$data);
+
+					$this->load->view('Viewchat',$data);
+
+					$this->load->view('Footers/footer_home',$data);
+
+
+
+				}
+
+				public function getAllPostsOfSeller($seller_id){
+					@$user_id = $this->session->userdata('user_id');
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+					$data['menu'] = $this->Home_model->getMenuHome();
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+					$data['location'] = $this->Home_model->getLocationDetails();
+					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+					$data['all_seller_posts']=$this->Home_model->getSellerPosts($seller_id);
+					$data['seller_details']=$this->Home_model->getSellerDetails($seller_id);
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+					$data['logo'] =$this->Home_model->getLogo();
+					$data['chat'] =$this->Home_model->getChat($user_id);
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
+					$this->load->view('Headers/header_home',$data);
+					$this->load->view('Sellers_details',$data);
+					$this->load->view('Footers/footer_home',$data);
+
+				}
+
+				public function checkFollowerStatus(){
+					$user_id=$this->input->post("user_id");
+					$seller_id=$this->input->post("seller_id");
+					$result=$this->Home_model->check_follower_status($seller_id,$user_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function unfollow(){
+					$user_id=$this->input->post("user_id");
+					$seller_id=$this->input->post("seller_id");
+					$result=$this->Home_model->unfollow_seller($user_id,$seller_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function follow(){
+					$user_id=$this->input->post("user_id");
+					$seller_id=$this->input->post("seller_id");
+					$result=$this->Home_model->follow_seller($user_id,$seller_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function getTotalFollowers(){
+					$seller_id=$this->input->post("seller_id");
+					$result=$this->Home_model->getTotalFollowerCount($seller_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function getTotalFollowing(){
+					$seller_id=$this->input->post("seller_id");
+					$result=$this->Home_model->getTotalFollowingCount($seller_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function getStarRating(){
+					$product_id=$this->input->post("product_id");
+					$result=$this->Home_model->getSingleStarRating($product_id);
+					$json_data = json_encode($result);
+					echo $json_data;
+				}
+
+				public function myqueries(){
+					@$user_id = $this->session->userdata('user_id');
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+					$data['menu'] = $this->Home_model->getMenuHome();
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+					$data['location'] = $this->Home_model->getLocationDetails();
+					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+					$data['logo'] =$this->Home_model->getLogo();
+					$data['chat'] =$this->Home_model->getChat($user_id);
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+					$data['mychat'] =$this->Home_model->getMychat($user_id);
+					$this->load->view('Headers/header_home',$data);
+					$this->load->view('My_enquiries',$data);
+					$this->load->view('Footers/footer_home',$data);
+				}
+
+				public function addReviewandRatings($pro_list_id){
+					$pro_list_id=$pro_list_id;
+					@$user_id = $this->session->userdata('user_id');
+
+					$data['chat_data']=$this->Home_model->getChatData($user_id,$pro_list_id);
+					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+					$data['user_name'] = $this->Home_model->getUsername($user_id);
+					$data['menu_cate'] = $this->Home_model->getMenuCategory();
+					$data['menu'] = $this->Home_model->getMenuHome();
+					$data['submenu'] = $this->Home_model->getSubMenuHome();
+					$data['location'] = $this->Home_model->getLocationDetails();
+					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+					$data['logo'] =$this->Home_model->getLogo();
+					$data['chat'] =$this->Home_model->getChat($user_id);
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+					$data['mychat'] =$this->Home_model->getMychat($user_id);
+
+					$this->load->view('Headers/header_home',$data);
+					$this->load->view('Add_review',$data);
+					$this->load->view('Footers/footer_home',$data);
+
+				}
+
+				public function addRatingandReview(){
+					$data = array(
+						'review_product_id' => $_POST['product_id'],
+						'review_seller_id' => $_POST['seller_id'],
+						'review_user_id' => $_POST['user_id'],
+						'review_rating' => $_POST['rating_count'],
+						'review_comments' => $_POST['review_comments'],
+						'created_at' => Date('Y-m-d H:i:s')
+					);
+					$result=$this->Home_model->Add_review($data);
+					if($result){
+						echo "<script>alert('Rating added successfully')</script>";
+						redirect('/Productpage/myqueries/', 'refresh');
+					}
+					else{
+						echo "<script>alert('Failed to add rating')</script>";
+						redirect('/Productpage/myqueries/', 'refresh');
+					}
+					// var_dump($_POST); die;
+				}
+
+
 			}
-
-
-
-			public function chatmsg($chat_id,$chat_product_id)
-
-			{
-
-				//
-
-				$data=array('chat_status'=>1);
-
-				$result=$this->General_model->update('tbl_chat_box',$data,'chat_id',$chat_id);
-
-				//$result=$this->Home_model->update($data,$user_id,$pro_list_id);
-
-
-
-				//echo $chat_product_id;exit;
-
-				@$user_id = $this->session->userdata('user_id');
-
-				$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
-
-				$data['user_name'] = $this->Home_model->getUsername($user_id);
-
-				$data['menu_cate'] = $this->Home_model->getMenuCategory();
-
-				$data['menu'] = $this->Home_model->getMenuHome();
-
-				$data['submenu'] = $this->Home_model->getSubMenuHome();
-
-				$data['location'] = $this->Home_model->getLocationDetails();
-
-				$data['menu_cat'] =$this->Home_model->getMenuCatTable();
-
-				$data['footer_details'] = $this->Home_model->getFooterDetail();
-
-				$data['logo'] =$this->Home_model->getLogo();
-
-				$data['chat'] =$this->Home_model->getChat($user_id);
-
-				$data['chat1'] =$this->Home_model->getChatbox($user_id);
-
-				$data['chat_msg'] =$this->Home_model->getChatbox1($user_id,$chat_product_id);
-
-				$data['chat_msgs'] =$this->Home_model->getChatboxs($user_id,$chat_product_id);
-
-				// $data['chats'] =$this->Home_model->chats($user_id,$pro_list_id);
-
-				$data['chat2'] =$this->Home_model->getChatbox2($user_id,$chat_product_id);
-
-				$data['chat3'] =$this->Home_model->getChatbox3($user_id,$chat_product_id);
-
-
-
-				$this->load->view('Headers/header_home',$data);
-
-				$this->load->view('Chat',$data);
-
-				$this->load->view('Footers/footer_home',$data);
-
-
-
-			}
-
-
-
-			public function mychat()
-
-			{
-
-				@$user_id = $this->session->userdata('user_id');
-
-				$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
-
-				$data['user_name'] = $this->Home_model->getUsername($user_id);
-
-				$data['menu_cate'] = $this->Home_model->getMenuCategory();
-
-				$data['menu'] = $this->Home_model->getMenuHome();
-
-				$data['submenu'] = $this->Home_model->getSubMenuHome();
-
-				$data['location'] = $this->Home_model->getLocationDetails();
-
-				$data['menu_cat'] = $this->Home_model->getMenuCatTable();
-
-				$data['footer_details'] = $this->Home_model->getFooterDetail();
-
-				$data['logo'] =$this->Home_model->getLogo();
-
-				$data['chat'] =$this->Home_model->getChat($user_id);
-
-				$data['chat1'] =$this->Home_model->getChatbox($user_id);
-
-
-
-				$data['mychat'] =$this->Home_model->getMychat($user_id);
-
-
-
-
-
-				$this->load->view('Headers/header_home',$data);
-
-				$this->load->view('Mychat',$data);
-
-				$this->load->view('Footers/footer_home',$data);
-
-			}
-
-
-
-
-
-			public function viewchat($chat_id,$chat_product_id)
-
-			{
-
-
-
-				@$user_id = $this->session->userdata('user_id');
-
-				$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
-
-				$data['user_name'] = $this->Home_model->getUsername($user_id);
-
-				$data['menu_cate'] = $this->Home_model->getMenuCategory();
-
-				$data['menu'] = $this->Home_model->getMenuHome();
-
-				$data['submenu'] = $this->Home_model->getSubMenuHome();
-
-				$data['location'] = $this->Home_model->getLocationDetails();
-
-				$data['menu_cat'] =$this->Home_model->getMenuCatTable();
-
-				$data['footer_details'] = $this->Home_model->getFooterDetail();
-
-				$data['logo'] =$this->Home_model->getLogo();
-
-				$data['chat'] =$this->Home_model->getChat($user_id);
-
-				$data['chat1'] =$this->Home_model->getChatbox($user_id);
-
-				$data['chat_msg'] =$this->Home_model->getChatbox1($user_id,$chat_product_id);
-
-				$data['chat_msgs'] =$this->Home_model->getChatboxs($user_id,$chat_product_id);
-
-				// $data['chats'] =$this->Home_model->chats($user_id,$pro_list_id);
-
-				$data['chat2'] =$this->Home_model->getChatbox2($user_id,$chat_product_id);
-
-				$data['chat3'] =$this->Home_model->getChatbox3($user_id,$chat_product_id);
-
-
-
-				$this->load->view('Headers/header_home',$data);
-
-				$this->load->view('Viewchat',$data);
-
-				$this->load->view('Footers/footer_home',$data);
-
-
-
-			}
-
-			public function getAllPostsOfSeller($seller_id){
-				@$user_id = $this->session->userdata('user_id');
-				$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
-				$data['user_name'] = $this->Home_model->getUsername($user_id);
-				$data['menu_cate'] = $this->Home_model->getMenuCategory();
-				$data['menu'] = $this->Home_model->getMenuHome();
-				$data['submenu'] = $this->Home_model->getSubMenuHome();
-				$data['location'] = $this->Home_model->getLocationDetails();
-				$data['menu_cat'] = $this->Home_model->getMenuCatTable();
-				$data['all_seller_posts']=$this->Home_model->getSellerPosts($seller_id);
-				$data['seller_details']=$this->Home_model->getSellerDetails($seller_id);
-				$data['footer_details'] = $this->Home_model->getFooterDetail();
-				$data['logo'] =$this->Home_model->getLogo();
-				$data['chat'] =$this->Home_model->getChat($user_id);
-		    $data['chat1'] =$this->Home_model->getChatbox($user_id);
-
-				$this->load->view('Headers/header_home',$data);
-				$this->load->view('Sellers_details',$data);
-				$this->load->view('Footers/footer_home',$data);
-
-			}
-
-			public function checkFollowerStatus(){
-				$user_id=$this->input->post("user_id");
-				$seller_id=$this->input->post("seller_id");
-				$result=$this->Home_model->check_follower_status($seller_id,$user_id);
-				$json_data = json_encode($result);
-	    	echo $json_data;
-			}
-
-			public function unfollow(){
-				$user_id=$this->input->post("user_id");
-				$seller_id=$this->input->post("seller_id");
-				$result=$this->Home_model->unfollow_seller($user_id,$seller_id);
-				$json_data = json_encode($result);
-	    	echo $json_data;
-			}
-
-			public function follow(){
-				$user_id=$this->input->post("user_id");
-				$seller_id=$this->input->post("seller_id");
-				$result=$this->Home_model->follow_seller($user_id,$seller_id);
-				$json_data = json_encode($result);
-	    	echo $json_data;
-			}
-
-			public function getTotalFollowers(){
-				$seller_id=$this->input->post("seller_id");
-				$result=$this->Home_model->getTotalFollowerCount($seller_id);
-				$json_data = json_encode($result);
-	    	echo $json_data;
-			}
-
-			public function getTotalFollowing(){
-				$seller_id=$this->input->post("seller_id");
-				$result=$this->Home_model->getTotalFollowingCount($seller_id);
-				$json_data = json_encode($result);
-	    	echo $json_data;
-			}
-
-
-		}

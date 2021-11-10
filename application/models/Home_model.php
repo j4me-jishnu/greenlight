@@ -844,4 +844,47 @@ class Home_Model extends CI_Model
 		return $result;
 	}
 
+	public function getSingleStarRating($product_id){
+		$query=$this->db->select('*')->where('review_product_id',$product_id)->get('tbl_review');
+		$records=$query->result();
+
+		if($records){
+			$avg_rating_array=array();
+			foreach ($records as $record) {
+				array_push($avg_rating_array,$record->review_rating);
+			}
+			$result['status']=true;
+			$result['total_rating']=ceil(array_sum($avg_rating_array)/count($records));
+		}
+		else{
+			$result['status']=false;
+			$result['message']="Failed to fetch Following";
+		}
+		return $result;
+	}
+
+	public function getChatData($user_id,$item_id){
+		$query=$this->db->select('*')->where('chat_from',$user_id)->where('chat_product_id',$item_id)->get('tbl_chat_box');
+		$records=$query->result();
+		if($records){
+			$result['status']=true;
+			$result['records']=$records[0];
+		}
+		else{
+			$result['status']=false;
+			$result['message']="Failed to fetch data";
+		}
+		return $result;
+	}
+
+	public function Add_review($data){
+		$query=$this->db->insert('tbl_review', $data);
+		if($query){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 }
