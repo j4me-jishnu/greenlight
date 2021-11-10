@@ -117,8 +117,8 @@
                           </div>
                           <div class="product-caption text-center"> <span class="product-category"><a href="#"></a></span>
                             <h6 class="product-title fw-500 mt-10"><a href="shop-details.html" class="text-light-black"><?php echo $post->pro_list_name; ?></a></h6>
-                            <div class="product-money mt-10"> <span class="text-dark-red fw-500">$90.00</span>
-                              <span class="text-price">$250.00</span>
+                            <div class="product-money mt-10"> <span class="text-dark-red fw-500">&#8377;<?php echo $post->pro_list_dicount_price; ?></span>
+                              <span class="text-price">&#8377; <?php echo $post->prod_list_price_original; ?></span>
                             </div>
                           </div>
                         </div>
