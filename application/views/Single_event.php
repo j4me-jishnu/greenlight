@@ -35,9 +35,7 @@
     <div class="container-fluid custom-container">
       <section class="section-padding our-product bg-light-theme">
         <h3>Join on exclusive events</h3>
-        <?php
-        var_dump($_SESSION['user_id']);
-        ?>
+
         <div class="row">
             <div class="col-lg-4">
               <div class="product-box mb-md-20">

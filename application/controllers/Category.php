@@ -237,6 +237,7 @@ class Category extends CI_Controller{
 		}
 		else{
 			echo "<script>alert('You've already joined!)</script>";
+			redirect('Category/get_events/20');
 		}
 	}
 
