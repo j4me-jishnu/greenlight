@@ -102,8 +102,8 @@ else {
                   </div>
                   <div class="product-caption text-center"> <span class="product-category"><a href="#"><?php echo $category_pages->pro_sub_cat_name ?></a></span>
                     <h6 class="product-title fw-500 mt-10"><a href="shop-details.html" class="text-light-black"><?php echo $category_pages->pro_list_name ?></a></h6>
-                    <div class="product-money mt-10"> <span class="text-dark-red fw-500">$<?php echo $category_pages->pro_list_dicount_price ?></span>
-                      <span class="text-price">$<?php echo $category_pages->prod_list_price_original ?></span>
+                    <div class="product-money mt-10"> <span class="text-dark-red fw-500">&#8377;<?php echo $category_pages->pro_list_dicount_price ?></span>
+                      <span class="text-price">&#8377;<?php echo $category_pages->prod_list_price_original ?></span>
                     </div>
                   </div>
                 </div>

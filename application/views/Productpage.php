@@ -61,7 +61,7 @@
               <input type="hidden" id="product_id" value="<?php echo $pages1->pro_list_id ?>">
               <!-- Rating -->
               <div class="price">
-                <h4 class="text-custom-red price-tag">$<?php echo $pages1->pro_list_dicount_price ?> <span class="text-light-white fw-400 fs-14"><strike>$<?php echo $pages1->prod_list_price_original ?></strike></span></h4>
+                <h4 class="text-custom-red price-tag">&#8377;<?php echo $pages1->pro_list_dicount_price ?> <span class="text-light-white fw-400 fs-14"><strike>&#8377;<?php echo $pages1->prod_list_price_original ?></strike></span></h4>
               </div>
               <div class="product-full-des mb-20">
                 <p class="mb-0"><?php echo $pages1->pro_list_details ?></p>
