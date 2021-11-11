@@ -162,7 +162,10 @@
                     <div class="form-group col-md-12">
 
                       <li class="list-group-item"><?php echo $comment->cmt_description;?></li>
-                      <span> <b><p style="color:rgb(79, 79, 82); font-size:10px;" align="right"><?php echo $comment->created_at; echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$comment->first_name; ?></p></b> </span>
+                      <span> <b><p style="color:rgb(79, 79, 82); font-size:10px;" align="right"><?php
+                      echo date("F d, y",strtotime($comment->created_at));
+
+                       echo "&nbsp&nbsp&nbsp&nbsp&nbsp".$comment->first_name; ?></p></b> </span>
                     </div>
                   <?php } ?>
                 </div>
@@ -206,8 +209,8 @@
                   </div>
                   <div class="product-caption text-center"> <span class="product-category"><a href="#"><?php echo $relateds->pro_sub_cat_name ?></a></span>
                     <h6 class="product-title fw-500 mt-10"><a href="shop-details.html" class="text-light-black"><?php echo $relateds->pro_list_name ?></a></h6>
-                    <div class="product-money mt-10"> <span class="text-dark-red fw-500"><?php echo $relateds->pro_list_dicount_price ?></span>
-                      <span class="text-price"><?php echo $relateds->prod_list_price_original ?></span>
+                    <div class="product-money mt-10"> <span class="text-dark-red fw-500">&#8377;<?php echo $relateds->pro_list_dicount_price ?></span>
+                      <span class="text-price">&#8377; <?php echo $relateds->prod_list_price_original; ?></span>
                     </div>
                   </div>
                 </div>
