@@ -27,12 +27,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner">
-    <!-- <div class="carousel-item active">
-      <img src="<?php echo base_url(); ?>assets/img/sli1.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-     <img src="<?php echo base_url(); ?>assets/img/sli2.jpg" class="img-fluid full-width" alt="Banner">
-    </div> -->
+
     <?php $active = true; ?>
     <?php foreach($banner as $ban):?>
       <div class="carousel-item <?php echo ($active == true)?"active":"" ?>">
@@ -126,7 +121,7 @@
                 </div>
               </div>
               <div class="button-group"> <a href="#" data-toggle="tooltip" data-placement="left" onclick="addWishList(<?php echo $product_lists->pro_list_id ?>)" title="" data-original-title="Add to wishlist" tabindex="-1"><i class="pe-7s-like"></i></a>
-                <a href="compare.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Compare" tabindex="-1"><i class="pe-7s-refresh-2"></i></a><a href="" onclick="product_list_modal(<?php echo $product_lists->pro_list_id ?>)"  data-toggle="modal" data-target="#quick_view"><span
+                <a href="" onclick="product_list_modal(<?php echo $product_lists->pro_list_id ?>)"  data-toggle="modal" data-target="#quick_view"><span
                     data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><i class="pe-7s-search"></i></span></a>
               </div>
 
@@ -219,7 +214,7 @@
                     </div>
                   </div>
                   <div class="button-group"> <a href="#" data-toggle="tooltip" onclick="addWishList(<?php echo $latest_product_list1->pro_list_id ?>)" data-placement="left" title="" data-original-title="Add to wishlist" tabindex="-1"><i class="pe-7s-like"></i></a>
-                    <a href="compare.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Compare" tabindex="-1"><i class="pe-7s-refresh-2"></i></a><a href="#" onclick="product_list_modal(<?php echo $latest_product_list1->pro_list_id ?>)" data-toggle="modal" data-target="#quick_view"><span
+                    <a href="#" onclick="product_list_modal(<?php echo $latest_product_list1->pro_list_id ?>)" data-toggle="modal" data-target="#quick_view"><span
                         data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><i class="pe-7s-search"></i></span></a>
                   </div>
 
@@ -277,7 +272,7 @@
                     </div>
                   </div>
                   <div class="button-group"> <a href="#" data-toggle="tooltip" onclick="addWishList(<?php echo $Various_product_list1->pro_list_id ?>)" data-placement="left" title="" data-original-title="Add to wishlist" tabindex="-1"><i class="pe-7s-like"></i></a>
-                    <a href="compare.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Compare" tabindex="-1"><i class="pe-7s-refresh-2"></i></a><a href="#" onclick="product_list_modal(<?php echo $Various_product_list1->pro_list_id ?>)" data-toggle="modal" data-target="#quick_view"><span
+                    <a href="#" onclick="product_list_modal(<?php echo $Various_product_list1->pro_list_id ?>)" data-toggle="modal" data-target="#quick_view"><span
                         data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><i class="pe-7s-search"></i></span></a>
                   </div>
 
