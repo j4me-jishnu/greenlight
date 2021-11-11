@@ -140,14 +140,14 @@
   <div class="breadcrumb-area">
     <div class="overlay overlay-bg"></div>
     <div class="container-fluid">
-      <div class="breadcrumb-content">
+      <!-- <div class="breadcrumb-content">
         <h2 class="text-white"></h2>
         <ul>
           <li><a href="index.html">Home</a>
           </li>
           <li class="active">Inner Category</li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- breadcrumb -->

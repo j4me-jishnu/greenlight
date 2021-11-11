@@ -47,14 +47,14 @@
   <div class="breadcrumb-area">
     <div class="overlay overlay-bg"></div>
     <div class="container-fluid">
-      <div class="breadcrumb-content">
+      <!-- <div class="breadcrumb-content">
         <h2 class="text-white"></h2>
         <ul>
           <li><a href="index.html">Home</a>
           </li>
           <li class="active">Inner Category</li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
   <section class="secnd-sec">
@@ -67,7 +67,7 @@
         <a href="#" class="sell-mob-btn">  <span >Sell</span></a>
       </div> -->
     </div>
-    
+
     <nav class="navbar navbar-expand-lg  container">
       <button class="navbar-toggler n2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:white; font-size:28px;"></i></span>

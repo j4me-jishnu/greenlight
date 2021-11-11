@@ -8,6 +8,11 @@
   text-decoration: none;
   margin: 5px 2px;
 }
+.comment {
+  padding: 5px;
+    overflow: scroll;
+}
+
 </style>
 <div id="sub-container">
   <div id="mainMenu">
@@ -159,9 +164,9 @@
               <ul class="list-group">
                 <div class="row">
                   <?php foreach ($single_item_comments as $comment) { ?>
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-10">
 
-                      <li class="list-group-item"><?php echo $comment->cmt_description;?></li>
+                      <li class="list-group-item comment"><?php echo $comment->cmt_description;?></li>
                       <span> <b><p style="color:rgb(79, 79, 82); font-size:10px;" align="right"><?php
                       echo date("F d, y",strtotime($comment->created_at));
 
