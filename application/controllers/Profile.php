@@ -36,7 +36,8 @@ class Profile extends CI_Controller
 		$data['footer_details'] = $this->Home_model->getFooterDetail();
 		$data['logo'] =$this->Home_model->getLogo();
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
+    $data['chat1'] =$this->Home_model->getChatbox($user_id);
+		$data['super_deals'] = $this->Home_model->getSuperDealsHome();
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('Profile',$data);
 		$this->load->view('Footers/footer_home',$data);
@@ -77,7 +78,7 @@ class Profile extends CI_Controller
 					redirect('/Profile/', 'refresh');
 					// echo $response_text;
 					// die;
-					
+
 				}
 				else
 				{
@@ -112,4 +113,3 @@ class Profile extends CI_Controller
 		redirect('/Profile/', 'refresh');
 	}
 }
-
