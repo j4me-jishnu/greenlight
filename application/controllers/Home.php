@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-class Home extends CI_Controller 
+class Home extends CI_Controller
 
 {
 
@@ -16,7 +16,7 @@ class Home extends CI_Controller
 
         $this->load->helper('url');
 
-       
+
 
 		$this->load->model('Home_model');
 
@@ -80,7 +80,7 @@ class Home extends CI_Controller
 
         $data['chat1'] =$this->Home_model->getChatbox($user_id);
 
-        
+
 
         //  var_dump($data['proscro']);
 
@@ -134,7 +134,7 @@ class Home extends CI_Controller
 
 
 
-    
+
 
 
 
