@@ -403,6 +403,9 @@ class Productpage extends CI_Controller
 				}
 
 				public function getAllPostsOfSeller($seller_id){
+					if(empty($this->session->userdata('user_id'))){
+						redirect('/Register/Login');
+					}
 					@$user_id = $this->session->userdata('user_id');
 					$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
 					$data['user_name'] = $this->Home_model->getUsername($user_id);
