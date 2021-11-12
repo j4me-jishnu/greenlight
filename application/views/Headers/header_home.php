@@ -175,6 +175,13 @@
     }
 
 }
+i.fas {
+  display: inline-block;
+  border-radius: 100px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+
+}
 
   </style>
 
@@ -430,9 +437,8 @@
 
                     <ul class="dis-none">
 
-                    <li><i class="far fa-comment"></i></li>
 
-                    <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-bell"><b style="color: red;"><?php echo $chat; ?></b></i></a>
+                    <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i></a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
