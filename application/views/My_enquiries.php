@@ -27,6 +27,7 @@
   </div>
   <!-- breadcrumb -->
   <section class="compare-page-wrapper section-padding">
+    <h2><?php echo $this->session->flashdata('response'); ?></h2> 
     <!-- compare main wrapper start -->
     <div class="container">
       <div class="section-bg-color">

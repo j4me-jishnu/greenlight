@@ -13,11 +13,10 @@ class Productpage extends CI_Controller
 		parent::__construct();
 
 		$this->load->helper('url');
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('Home_model');
 		$this->load->model('General_model');
-
 		$this->load->model('SingleProduct_model');
-
 		$this->load->model('Comment_Model');
 
 	}
@@ -516,25 +515,50 @@ class Productpage extends CI_Controller
 				}
 
 				public function addRatingandReview(){
-					$data = array(
-						'review_product_id' => $_POST['product_id'],
-						'review_seller_id' => $_POST['seller_id'],
-						'review_user_id' => $_POST['user_id'],
-						'review_rating' => $_POST['rating_count'],
-						'review_comments' => $_POST['review_comments'],
-						'created_at' => Date('Y-m-d H:i:s')
-					);
-					$result=$this->Home_model->Add_review($data);
-					if($result){
-						echo "<script>alert('Rating added successfully')</script>";
-						redirect('/Productpage/myqueries/', 'refresh');
+					$config['upload_path']='./admin/assets/uploads/review_images/';
+					$config['allowed_types']='gif|jpg|png|jpeg|JPG|JPEG';
+					$config['file_name']=str_replace('_', '', str_replace(' ','',strtolower($_FILES['upload_image']['name'])));
+					$file_name=$config['file_name'];
+					if($this->load->library('upload', $config)){
+						if($this->upload->do_upload('upload_image')){
+							$data = array(
+								'review_product_id' => $_POST['product_id'],
+								'review_seller_id' => $_POST['seller_id'],
+								'review_user_id' => $_POST['user_id'],
+								'review_rating' => $_POST['rating_count'],
+								'review_comments' => $_POST['review_comments'],
+								'review_image' => $file_name,
+								'review_status' => 0,
+								'created_at' => Date('Y-m-d H:i:s')
+							);
+
+							$result=$this->Home_model->Add_review($data);
+							if($result['status']){
+
+								$response_text = $result['message'];
+								$this->session->set_flashdata('response', '<div class="alert alert-success" role="alert">'.$response_text.'</div>');
+								redirect('/Productpage/myqueries/', 'refresh');
+							}
+							else{
+								$this->session->set_flashdata('response', '<div class="alert alert-danger" role="alert">'.$response_text.'</div>');
+								redirect('/Productpage/myqueries/', 'refresh');
+							}
+						}
+						else{
+							$result['status']=false;
+							$result['message']=$this->upload->display_errors();
+						}
 					}
 					else{
-						echo "<script>alert('Failed to add rating')</script>";
-						redirect('/Productpage/myqueries/', 'refresh');
+						$result['status']=false;
+						$result['message']=$this->upload->display_errors();
 					}
+
+
+
+
 					// var_dump($_POST); die;
 				}
 
 
-			}
+}

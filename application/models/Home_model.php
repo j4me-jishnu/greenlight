@@ -878,13 +878,18 @@ class Home_Model extends CI_Model
 	}
 
 	public function Add_review($data){
+		// echo"<pre>",print_r($data,1),"</pre>"; die;
 		$query=$this->db->insert('tbl_review', $data);
+
 		if($query){
-			return true;
+			$result['status']=true;
+			$result['message']="Review added successfully";
 		}
 		else{
-			return false;
+			$result['status']=true;
+			$result['message']="Failed to add review";
 		}
+		return $result;
 	}
 
 }

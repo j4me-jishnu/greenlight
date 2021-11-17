@@ -30,7 +30,7 @@
     </div>
     <!-- /.col-md-4 -->
 <div class="col-md-10">
-<h2><?php echo $this->session->flashdata('response'); ?></h2> 
+<h2><?php echo $this->session->flashdata('response'); ?></h2>
 <form method="post" enctype="multipart/form-data"  action="<?php echo base_url(); ?>addProfile">
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -100,4 +100,3 @@
 <!-- /.col-md-8 -->
 </div>
 </div>
-

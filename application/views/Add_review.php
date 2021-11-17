@@ -36,13 +36,13 @@
             <p>
             </p>
             <!-- Wishlist Table Area -->
-          <form class="" action="<?php echo base_url(); ?>Productpage/addRatingandReview" method="post">
+          <form class="" action="<?php echo base_url(); ?>Productpage/addRatingandReview" method="post" enctype="multipart/form-data">
             <h3>Post your feedback here</h3>
             <table>
               <tr>
                 <td>Add Rating</td>
                 <td>
-                  <select class="" name="rating_count" >
+                  <select class="form-control" name="rating_count" >
                     <option value="5">5 Stars</option>
                     <option value="4">4 Stars</option>
                     <option value="3">3 Stars</option>
@@ -59,7 +59,11 @@
               <!-- <input type="hidden" name="seller_" value=""> -->
               <tr>
                 <td>Add your comments</td>
-                <td> <textarea name="review_comments" rows="5" cols="40"></textarea> </td>
+                <td> <textarea class="form-control" name="review_comments" rows="5" cols="40"></textarea> </td>
+              </tr>
+              <tr>
+                <td>Upload product image</td>
+                <td><input class="form-control" name="upload_image" type="file" id="formFile" required></td>
               </tr>
 
             </table><br><br>

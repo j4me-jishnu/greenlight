@@ -329,14 +329,12 @@ class Administration extends MY_Controller {
 
 
 
-
-
-
-/*Event section*/
+
+/*Event section*/
 public function Events(){
 	$template['body'] = 'Administration/Events/list';
 	$template['script'] = 'Administration/Events/script';
-	$this->load->view('template',$template);
+$this->load->view('template',$template);
 }
 
 public function addEvent(){
@@ -392,12 +390,12 @@ public function addEvent(){
 		else{
 			$result=$this->General_model->add_returnID('tbl_events',$data);
 			 $insert_id = $this->db->insert_id();
- 			
+
 			$response_text='Event added successfully';
 
 			$this->barcodShow($insert_id,$this->input->post('event_name'));
 		}
-		
+
 	}
 }
 
@@ -1005,9 +1003,9 @@ public function deleteEvent(){
 			}
 			else{
 				$result = $this->General_model->add_returnID('product_list',$data);
-				
+
 				$response_text = 'Product List Added';
-				
+
 			}
 
 			if($result){
@@ -1128,18 +1126,18 @@ public function deleteEvent(){
 		$code = rand(000000,999999999);
 		$barcode = "SF-".$code.$event_id;
 		$this->zend->load('Zend/Barcode');
-			
+
 			$imageResource = Zend_Barcode::factory('code128', 'image', array('text' => $barcode), array())->draw();
 			$imageName = $barcode . '.jpg';
-			$imagePath = 'barcode/'; 
+			$imagePath = 'barcode/';
 			imagejpeg($imageResource, $imagePath . $imageName);
 			$pathBarcode = $imagePath . $imageName;
-	
+
 			$data = array('barcode' => $barcode);
 			$this->General_model->update('tbl_events',$data,'event_id',$event_id);
 			 $temp['img_name'] = $imageName;
 			$this->load->view('barcode',$temp);
-	
+
 		}
 	public function barcodShow($insert_id,$event_name)
 	{
@@ -1153,10 +1151,10 @@ public function deleteEvent(){
 		else
 		{
 			$this->zend->load('Zend/Barcode');
-			
+
 			$imageResource = Zend_Barcode::factory('code128', 'image', array('text' => $barcode,'barHeight'=> 50, ), array())->draw();
 			$imageName = $barcode . '.jpg';
-			$imagePath = 'barcode/'; 
+			$imagePath = 'barcode/';
 			imagejpeg($imageResource, $imagePath . $imageName);
 			$pathBarcode = $imagePath . $imageName;
 
@@ -1167,7 +1165,7 @@ public function deleteEvent(){
 			$temp['name']=$event_name;
 			//$temp['selling_price']=$product_original_price;
 			$this->load->view('barcode3',$temp);
-		}	
+		}
 
 	}
 	public function printBarcode()
@@ -1177,10 +1175,14 @@ public function deleteEvent(){
 		$temp['name']=$this->input->get('event_name');
 		//$temp['selling_price']=$this->input->get('product_original_price');
 		$this->load->view('barcode3',$temp);
-	}	
+	}
+
+	public function ReviewsApproval(){
+		
+	}
 
 
 
 
-	
+
 }
