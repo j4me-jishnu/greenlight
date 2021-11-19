@@ -347,7 +347,6 @@ class Administration extends MY_Controller {
 			$this->load->view('template', $template);
 		}
 		else {
-			// var_dump($this->input->post()); die;
 			$event_id=$this->input->post('event_id');
 			$event_image = $_FILES['event_image']['name'];
 			$file_name = rand(1000,100000).'.png';
@@ -1220,6 +1219,10 @@ class Administration extends MY_Controller {
 			$this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Failed to reject request, Something went wrong! later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
 		}
 		redirect('/Administration/ReviewsApproval/', 'refresh');
+	}
+
+	public function generateQRCode(){
+		
 	}
 
 
