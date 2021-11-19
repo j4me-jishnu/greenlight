@@ -7,16 +7,16 @@ class Administration extends MY_Controller {
 		if(! $this->is_logged_in()){
 			redirect('/login');
 		}
-
+
 		$this->load->model('General_model');
 		$this->load->model('Administration_model');
 		$this->load->model('Settings_model');
 		$this->load->library('zend');
 		$this->load->model('Product_model');
-
+
 	}
 	public function index(){
-
+
 	}
 	public function Category(){
 		$template['body'] = 'Administration/Category/list';
@@ -63,7 +63,7 @@ class Administration extends MY_Controller {
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getCategoryTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -91,7 +91,7 @@ class Administration extends MY_Controller {
 		$template['records'] = $this->General_model->getall('category',$where);
 		$this->load->view('template', $template);
 	}
-
+
 	public function Subcategory(){
 		$template['body'] = 'Administration/Subcategory/list';
 		$template['script'] = 'Administration/Subcategory/script';
@@ -107,7 +107,7 @@ class Administration extends MY_Controller {
 			$this->load->view('template', $template);
 		}
 		else {
-
+
 			$category_id = $this->input->post('category_id');
 			$data  = array(
 				'category'=> $this->input->post('category'),
@@ -140,11 +140,11 @@ class Administration extends MY_Controller {
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getsubCategoryTable($param);
 		$where=array('category_status'=>1,'category_parent_id'=>0);
 		$categories = $this->General_model->getall('category',$where);
-
+
 		for ($i=0; $i < count($data['data']); $i++)
 		{
 			// echo $data['data'][$i]->category_parent_id;
@@ -158,7 +158,7 @@ class Administration extends MY_Controller {
 			//error for undefined variable main
 			@$data['data'][$i]->main_cat=$main;
 		}
-
+
 		$json_data = json_encode($data);
 		echo $json_data;
 	}
@@ -183,9 +183,9 @@ class Administration extends MY_Controller {
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
-
-
+
+
+
 		$data = $this->Administration_model->getDesignationTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -258,11 +258,11 @@ class Administration extends MY_Controller {
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		//$data = $this->Administration_model->getEmployeeTable($param);
 		// $des = $this->General_model->get_all('emp_designation');
 		$data = $this->Administration_model->getEmployeeDesc($param);
-
+
 		$json_data = json_encode($data);
 		echo $json_data;
 	}
@@ -305,7 +305,7 @@ class Administration extends MY_Controller {
 		$template['body'] = 'Administration/Employee/add';
 		$template['script'] = 'Administration/Employee/script';
 		$template['hello'] = $this->General_model->get_all('emp_designation');
-
+
 		$where=array('emp_id'=>$id);
 		$template['records'] = $this->General_model->getall('employees',$where);
 		$this->load->view('template', $template);
@@ -325,124 +325,124 @@ class Administration extends MY_Controller {
 		$data_json = json_encode($response);
 		echo $data_json;
 	}
-
-
-
-
-
-/*Event section*/
-public function Events(){
-	$template['body'] = 'Administration/Events/list';
-	$template['script'] = 'Administration/Events/script';
-$this->load->view('template',$template);
-}
-
-public function addEvent(){
-
-	$this->form_validation->set_rules('event_name', 'event_desc', 'required');
-	if ($this->form_validation->run() == FALSE) {
-		$template['hello']=$this->General_model->get_all('tbl_events');
-		$template['body']='Administration/Events/add';
-		$template['script']='Administration/Events/script';
-		$this->load->view('template', $template);
+
+
+
+
+
+	/*Event section*/
+	public function Events(){
+		$template['body'] = 'Administration/Events/list';
+		$template['script'] = 'Administration/Events/script';
+		$this->load->view('template',$template);
 	}
-	else {
-			// var_dump($this->input->post()); die;
-		$event_id=$this->input->post('event_id');
-		$event_image = $_FILES['event_image']['name'];
-		$file_name = rand(1000,100000).'.png';
-		if($event_image != NULL){
-			$config['upload_path']          = './assets/uploads/events';
-			$config['allowed_types']        = 'gif|jpg|jpeg|png';
-			$config['file_name']			=	$file_name;
-			$this->load->library('upload', $config);
-			if(!$this->upload->do_upload('event_image')){
-				$error = array('error' => $this->upload->display_errors());
-				// $template['prod_cat'] = $this->General_model->get_all('product_category');
-				// $template['act'] = $this->General_model->get_all('tbl_events');
-				$template['body'] = 'Administration/Events/add';
-				$template['script'] = 'Administration/Events/script';
-				$this->load->view('template', $template);
-			}
-			else{
-				$data = array('upload_data' => $this->upload->data());
-			}
+
+	public function addEvent(){
+
+		$this->form_validation->set_rules('event_name', 'event_desc', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$template['hello']=$this->General_model->get_all('tbl_events');
+			$template['body']='Administration/Events/add';
+			$template['script']='Administration/Events/script';
+			$this->load->view('template', $template);
 		}
-		$data=array(
-			'event_name'=>$this->input->post('event_name'),
-			'event_desc'=>$this->input->post('event_desc'),
-			'event_image'=>$file_name,
-			'created_at'=>Date('Y:m:d H:i:s'),
-		);
-		if($event_id){
-			$result=$this->General_model->update('tbl_events',$data,'event_id',$event_id);
-			$response_text='Event updated';
-
-			if($result)
-			{
-				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
+		else {
+			// var_dump($this->input->post()); die;
+			$event_id=$this->input->post('event_id');
+			$event_image = $_FILES['event_image']['name'];
+			$file_name = rand(1000,100000).'.png';
+			if($event_image != NULL){
+				$config['upload_path']          = './assets/uploads/events';
+				$config['allowed_types']        = 'gif|jpg|jpeg|png';
+				$config['file_name']			=	$file_name;
+				$this->load->library('upload', $config);
+				if(!$this->upload->do_upload('event_image')){
+					$error = array('error' => $this->upload->display_errors());
+					// $template['prod_cat'] = $this->General_model->get_all('product_category');
+					// $template['act'] = $this->General_model->get_all('tbl_events');
+					$template['body'] = 'Administration/Events/add';
+					$template['script'] = 'Administration/Events/script';
+					$this->load->view('template', $template);
+				}
+				else{
+					$data = array('upload_data' => $this->upload->data());
+				}
+			}
+			$data=array(
+				'event_name'=>$this->input->post('event_name'),
+				'event_desc'=>$this->input->post('event_desc'),
+				'event_image'=>$file_name,
+				'created_at'=>Date('Y:m:d H:i:s'),
+			);
+			if($event_id){
+				$result=$this->General_model->update('tbl_events',$data,'event_id',$event_id);
+				$response_text='Event updated';
+
+				if($result)
+				{
+					$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 				}
 				else{
 					$this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Something went wrong,please try again later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
 				}
 				redirect('/Events/','refresh');
+			}
+			else{
+				$result=$this->General_model->add_returnID('tbl_events',$data);
+				$insert_id = $this->db->insert_id();
+
+				$response_text='Event added successfully';
+
+				$this->barcodShow($insert_id,$this->input->post('event_name'));
+			}
+
+		}
+	}
+
+	public function getEvent(){
+		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
+		$param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
+		$param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
+		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
+		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
+		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
+		$data = $this->Administration_model->getEventDetails($param);
+		$json_data = json_encode($data);
+		echo $json_data;
+	}
+
+	public function editEvent($id){
+		$template['body'] = 'Administration/Events/add';
+		$template['script'] = 'Administration/Events/script';
+		$where=array('event_id'=>$id);
+		$template['records'] = $this->General_model->getall('tbl_events',$where);
+		$this->load->view('template', $template);
+	}
+
+	public function deleteEvent(){
+		$event_id = $this->input->post('event_id');
+		$data = $this->General_model->delete('tbl_events','event_id',$event_id);
+		if($data){
+			$response['text'] = 'Deleted successfully';
+			$response['type'] = 'success';
 		}
 		else{
-			$result=$this->General_model->add_returnID('tbl_events',$data);
-			 $insert_id = $this->db->insert_id();
-
-			$response_text='Event added successfully';
-
-			$this->barcodShow($insert_id,$this->input->post('event_name'));
+			$response['text'] = 'Something went wrong';
+			$response['type'] = 'error';
 		}
-
+		$response['layout'] = 'topRight';
+		$data_json = json_encode($response);
+		echo $data_json;
 	}
-}
-
-public function getEvent(){
-	$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-	$param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
-	$param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
-	$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
-	$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
-	$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-	$data = $this->Administration_model->getEventDetails($param);
-	$json_data = json_encode($data);
-	echo $json_data;
-}
-
-public function editEvent($id){
-	$template['body'] = 'Administration/Events/add';
-	$template['script'] = 'Administration/Events/script';
-	$where=array('event_id'=>$id);
-	$template['records'] = $this->General_model->getall('tbl_events',$where);
-	$this->load->view('template', $template);
-}
-
-public function deleteEvent(){
-	$event_id = $this->input->post('event_id');
-	$data = $this->General_model->delete('tbl_events','event_id',$event_id);
-	if($data){
-		$response['text'] = 'Deleted successfully';
-		$response['type'] = 'success';
-	}
-	else{
-		$response['text'] = 'Something went wrong';
-		$response['type'] = 'error';
-	}
-	$response['layout'] = 'topRight';
-	$data_json = json_encode($response);
-	echo $data_json;
-}
-
-
-
-
-
-
-
-
-
+
+
+
+
+
+
+
+
+
 	//Offers CRUD
 	public function Offers(){
 		$template['body'] = 'Administration/Offers/list';
@@ -456,7 +456,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getOffersTable($param);
 		for($i=0;$i < count($data['data']);$i++){
 			$offer = $data['data'][$i]->status;
@@ -468,7 +468,7 @@ public function deleteEvent(){
 			}
 			$data['data'][$i]->status = $a;
 		}
-
+
 		$json_data = json_encode($data);
 		echo $json_data;
 	}
@@ -500,7 +500,7 @@ public function deleteEvent(){
 			$offer_id = $this->input->post('off_id');
 			$offer_img = $_FILES['off_img']['name'];
 			$file_name = rand(1000,100000).'.png';
-
+
 			if($offer_img != NULL){
 				$config['upload_path']          = './assets/uploads/offers';
 				$config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -508,13 +508,13 @@ public function deleteEvent(){
 				// $config['max_size']             = 100;
 				// $config['max_width']            = 1024;
 				// $config['max_height']           = 768;
-
+
 				$this->load->library('upload', $config);
-
+
 				if ( ! $this->upload->do_upload('off_img'))
 				{
 					$error = array('error' => $this->upload->display_errors());
-
+
 					$template['act'] = $this->General_model->get_all('offers');
 					$template['body'] = 'Administration/Offers/add';
 					$template['script'] = 'Administration/Offers/script';
@@ -526,7 +526,7 @@ public function deleteEvent(){
 					// $this->load->view('upload_success', $data);
 				}
 			}
-
+
 			$data  = array(
 				'off_name'=> $this->input->post('off_name'),
 				'off_img'=> $file_name,
@@ -593,7 +593,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getLocationsTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -670,7 +670,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getSellersTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -686,10 +686,10 @@ public function deleteEvent(){
 		}
 		else {
 			$seller_id = $this->input->post('sell_id');
-
+
 			$offer_img = $_FILES['sell_image']['name'];
 			$file_name = rand(1000,100000).'.png';
-
+
 			if($offer_img != NULL){
 				$config['upload_path']          = './assets/uploads/seller';
 				$config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -697,13 +697,13 @@ public function deleteEvent(){
 				// $config['max_size']             = 100;
 				// $config['max_width']            = 1024;
 				// $config['max_height']           = 768;
-
+
 				$this->load->library('upload', $config);
-
+
 				if ( ! $this->upload->do_upload('sell_image'))
 				{
 					$error = array('error' => $this->upload->display_errors());
-
+
 					$template['act'] = $this->General_model->get_all('offers');
 					$template['body'] = 'Administration/Seller/add';
 					$template['script'] = 'Administration/Seller/script';
@@ -712,10 +712,10 @@ public function deleteEvent(){
 				else
 				{
 					$data = array('upload_data' => $this->upload->data());
-
+
 				}
 			}
-
+
 			$data  = array(
 				'sell_name'=> $this->input->post('seller_name'),
 				'sell_comp_name' => $this->input->post('sell_comp_name'),
@@ -741,7 +741,7 @@ public function deleteEvent(){
 			}
 			redirect('/Seller/', 'refresh');
 		}
-
+
 	}
 	public function sellerEdit($sell_id){
 		$template['body'] = 'Administration/Seller/add';
@@ -764,7 +764,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getBuyersTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -782,7 +782,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getProductCatTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -818,7 +818,7 @@ public function deleteEvent(){
 			}
 			redirect('/ProductCat/', 'refresh');
 		}
-
+
 	}
 	public function ProductCatEdit($pro_cat_id){
 		$template['body'] = 'Administration/Product_cat/add';
@@ -855,7 +855,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getProductSubCatTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -913,7 +913,7 @@ public function deleteEvent(){
 			}
 			redirect('/ProductSubCat/', 'refresh');
 		}
-
+
 	}
 	public function ProductSubCatEdit($pro_sub_cat_id){
 		$template['prod_cat'] = $this->General_model->get_all('product_category');
@@ -951,7 +951,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getProductListCatTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -971,17 +971,17 @@ public function deleteEvent(){
 		}
 		else {
 			$product_id = $this->input->post('product_id');
-
+
 			$offer_img = $_FILES['product_image']['name'];
 			$file_name = rand(1000,100000).'.png';
-
+
 			if($offer_img != NULL){
 				$config['upload_path']          = './assets/uploads/productlist';
 				$config['allowed_types']        = 'gif|jpg|jpeg|png';
 				$config['file_name']			=	$file_name;
-
+
 				$this->load->library('upload', $config);
-
+
 				if ( ! $this->upload->do_upload('product_image'))
 				{
 					$error = array('error' => $this->upload->display_errors());
@@ -994,10 +994,10 @@ public function deleteEvent(){
 				else
 				{
 					$data = array('upload_data' => $this->upload->data());
-
+
 				}
 			}
-
+
 			$data  = array(
 				'pro_sub_cat_id'=> $this->input->post('pro_sub_cat_id_fk'),
 				'pro_list_name'=> $this->input->post('product_name'),
@@ -1017,11 +1017,11 @@ public function deleteEvent(){
 			}
 			else{
 				$result = $this->General_model->add_returnID('product_list',$data);
-
+
 				$response_text = 'Product List Added';
-
+
 			}
-
+
 			if($result){
 				$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
 			}
@@ -1030,7 +1030,7 @@ public function deleteEvent(){
 			}
 			redirect('/ProductListCat/', 'refresh');
 		}
-
+
 	}
 	public function ProductListCatEdit($pro_list_id){
 		$template['prod_sub_cat'] = $this->General_model->get_all('product_sub_category');
@@ -1068,7 +1068,7 @@ public function deleteEvent(){
 		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
 		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
 		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
-
+
 		$data = $this->Administration_model->getSubscriptionChargesTable($param);
 		$json_data = json_encode($data);
 		echo $json_data;
@@ -1107,7 +1107,7 @@ public function deleteEvent(){
 			}
 			redirect('/SubscriptionCharges/', 'refresh');
 		}
-
+
 	}
 	public function SubscriptionChargesEdit($subp_id){
 		$template['body'] = 'Administration/Subscription_charges/add';
@@ -1131,31 +1131,31 @@ public function deleteEvent(){
 		$data_json = json_encode($response);
 		echo $data_json;
 	}
-
-
-
+
+
+
 	public function generate_barcode(){
-
+
 		$event_id = $this->uri->segment(3);
 		$code = rand(000000,999999999);
 		$barcode = "SF-".$code.$event_id;
 		$this->zend->load('Zend/Barcode');
-
-			$imageResource = Zend_Barcode::factory('code128', 'image', array('text' => $barcode), array())->draw();
-			$imageName = $barcode . '.jpg';
-			$imagePath = 'barcode/';
-			imagejpeg($imageResource, $imagePath . $imageName);
-			$pathBarcode = $imagePath . $imageName;
-
-			$data = array('barcode' => $barcode);
-			$this->General_model->update('tbl_events',$data,'event_id',$event_id);
-			 $temp['img_name'] = $imageName;
-			$this->load->view('barcode',$temp);
-
-		}
+
+		$imageResource = Zend_Barcode::factory('code128', 'image', array('text' => $barcode), array())->draw();
+		$imageName = $barcode . '.jpg';
+		$imagePath = 'barcode/';
+		imagejpeg($imageResource, $imagePath . $imageName);
+		$pathBarcode = $imagePath . $imageName;
+
+		$data = array('barcode' => $barcode);
+		$this->General_model->update('tbl_events',$data,'event_id',$event_id);
+		$temp['img_name'] = $imageName;
+		$this->load->view('barcode',$temp);
+
+	}
 	public function barcodShow($insert_id,$event_name)
 	{
-
+
 		$code = rand(000,999);
 		$barcode = "P".$code;
 		$res=$this->Product_model->checkIfExist($barcode);
@@ -1165,13 +1165,13 @@ public function deleteEvent(){
 		else
 		{
 			$this->zend->load('Zend/Barcode');
-
+
 			$imageResource = Zend_Barcode::factory('code128', 'image', array('text' => $barcode,'barHeight'=> 50, ), array())->draw();
 			$imageName = $barcode . '.jpg';
 			$imagePath = 'barcode/';
 			imagejpeg($imageResource, $imagePath . $imageName);
 			$pathBarcode = $imagePath . $imageName;
-
+
 			$data = array('barcode' => $barcode);
 			$this->General_model->update('tbl_events',$data,'event_id',$insert_id);
 			$temp['event_id'] = $insert_id;
@@ -1180,7 +1180,7 @@ public function deleteEvent(){
 			//$temp['selling_price']=$product_original_price;
 			$this->load->view('barcode3',$temp);
 		}
-
+
 	}
 	public function printBarcode()
 	{
@@ -1197,9 +1197,33 @@ public function deleteEvent(){
 		$template['script'] = 'Administration/ReviewsApproval/script';
 		$this->load->view('template',$template);
 	}
-
-
-
-
-
+
+	public function approveReviewRequest(int $review_id){
+		$result=$this->Administration_model->approve_review_status($review_id);
+		$response_text="Request approved successfully";
+		if($result){
+			$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
+		}
+		else{
+			$this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Failed to approve request, Something went wrong! later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
+		}
+		redirect('/Administration/ReviewsApproval/', 'refresh');
+	}
+
+	public function rejectReviewRequest(int $review_id){
+		$result=$this->Administration_model->reject_review_status($review_id);
+		$response_text="Request rejected successfully";
+		if($result){
+			$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
+		}
+		else{
+			$this->session->set_flashdata('response', '{&quot;text&quot;:&quot;Failed to reject request, Something went wrong! later&quot;,&quot;layout&quot;:&quot;bottomRight&quot;,&quot;type&quot;:&quot;error&quot;}');
+		}
+		redirect('/Administration/ReviewsApproval/', 'refresh');
+	}
+
+
+
+
+
 }

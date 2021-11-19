@@ -200,4 +200,32 @@ class Administration_model extends CI_Model
 		$data['recordsFiltered'] = $this->getCount($last_query);
 		return $data;
 	}
+
+	public function approve_review_status($review_id){
+		$data = array(
+			'review_status' => 1,
+			'updated_at' => date("Y-m-d H:i:s"),
+		);
+		$result=$this->db->where('review_id', $review_id)->update('tbl_review', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function reject_review_status($review_id){
+		$data = array(
+			'review_status' => 2,
+			'updated_at' => date("Y-m-d H:i:s"),
+		);
+		$result=$this->db->where('review_id', $review_id)->update('tbl_review', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

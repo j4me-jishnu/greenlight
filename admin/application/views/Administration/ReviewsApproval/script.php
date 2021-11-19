@@ -21,7 +21,16 @@ $table = $('#offer').DataTable( {
     $table.column(0).nodes().each(function(node,index,dt){
       $table.cell(node).data(index+1);
     });
-    $('td', row).eq(7).html('<center>&nbsp&nbsp&nbsp<a href="<?php echo base_url();?>offerEdit/'+data['off_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['off_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    // $('td', row).eq(7).html('<center>&nbsp&nbsp&nbsp<a href="<?php echo base_url();?>offerEdit/'+data['off_id']+'"><i class="fa fa-edit iconFontSize-medium" ></i></a>&nbsp;&nbsp;&nbsp;<a onclick="return confirmDelete('+data['off_id']+')"><i class="fa fa-trash-o iconFontSize-medium" ></i></a></center>');
+    if (data['review_status'] == 1) {
+      $('td', row).eq(7).html('<center><a href="#">&nbsp;&nbsp;Approved &nbsp;&nbsp;&nbsp;</a><div id="app"></center>');
+    }
+    else if (data['review_status'] == 2) {
+      $('td', row).eq(7).html('<center><a href="#">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<font color="red">Rejected</font></a><div id="app"></center>');
+    }
+    else{
+      $('td', row).eq(7).html('<center><a href="<?php echo base_url();?>Administration/approveReviewRequest/'+data['review_id']+'">Approve<a onclick="checkapp('+data['review_id']+')"><div id="cp"></div></a> <a href="<?php echo base_url();?>Administration/rejectReviewRequest/'+data['review_id']+'"><font color="red">Reject</font></a></center><br>');
+    }
   },
 
   "columns": [
