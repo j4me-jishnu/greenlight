@@ -285,6 +285,7 @@
           },
           dataType: 'json',
           success:function(data){
+            console.log(data);
             if(data.status){
               var a=document.getElementById("star");
               for(i=0;i<data.total_rating;i++){

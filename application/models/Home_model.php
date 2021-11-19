@@ -845,7 +845,7 @@ class Home_Model extends CI_Model
 	}
 
 	public function getSingleStarRating($product_id){
-		$query=$this->db->select('*')->where('review_product_id',$product_id)->get('tbl_review');
+		$query=$this->db->select('*')->where('review_product_id',$product_id)->where('review_status',1)->get('tbl_review');
 		$records=$query->result();
 
 		if($records){
@@ -883,7 +883,7 @@ class Home_Model extends CI_Model
 
 		if($query){
 			$result['status']=true;
-			$result['message']="Review added successfully";
+			$result['message']="Requested added, your request is reviewing";
 		}
 		else{
 			$result['status']=true;
