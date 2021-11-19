@@ -101,7 +101,7 @@
 
           <li class="<?php if($this->uri->segment(1)=="ProductListCat"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductListCat"><i class="glyphicon glyphicon-share-alt"></i> <span>Product List</span></a></li>
 
-          <li class="<?php if($this->uri->segment(1)=="ProductListCat"){echo "active";}?>" ><a  href="<?php echo base_url();?>ReviewsApproval"><i class="glyphicon glyphicon-share-alt"></i> <span>Reviews Approval</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="ProductListCat"){echo "active";}?>" ><a  href="<?php echo base_url();?>Administration/ReviewsApproval"><i class="glyphicon glyphicon-share-alt"></i> <span>Reviews Approval</span></a></li>
 
 
         </ul>

@@ -472,6 +472,20 @@ public function deleteEvent(){
 		$json_data = json_encode($data);
 		echo $json_data;
 	}
+
+	public function getReviews(){
+
+		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
+		$param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
+		$param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
+		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
+		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
+		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
+		$data = $this->Administration_model->getReviewsTable($param);
+		$json_data = json_encode($data);
+		echo $json_data;
+	}
+
 	public function addOffer(){
 		$this->form_validation->set_rules('off_name', 'off_name', 'required');
 		$this->form_validation->set_rules('off_per', 'off_per', 'required');
@@ -1178,7 +1192,10 @@ public function deleteEvent(){
 	}
 
 	public function ReviewsApproval(){
-		
+		// echo "hi"; die;
+		$template['body'] = 'Administration/ReviewsApproval/list';
+		$template['script'] = 'Administration/ReviewsApproval/script';
+		$this->load->view('template',$template);
 	}
 
 
