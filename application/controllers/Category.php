@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+use CodeItNow\BarcodeBundle\Utils\QrCode;
+
+
 class Category extends CI_Controller{
 	public $table1 = 'tbl_participants';
-
+
 	function __construct(){
 		parent::__construct();
 		// $this->load->model('Loginmodel');
@@ -15,7 +17,7 @@ class Category extends CI_Controller{
 		$this->load->library('session');
 		$this->load->library('session');
 	}
-
+
 	public function CategoryMenu($id){
 		if(!empty($id)){
 			$cat_ids = $id;
@@ -68,8 +70,8 @@ class Category extends CI_Controller{
 		$data['logo'] =$this->Home_model->getLogo();
 		// echo"<pre>",print_r($data['footer_details'],1),"</pre>"; die;
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
-
+		$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('Category',$data);
 		$this->load->view('Footers/footer_home',$data);
@@ -88,16 +90,16 @@ class Category extends CI_Controller{
 		$data['footer_details'] = $this->Home_model->getFooterDetail();
 		$data['logo'] =$this->Home_model->getLogo();
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
+		$data['chat1'] =$this->Home_model->getChatbox($user_id);
 		/*For get all offer details*/
 		$data['offers'] =$this->Category_model->fetch_all_offers();
-
+
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('Offers_new',$data);
 		$this->load->view('Footers/footer_home',$data);
-
+
 	}
-
+
 	public function get_events($subcategory_id) {
 		@$user_id = $this->session->userdata('user_id');
 		$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
@@ -114,14 +116,14 @@ class Category extends CI_Controller{
 		$data['menu_cat'] = $this->Home_model->getMenuCatTable();
 		$data['event_details'] = $this->Category_model->fetch_all_events();
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
+		$data['chat1'] =$this->Home_model->getChatbox($user_id);
 		// $data['event_details']=$this->
 		// $this->load->view('Events', $subcategory_id);
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('Events', $data);
 		$this->load->view('Footers/footer_home',$data);
 	}
-
+
 	public function showReferralPage(){
 		@$user_id = $this->session->userdata('user_id');
 		$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
@@ -136,9 +138,9 @@ class Category extends CI_Controller{
 		$data['footer_details'] = $this->Home_model->getFooterDetail();
 		$data['logo'] =$this->Home_model->getLogo();
 		$data['menu_cat'] = $this->Home_model->getMenuCatTable();
-
+
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
+		$data['chat1'] =$this->Home_model->getChatbox($user_id);
 		// $data['event_details']=$this->
 		// $this->load->view('Events', $subcategory_id);
 		$this->load->view('Headers/header_home',$data);
@@ -159,16 +161,16 @@ class Category extends CI_Controller{
 		$data['footer_details'] = $this->Home_model->getFooterDetail();
 		$data['logo'] =$this->Home_model->getLogo();
 		$data['menu_cat'] = $this->Home_model->getMenuCatTable();
-
+
 		$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
+		$data['chat1'] =$this->Home_model->getChatbox($user_id);
 		// $data['event_details']=$this->
 		// $this->load->view('Events', $subcategory_id);
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('HelpCenter');
 		$this->load->view('Footers/footer_home',$data);
 	}
-
+
 	public function getSingleEvent(){
 		if(isset($_SESSION['user_id'])){
 			@$user_id = $this->session->userdata('user_id');
@@ -188,10 +190,10 @@ class Category extends CI_Controller{
 			$data['event_details']=$this->Category_model->getSingleEvent($this->uri->segment(3));
 			// $data['event_details']=$this->
 			// $this->load->view('Events', $subcategory_id);
-
+
 			$data['chat'] =$this->Home_model->getChat($user_id);
-        $data['chat1'] =$this->Home_model->getChatbox($user_id);
-
+			$data['chat1'] =$this->Home_model->getChatbox($user_id);
+
 			$this->load->view('Headers/header_home',$data);
 			$this->load->view('Single_event',$data);
 			$this->load->view('Footers/footer_home',$data);
@@ -199,9 +201,9 @@ class Category extends CI_Controller{
 		else{
 			redirect('/Register/Login');
 		}
-
+
 	}
-
+
 	public function addUserToEvent(){
 		$user_id=$this->input->post('event_user_id');
 		$event_id=$this->input->post('event_id');
@@ -240,6 +242,4 @@ class Category extends CI_Controller{
 			redirect('Category/get_events/20');
 		}
 	}
-
-
 }
