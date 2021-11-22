@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 namespace CodeItNow\BarcodeBundle\Utils;
 
-use CodeItNow\BarcodeBundle\Utils\QrCode;
+use \CodeItNow\BarcodeBundle\Utils\QrCode;
 
 class Administration extends MY_Controller {
 	public function __construct() {
@@ -1134,9 +1134,6 @@ class Administration extends MY_Controller {
 		$data_json = json_encode($response);
 		echo $data_json;
 	}
-
-
-
 	public function generate_barcode(){
 
 		$event_id = $this->uri->segment(3);
@@ -1225,7 +1222,7 @@ class Administration extends MY_Controller {
 		redirect('/Administration/ReviewsApproval/', 'refresh');
 	}
 
-	
+
 
 
 
