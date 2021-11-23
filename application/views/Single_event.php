@@ -36,8 +36,8 @@
       <section class="section-padding our-product bg-light-theme">
         <h3>Join on exclusive events</h3>
 
-        <div class="row">
-            <div class="col-lg-4">
+        <div class="container-fluid">
+            <div class="">
               <div class="product-box mb-md-20">
 
                   <img src="<?php echo base_url(); ?>admin/assets/uploads/events/<?php echo $event_details->event_image; ?>" class="img-fluid full-width" alt="product-img">
@@ -45,6 +45,9 @@
                 <h4 class="text-center"><?php echo $event_details->event_name; ?></h4>
                 <p><?php echo $event_details->event_desc; ?></p>
               </div>
+          </div>
+          <div class="col-lg-4">
+            <img src="data:image/png;base64,<?php echo $event_details->event_qr; ?>" alt="Red dot" />
           </div>
       </section>
       <section>
@@ -59,6 +62,7 @@
                     <input type="hidden" name="event_id" class="form-control" id="" placeholder="Enter E-mail" name="event_id" value="<?php echo $event_details->event_id ?>">
                     <input type="email" name="event_user_email" class="form-control" id="" placeholder="Enter E-mail" name="event_user_email" required>
                   </div>
+
                   <div class="form-group">
                     <input type="text" name="event_user_mob" class="form-control" id="" placeholder="Enter mobile Number" name="event_user_mobile" required>
                   </div>

@@ -370,11 +370,14 @@ class Administration extends MY_Controller {
 					$data = array('upload_data' => $this->upload->data());
 				}
 			}
+			$qr_image=$this->generateQR($this->input->post('event_name'), $this->input->post('event_desc'));
 			$data=array(
 				'event_name'=>$this->input->post('event_name'),
 				'event_desc'=>$this->input->post('event_desc'),
 				'event_image'=>$file_name,
 				'created_at'=>Date('Y:m:d H:i:s'),
+				'event_qr'=>$qr_image,
+
 			);
 			if($event_id){
 				$result=$this->General_model->update('tbl_events',$data,'event_id',$event_id);
@@ -438,10 +441,9 @@ class Administration extends MY_Controller {
 	}
 
 	/*	generate QR Code */
-	public function generateQR(){
+	public function generateQR($event_name, $event_desc){
 		$qrCode = new QrCode();
-    $qrCode
-    ->setText('QR code by codeitnow.in')
+    $qrCode->setText($event_desc)
     ->setSize(300)
     ->setPadding(10)
     ->setErrorCorrection('high')
@@ -449,9 +451,10 @@ class Administration extends MY_Controller {
     ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
     ->setLabel('Scan Qr Code')
     ->setLabelFontSize(16)
-    ->setImageType(QrCode::IMAGE_TYPE_PNG)
-    ;
-    echo '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
+    ->setImageType(QrCode::IMAGE_TYPE_PNG);
+		$qr_image = $qrCode->generate();
+		return $qr_image;
+    // echo '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
 	}
 
 
