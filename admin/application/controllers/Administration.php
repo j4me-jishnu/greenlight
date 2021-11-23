@@ -443,18 +443,18 @@ class Administration extends MY_Controller {
 	/*	generate QR Code */
 	public function generateQR($event_name, $event_desc){
 		$qrCode = new QrCode();
-    $qrCode->setText($event_desc)
-    ->setSize(300)
-    ->setPadding(10)
-    ->setErrorCorrection('high')
-    ->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
-    ->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
-    ->setLabel('Scan Qr Code')
-    ->setLabelFontSize(16)
-    ->setImageType(QrCode::IMAGE_TYPE_PNG);
+		$qrCode->setText($event_desc)
+		->setSize(300)
+		->setPadding(10)
+		->setErrorCorrection('high')
+		->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
+		->setBackgroundColor(array('r' => 255, 'g' => 255, 'b' => 255, 'a' => 0))
+		->setLabel('Scan Qr Code')
+		->setLabelFontSize(16)
+		->setImageType(QrCode::IMAGE_TYPE_PNG);
 		$qr_image = $qrCode->generate();
 		return $qr_image;
-    // echo '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
+		// echo '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'" />';
 	}
 
 
@@ -1127,7 +1127,34 @@ class Administration extends MY_Controller {
 			redirect('/SubscriptionCharges/', 'refresh');
 		}
 
-	}
+	}
+
+	public function ChangeSubscriptionStatus(){
+		$id = $_POST["id"];
+		$status = $_POST["status"];
+		if(intval($status)==0){
+			$data  = array('subscription_status'=> 1);
+		}
+		else{
+			$data  = array('subscription_status'=> 0);
+		}
+		$query = $this->General_model->update('subscription',$data,'subp_id',$id);
+		$response_text="Successfully updated";
+		if($query){
+			$result['status']=true;
+			$result['message']="Successfully updated";
+		}
+		else{
+			$result['status']=false;
+			$result['message']="Failed to update";
+		}
+		$json_data = json_encode($result);
+		echo $json_data;
+
+		// echo $query;
+		// $this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}");
+	}
+
 	public function SubscriptionChargesEdit($subp_id){
 		$template['body'] = 'Administration/Subscription_charges/add';
 		$template['script'] = 'Administration/Subscription_charges/script';

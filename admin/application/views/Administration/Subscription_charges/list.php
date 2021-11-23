@@ -17,7 +17,7 @@
         <div class="box-header">
           <div class="row">
             <div class="col-sm-10">
-              <h3>Subscription Charges list</h3>  
+              <h3>Subscription Charges list</h3>
             </div>
             <div class="col-sm-2">
               <a href="<?php echo base_url();?>Administration/addSubscriptionCharges" class="btn btn-sm btn-success"><i class="fa fa-plus-square"></i> Add Subscription</a>
@@ -35,6 +35,8 @@
                   <th>Ads(Total)</th>
                   <TH>Entered Date</TH>
                   <th><center>EDIT/DELETE</center></th>
+                  <th><center>ACTION</center></th>
+
                 </tr>
               </thead>
               <tbody>
@@ -42,5 +44,5 @@
             </table>
         </div>
       </div>
-    </section>  
-</div>    
+    </section>
+</div>
