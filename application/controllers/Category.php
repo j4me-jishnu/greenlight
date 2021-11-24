@@ -188,8 +188,6 @@ class Category extends CI_Controller{
 			$data['menu_cat'] = $this->Home_model->getMenuCatTable();
 			$data['event_id']=$this->uri->segment(3);
 			$data['event_details']=$this->Category_model->getSingleEvent($this->uri->segment(3));
-			// $data['event_details']=$this->
-			// $this->load->view('Events', $subcategory_id);
 
 			$data['chat'] =$this->Home_model->getChat($user_id);
 			$data['chat1'] =$this->Home_model->getChatbox($user_id);
@@ -209,37 +207,36 @@ class Category extends CI_Controller{
 		$event_id=$this->input->post('event_id');
 		$user_email=$this->input->post('event_user_email');
 		$user_mobile=$this->input->post('event_user_mob');
+		$user_fullname=$this->input->post('first_name')." ".$this->input->post('last_name');
 		$event_status=$this->Category_model->checkAlreadyJoined($user_id,$event_id);
-		// $insert_array=(
-		// 	'part_user_id_fk'=>$user_id,
-		// 	'part_event_fk'=>$event_id,
-		// 	'part_email'=>$user_email,
-		// 	'part_mobile'=>$user_mobile,
-		// 	'created_at'=>Date('Y-m-d H:i:s'),
-		// );
-		// $updateData = array('part_user_id_fk'=>$user_id,
-		// 					'part_event_fk'=>$event_id,
-		// 					'part_email'=>$user_email,
-		// 					'part_mobile'=>$user_mobile,
-		// 					'created_at'=>Date('Y-m-d H:i:s')
-		// 				);
+
 		$updateData['part_user_id_fk'] = $user_id;
+		$updateData['part_user_full_name'] = $user_fullname;
 		$updateData['part_event_id'] = $event_id;
 		$updateData['part_email'] = $user_email;
 		$updateData['part_mobile'] = $user_mobile;
 		$updateData['created_at'] = Date('Y-m-d H:i:s');
 		if(empty($event_status)){
-			$result=$this->General_model->add($this->table1,$updateData);
-			if($result){
-				echo "<script>alert('Hurray.. joined successfully!)</script>";
+			$query=$this->General_model->add($this->table1,$updateData);
+			if($query){
+				$result['status']=true;
+				$result['message']="Joined to event successfully";
 			}
 			else{
-				echo "<script>alert('Some error occured, try again later!)</script>";
+				$result['status']=false;
+				$result['message']="Failed to Join";
 			}
 		}
 		else{
-			echo "<script>alert('You've already joined!)</script>";
-			redirect('Category/get_events/20');
+			$result['status']=false;
+			$result['message']="You've alreay joined";
+			// redirect('Category/get_events/20');
 		}
+		$response_text=$result["message"];
+		$this->session->set_flashdata('response', "{&quot;text&quot;:&quot;$response_text&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;error&quot;}");
+
+		$this->session->keep_flashdata('message');
+
+		redirect('/Category/get_events/20', 'refresh');
 	}
 }

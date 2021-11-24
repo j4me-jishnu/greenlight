@@ -8,105 +8,99 @@
     <!-- <div class="sidenavContentHeader">Prime Video</div>
     <a href="#"><div class="sidenavContent">All Videos</div></a> -->
   </div>
-</div>
-</div>
 
+</div>
+</div>
 <!--Not Sidenav-->
-<div>
+<div class="main-sec"></div>
+<!-- <div class="breadcrumb-area">
+<div class="overlay overlay-bg"></div>
+<div class="container-fluid">
+</div>
+</div> -->
 
-  <div class="main-sec"></div>
+<!-- <section class="events-wrpap">
+<div class="container">
+<div class="col-md-12">
+<div class="row">
+<?php foreach ($event_details as $event) { ?>
+<div class="col-lg-4">
+<div class="product-box mb-md-20">
+<a href="<?php echo base_url(); ?>Category/getSingleEvent/<?php echo $event->event_id; ?>">
+<img src="<?php echo base_url(); ?>admin/assets/uploads/events/<?php echo $event->event_image; ?>" class="img-fluid full-width" alt="product-img">
+<h4 class="text-center"><?php echo $event->event_name; ?></h4>
+<p><?php echo $event->event_desc; ?></p>         </a>
+</div>
+</div>
+<?php } ?>
+
+</div>
+</div>
+</div>
+</section> -->
+<section class="slider-section">
+  <div id="carousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+    </ol> <!-- End of Indicators -->
+
+    <!-- Carousel Content -->
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active" style="background-image: url('https://cdn.pixabay.com/photo/2020/04/03/15/27/flower-meadow-4999277_960_720.jpg');">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>New Events </h2>
+          <p>Cool description for Amazon Forest.</p>
+        </div>
+      </div> <!-- End of Carousel Item -->
+
+      <div class="carousel-item" style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg');">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Awesome Experience</h2>
+          <p>Awesome description for bridge.</p>
+        </div>
+      </div> <!-- End of Carousel Item -->
+
+      <div class="carousel-item" style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/21/59/tree-736875_960_720.jpg');">
+        <div class="carousel-caption d-none d-md-block">
+          <h2>Campaigns </h2>
+          <p>Beauty of Flowers & Grass.</p>
+        </div>
+      </div> <!-- End of Carousel Item -->
+    </div> <!-- End of Carousel Content -->
+
+    <!-- Previous & Next -->
+    <a href="#carousel" class="carousel-control-prev" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+    <a href="#carousel" class="carousel-control-next" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only"></span>
+    </a>
+  </div> <!-- End of Carousel -->
+</section> <!-- End of Slider -->
 
 
-  <div class="breadcrumb-area">
-    <div class="overlay overlay-bg"></div>
-    <div class="container-fluid">
-      <!-- <div class="breadcrumb-content">
-        <h2 class="text-white"></h2>
-        <ul>
-          <li><a href="index.html">Home</a>
-          </li>
-          <li class="active">Inner Category</li>
-        </ul>
-      </div> -->
-    </div>
-  </div>
-  <!-- breadcrumb -->
-  <!--product Start-->
-  <section class="section-padding our-product bg-light-theme">
-    <div class="container-fluid custom-container">
-      <section class="section-padding our-product bg-light-theme">
-        <div class="container-fluid custom-container">
-          <div class="row">
-            <div class="offrs-wrp">
-              <h4>Flat 20% OFF on all plants seeds</h4>
-              <p>
-                We often don't think to buy plant online. But what if we tell you that you can now order the most beautiful plants right from home? greenlight presents a broad range of Live Plants that can be bought online in India. Our online nursery collection includes Annual Flowers, Aromatic and Aquatic Plants, Cactii, Bonsai, Ferns, Indoor and Outdoor Plants, Landscape Plants, Bamboo, etc.</p>
-              </div>
+<!-- breadcrumb -->
 
-              <div class="col-xl-12 col-lg-12" >
-                <div class="full-width">
-                  <div class="row">
-
-
-
-                    <?php foreach ($offers as $offer) { ?>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                      <div class="product-box mb-md-20">
-                        <div class="product-img">
-                          <a href="#">
-                            <img src="<?php echo base_url(); ?>admin/assets/uploads/offers/<?php echo $offer->off_img; ?>">
-                          </a>
-                          <div class="product-badge">
-                            <div class="product-label new"> <span>New</span>
-                            </div>
-                            <div class="product-label discount"> <span>15%</span>
-                            </div>
-                          </div>
-                          <div class="button-group"> <a href="wishlist.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist" tabindex="-1"><i class="pe-7s-like"></i></a>
-                            <a href="compare.html" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to Compare" tabindex="-1"><i class="pe-7s-refresh-2"></i></a><a href="#" data-toggle="modal" data-target="#quick_view"><span data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><i class="pe-7s-search"></i></span></a>
-                          </div>
-
-                        </div>
-                        <div class="product-caption text-center"> <span class="product-category"><a href="#"></a></span>
-                          <h6 class="product-title fw-500 mt-10"><a href="shop-details.html" class="text-light-black"><?php echo $offer->off_name; ?></a></h6>
-                          <div class="product-money mt-10"> <span class="text-dark-red fw-500">$90.00</span>
-                            <span class="text-price">$250.00</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <?php } ?>
-
-
-
-                  </div>
-                </div>
-                <div class="custom-pagination align-item-center">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">«</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a>
-                      </li>
-                      <li class="page-item active"><a class="page-link" href="#">2</a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">3</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
+  <section class="events-wrpap">
+    <div class="container">
+      <div class="col-md-12">
+        <div class="row">
+          <?php foreach ($offers as $offer) { ?>
+          <div class="col-lg-4">
+            <div class="product-box mb-md-20">
+              <!-- <a href="<?php echo base_url(); ?>Category/getSingleEvent/<?php echo $event->event_id; ?>"> -->
+                <img src="<?php echo base_url(); ?>admin/assets/uploads/offers/<?php echo $offer->off_img; ?>" class="img-fluid full-width evnt-main-img-cmn" alt="product-img">
+                <h4 class="text-center"><?php echo $offer->off_name; ?></h4>
+                <p><?php echo $offer->off_description; ?></p>
+              <!-- </a> -->
               </div>
             </div>
+          <?php } ?>
           </div>
-        </section>
-      </div>
-    </section>
-    <!--Product-end-->
+        </div>
+      </section>

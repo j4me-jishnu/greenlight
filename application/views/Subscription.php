@@ -28,10 +28,11 @@
   </div>
   <!-- breadcrumb -->
 
-  <?php if(!empty($subscription)){
-    foreach ($subscription as $sub) {
-      ?>
+
       <div class="wrapper pack-green">
+        <?php if(!empty($subscription)){
+          foreach ($subscription as $sub) {
+            ?>
         <div class="table <?php echo $sub->subp_name ?> col-md-4">
           <div class="price-section">
             <div class="price-area">
@@ -68,5 +69,5 @@
         <div class="container-lg">
           <h3>Currently there is no subscription plan available - Greenleafy</h3>
         </div>
-<?php } ?>
+      <?php } ?>
 </div>

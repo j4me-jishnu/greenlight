@@ -43,15 +43,14 @@
                 <td>Add Rating</td>
                 <td>
                   <select class="form-control" name="rating_count" >
-                    <option value="5">5 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="2">2 Stars</option>
-                    <option value="1">1 Star</option>
+                    <option value="5" style="font-color:orange;">5 Stars 🌟🌟🌟🌟🌟</option>
+                    <option value="4">4 Stars 🌟🌟🌟🌟</option>
+                    <option value="3">3 Stars 🌟🌟🌟</option>
+                    <option value="2">2 Stars 🌟🌟</option>
+                    <option value="1">1 Star 🌟</option>
                   </select>
                 </td>
               </tr>
-
                 <input type="hidden" name="user_id" value="<?php echo $chat_data['records']->chat_from; ?>">
                 <input type="hidden" name="seller_id" value="<?php echo $chat_data['records']->chat_to; ?>">
                 <input type="hidden" name="product_id" value="<?php echo $chat_data['records']->chat_product_id; ?>">

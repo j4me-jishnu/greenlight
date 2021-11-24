@@ -8,6 +8,7 @@
     <!-- <div class="sidenavContentHeader">Prime Video</div>
     <a href="#"><div class="sidenavContent">All Videos</div></a> -->
   </div>
+
 </div>
 </div>
 <!--Not Sidenav-->
@@ -83,20 +84,21 @@
 </section> <!-- End of Slider -->
 
 <!-- breadcrumb -->
-<?php foreach ($event_details as $event) { ?>
+
   <section class="events-wrpap">
     <div class="container">
       <div class="col-md-12">
         <div class="row">
+          <?php foreach ($event_details as $event) { ?>
           <div class="col-lg-4">
             <div class="product-box mb-md-20">
               <a href="<?php echo base_url(); ?>Category/getSingleEvent/<?php echo $event->event_id; ?>">
-                <img src="<?php echo base_url(); ?>admin/assets/uploads/events/<?php echo $event->event_image; ?>" class="img-fluid full-width" alt="product-img">
+                <img src="<?php echo base_url(); ?>admin/assets/uploads/events/<?php echo $event->event_image; ?>" class="img-fluid full-width evnt-main-img-cmn" alt="product-img">
                 <h4 class="text-center"><?php echo $event->event_name; ?></h4>
                 <p><?php echo $event->event_desc; ?></p>         </a>
               </div>
             </div>
+          <?php } ?>
           </div>
         </div>
       </section>
-    <?php } ?>

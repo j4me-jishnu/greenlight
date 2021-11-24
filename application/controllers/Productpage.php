@@ -553,10 +553,6 @@ class Productpage extends CI_Controller
 						$result['status']=false;
 						$result['message']=$this->upload->display_errors();
 					}
-
-
-
-
 					// var_dump($_POST); die;
 				}
 
