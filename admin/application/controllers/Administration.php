@@ -444,7 +444,7 @@ class Administration extends MY_Controller {
 	public function generateQR($event_name, $event_desc){
 		$qrCode = new QrCode();
 		$qrCode->setText($event_desc)
-		->setSize(300)
+		->setSize(200)
 		->setPadding(10)
 		->setErrorCorrection('high')
 		->setForegroundColor(array('r' => 0, 'g' => 0, 'b' => 0, 'a' => 0))
