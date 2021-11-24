@@ -439,12 +439,12 @@ i.fas {
                     <ul class="dis-none">
 
 
-                    <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i></a>
+                    <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-bell fa-xs"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i>
+                      </a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
                         <?php foreach($chat1 as $msg){ ?>
-
                         <a class="dropdown-item" href="<?php echo base_url() ?>chatmsg/<?php echo $msg->chat_id;?>/<?php echo $msg->chat_product_id;?>" style="font-size: 12px;"><img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $msg->pro_list_img ?>" style="width:50px;height: 50px;"><?php echo $msg->first_name; ?></a>
 
                         <div class="dropdown-divider"></div>
@@ -463,7 +463,7 @@ i.fas {
 
                       echo "account.jpeg";
 
-                    } ?>" class="img-fluid usr-img" style="width:25px;height:25px;border-radius: 50%;"> </a>
+                    } ?>" class="img-fluid usr-img" style="width:35px;height:35px;border-radius: 50%;"> </a>
 
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
