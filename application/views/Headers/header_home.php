@@ -440,7 +440,7 @@ i.fas {
 
 
                     <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-bell fa-xs"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i>
+                      <i class="fas fa-bell fa-md"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i>
                       </a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
