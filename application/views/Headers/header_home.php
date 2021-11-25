@@ -16,7 +16,7 @@
 
   <meta name="description" content="#">
 
-  <title>Greenlight | Homepage</title>
+  <title>Greenleafy | Homepage</title>
 
   <!-- Fav and touch icons -->
 
