@@ -117,8 +117,6 @@
   background: #ff6600;
   color: white;
 }
-
-
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id="sub-container">
@@ -134,20 +132,11 @@
 </div>
 
 <!--Not Sidenav-->
-<div>
 
   <div class="main-sec"></div>
   <div class="breadcrumb-area">
     <div class="overlay overlay-bg"></div>
     <div class="container-fluid">
-      <!-- <div class="breadcrumb-content">
-        <h2 class="text-white"></h2>
-        <ul>
-          <li><a href="index.html">Home</a>
-          </li>
-          <li class="active">Inner Category</li>
-        </ul>
-      </div> -->
     </div>
   </div>
   <!-- breadcrumb -->
