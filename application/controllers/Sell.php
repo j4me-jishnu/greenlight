@@ -242,4 +242,8 @@ class Sell extends CI_Controller
 			}
 		}
 
+		//Functions to integrate
+
+// after creating a post and before creating a post, controller functions needed is mentioned below
+
 }

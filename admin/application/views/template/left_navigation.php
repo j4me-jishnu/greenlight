@@ -93,7 +93,7 @@
 
           <li class="<?php if($this->uri->segment(1)=="Subcategory"){echo "active";}?>" ><a  href="<?php echo base_url();?>Subcategory"><i class="glyphicon glyphicon-share-alt"></i> <span>Sub Category</span></a></li> -->
 
-          <li class="<?php if($this->uri->segment(1)=="SubscriptionCharges"){echo "active";}?>" ><a  href="<?php echo base_url();?>SubscriptionCharges"><i class="glyphicon glyphicon-share-alt"></i> <span>Subscription Charges</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="SubscriptionCharges"){echo "active";}?>" ><a  href="<?php echo base_url();?>SubscriptionCharges"><i class="glyphicon glyphicon-share-alt"></i> <span>Subscription Details</span></a></li>
 
           <li class="<?php if($this->uri->segment(1)=="ProductCat"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductCat"><i class="glyphicon glyphicon-share-alt"></i> <span>Product Category</span></a></li>
 

@@ -77,7 +77,7 @@
                   <?php if(@$user_image[0]->user_pimage_name != NULL){ ?>
                     <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/<?php echo @$user_image[0]->user_pimage_name ?>" class="img-fluid prof-edit-img">
                   <?php } else { ?>
-                    <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/.png" class="img-fluid prof-edit-img">
+                    <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/account.jpeg" class="img-fluid prof-edit-img">
                   <?php } ?>
                 </div>
                 <div class="col-lg-8">
