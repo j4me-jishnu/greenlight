@@ -28,7 +28,24 @@ class Register extends CI_Controller
 		$this->load->view('Register',$data);
 		$this->load->view('Footers/footer_home',$data);
 	}
+
+	public function matchReffaralCode($ref_code){
+		$response=$this->Register_Model->match_referral_code($ref_code);
+		if($response['status']){
+			$result['status']=true;
+			$result['records']=$response;
+		}
+		else{
+			echo "<script>alert('Referral Code is Not Vaid!');</script>";
+			redirect('Register/', 'refresh');
+			$result['status']=false;
+			$result['message']="Referral code is not valid";
+		}
+		return $result;
+	}
+
 	public function reg(){
+
 		$reference_id=strtoupper(substr($this->input->post('first'), 0, 3)).''.$this->generate_reference_id();
 		$data = array(
 			'first_name' => $this->input->post('first'),
@@ -38,8 +55,21 @@ class Register extends CI_Controller
 			'user_type' => 'U',
 			'status' => '1',
 			'created_date' => date('y-m-d'),
-			'user_reference_id'=>$reference_id
+			'user_reference_id'=>$reference_id,
 		);
+
+		if(isset($_POST['referral_code'])){
+			$result=$this->matchReffaralCode($_POST['referral_code']);
+			if($result['status']){
+				$referrer_id=$result['records']['records']->id;
+				$referrer_point=25;
+				$user_point=10;
+				//Input 25 points to referrer
+				$this->Register_Model->add_referrer_reward($referrer_id,$referrer_point);
+				$data['user_referrer_id']=$referrer_id;
+				$data['user_points']=$user_point;
+			}
+		}
 		$this->Register_Model->insert_user($data);
 		redirect('/Home/', 'refresh');
 	}
@@ -206,6 +236,4 @@ class Register extends CI_Controller
 
 
 
-
-
-}
+}
