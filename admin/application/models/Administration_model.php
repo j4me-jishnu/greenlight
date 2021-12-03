@@ -228,4 +228,25 @@ class Administration_model extends CI_Model
 			return false;
 		}
 	}
-}
+
+	public function get_all_subscribers(){
+		$query=$this->db->select('*')->get('tbl_payment');
+		$records=$query->result();
+		if($records){ return $records; } else { false; }
+	}
+
+	public function get_all_event_participants($params){
+		$this->db->select('*');
+		$this->db->from('tbl_participants'); // this is first table name
+		$this->db->join('tbl_events', 'tbl_events.event_id = tbl_participants.part_event_id'); // this is second table name with both table ids
+		$query = $this->db->get();
+		// return $query->result();
+		$last_query=$this->db->last_query();
+		$data['data'] = $query->result();
+		// $data['recordsTotal'] = $this->getCount($last_query);
+		// $data['recordsFiltered'] = $this->getCount($last_query);
+		// echo "hi";
+		return $data;
+	}
+
+}

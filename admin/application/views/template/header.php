@@ -31,9 +31,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link href= "https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js">
 
   <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datatables/dataTables.bootstrap.css">
-  
+
   <!-- Ionicons -->
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url();?>assets/EasyAutocomplete-1.3.5/easy-autocomplete.min.css"/>
   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url();?>assets/plugins/combogrid/css/smoothness/jquery-ui-1.10.1.custom.css"/>
@@ -73,8 +73,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
  <link href="http://www.jqueryscript.net/demo/Sliding-Growl-Notification-Plugin-For-jQuery-jsnotify/dist/css/notify.css" rel="stylesheet"/>
  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
- 
- 
+
+
  <link href='https://code.jquery.com/jquery-3.3.1.js'>
  <link href='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'>
  <link href='https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js'>
@@ -82,12 +82,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <link href='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js'>
  <link href='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'>
  <link href='https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js'>
- <!-- Select2 CSS --> 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+ <!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
-<!-- jQuery --> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<!-- jQuery --> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Select2 JS --> 
+<!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </head>
 
@@ -122,7 +122,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="<?php echo base_url();?>assets/images/logo1.png" style="max-width:40px"></span>
       <!-- logo for regular state and mobile devices -->
-      
+
       <span class="logo-lg" ></span>
       <!-- <span style="font-weight: bold;font-size: 30px;">SARM</span> -->
     </a>
@@ -143,7 +143,7 @@ desired effect
               <!--<i class="fa fa-envelope-o"></i>-->
               <span class="label label-success"></span>
             </a>
-            
+
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -198,8 +198,8 @@ desired effect
 
   <script>
 $(document).ready(function(){
-  
-    $.ajax({ 
+
+    $.ajax({
         url: "Settings/ajaxLogo",
         contentType: "application/json",
         dataType: "json",

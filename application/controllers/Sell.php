@@ -246,4 +246,8 @@ class Sell extends CI_Controller
 
 // after creating a post and before creating a post, controller functions needed is mentioned below
 
+		public function checkSubscriptionStatus($user_id){
+			
+		}
+
 }

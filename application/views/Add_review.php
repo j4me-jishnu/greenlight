@@ -1,12 +1,37 @@
+<style>
+.rating{
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.rating li{
+  list-style: none;
+}
+.rating-item{
+  border: 1px solid #fff;
+  cursor: pointer;
+  font-size: 2em;
+  color: #FFA500;
+}
+.rating-item::before{
+  content: "\2605";
+}
+.rating-item.active ~ .rating-item::before{
+  content: "\2606";
+}
+.rating:hover .rating-item::before{
+  content: "\2605";
+}
+.rating-item:hover ~ .rating-item::before{
+  content: "\2606";
+}
+</style>
+
 <div id="sub-container">
   <div id="mainMenu">
     <i class="fas fa-chevron-left" style="color: #8e9090"></i> MAIN MENU
   </div>
   <hr />
-  <div id="sub-container-content">
-    <!-- <div class="sidenavContentHeader">Prime Video</div>
-    <a href="#"><div class="sidenavContent">All Videos</div></a> -->
-  </div>
 
 </div>
 </div>
@@ -36,92 +61,56 @@
             <p>
             </p>
             <!-- Wishlist Table Area -->
-          <form class="" action="<?php echo base_url(); ?>Productpage/addRatingandReview" method="post" enctype="multipart/form-data">
-            <h3>Post your feedback here</h3>
-            <table>
-              <tr>
-                <td>Add Rating</td>
-                <td>
-                  <select class="form-control" name="rating_count" >
-                    <option value="5" style="font-color:orange;">5 Stars 🌟🌟🌟🌟🌟</option>
-                    <option value="4">4 Stars 🌟🌟🌟🌟</option>
-                    <option value="3">3 Stars 🌟🌟🌟</option>
-                    <option value="2">2 Stars 🌟🌟</option>
-                    <option value="1">1 Star 🌟</option>
-                  </select>
-                </td>
-              </tr>
+            <form class="" action="<?php echo base_url(); ?>Productpage/addRatingandReview" method="post" enctype="multipart/form-data">
+              <h3>Post your feedback here</h3>
+              <table>
+                <tr>
+                  <td>Add Rating</td>
+                  <td>
+                    <div class="container" id="rating">
+                      <ul class="rating">
+                        <li class="rating-item active" data-rate="1"></li>
+                        <li class="rating-item" data-rate="2"></li>
+                        <li class="rating-item" data-rate="3"></li>
+                        <li class="rating-item" data-rate="4"></li>
+                        <li class="rating-item" data-rate="5"></li>
+                      </ul>
+                      <input type="hidden" id="rating_count" name="rating_count" value="">
+                    </div>
+                  </td>
+                </tr>
                 <input type="hidden" name="user_id" value="<?php echo $chat_data['records']->chat_from; ?>">
                 <input type="hidden" name="seller_id" value="<?php echo $chat_data['records']->chat_to; ?>">
                 <input type="hidden" name="product_id" value="<?php echo $chat_data['records']->chat_product_id; ?>">
-              <!-- Start from here -->
-              <!-- <input type="hidden" name="seller_" value=""> -->
-              <tr>
-                <td>Add your comments</td>
-                <td> <textarea class="form-control" name="review_comments" rows="5" cols="40"></textarea> </td>
-              </tr>
-              <tr>
-                <td>Upload product image</td>
-                <td><input class="form-control" name="upload_image" type="file" id="formFile" required></td>
-              </tr>
-
-            </table><br><br>
-            <td><button type="submit" class="btn btn-success" name="button">Add</button> </td>
-          </form>
+                <tr>
+                  <td>Add your comments</td>
+                  <td> <textarea class="form-control" name="review_comments" rows="5" cols="40"></textarea> </td>
+                </tr>
+                <tr>
+                  <td>Upload product image</td>
+                  <td><input class="form-control" name="upload_image" type="file" id="formFile" required></td>
+                </tr>
+              </table><br><br>
+              <td><button type="submit" class="btn btn-success" name="button">Add</button> </td>
+            </form>
           </div>
         </div>
       </div>
     </div>
     <!-- compare main wrapper end -->
   </section>
-
-
-  <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Add Review and Ratings</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form class="" action="<?php echo base_url(); ?>Productpage/addReviewandRatings" method="post" style="border-color: 0px;">
-            <table>
-              <tr>
-                <td>Your rating</td>
-                <td> <select class="form-group" name="rating_count">
-                  <option value=5>5 star</option>
-                  <option value=4>4 star</option>
-                  <option value=3>3 star</option>
-                  <option value=2>2 star</option>
-                  <option value=1>1 star</option>
-                </select> </td>
-              </tr>
-              <tr>
-                <td></td>
-                <td> <input id="temp" type="text" name="" value=""> </td>
-              </tr>
-              <tr>
-                <td>Your comments</td>
-                <td> <textarea name="description" value=""> </textarea></td>
-              </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary"><u>Add review</u></button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div> -->
-
-
   <script>
-  function getStarsClicked(star_count){
-    var star = star_count.getAttribute('data-id');
-    document.getElementById("temp").innerHTML=star;
-  }
-
-</script>
+  const container=document.querySelector('.rating');
+  const items = container.querySelectorAll('.rating-item')
+  container.onclick = e =>{
+    const elClass = e.target.classList;
+    if(!elClass.contains('active')){
+      items.forEach(
+        item=>item.classList.remove('active')
+      );
+      console.log(e.target.getAttribute('data-rate'));
+      document.getElementById("rating_count").value = e.target.getAttribute('data-rate');
+      elClass.add('active');
+    }
+  };
+  </script>

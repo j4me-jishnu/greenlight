@@ -440,6 +440,26 @@ class Administration extends MY_Controller {
 		echo $data_json;
 	}
 
+
+	public function getAllEventParticipants(){
+		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
+		$param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
+		$param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
+		$param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
+		$param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
+		$param['searchValue'] =(isset($_REQUEST['search']['value']))?$_REQUEST['search']['value']:'';
+		// $data = $this->Administration_model->getEventDetails($param);
+		$response = $this->Administration_model->get_all_event_participants($param);
+		$data_json=json_encode($response);
+		echo $data_json;
+	}
+
+	public function getEventParticipants(){
+		$template['body'] = 'Administration/Participants/list';
+		$template['script'] = 'Administration/Participants/script';
+		$this->load->view('template',$template);
+	}
+
 	/*	generate QR Code */
 	public function generateQR($event_name, $event_desc){
 		$qrCode = new QrCode();
@@ -1080,6 +1100,14 @@ class Administration extends MY_Controller {
 		$template['script'] = 'Administration/Subscription_charges/script';
 		$this->load->view('template',$template);
 	}
+
+	public function Subscriber_details(){
+		$template['body'] = 'Administration/Subscriber_details/list';
+		$template['script'] = 'Administration/Subscriber_details/script';
+		$this->load->view('template',$template);
+	}
+
+
 	public function getSubscriptionCharges(){
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
 		$param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';

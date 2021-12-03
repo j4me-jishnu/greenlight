@@ -13,6 +13,7 @@ $table = $('#employee').DataTable( {
     "url": "<?php echo base_url();?>getSubscriptionCharges/",
     "type": "POST",
     "data" : function (d) {
+      console.log(d);
     }
   },
   "createdRow": function ( row, data, index ) {

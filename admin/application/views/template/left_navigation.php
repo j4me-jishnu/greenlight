@@ -87,13 +87,16 @@
           <li class="<?php if($this->uri->segment(1)=="Locations"){echo "active";}?>" ><a  href="<?php echo base_url();?>Locations"><i class="glyphicon glyphicon-share-alt"></i> <span>Locations</span></a></li>
 
           <li class="<?php if($this->uri->segment(1)=="Offers"){echo "active";}?>" ><a  href="<?php echo base_url();?>Offers"><i class="glyphicon glyphicon-share-alt"></i> <span>Offers</span></a></li>
+
+          <li class="<?php if($this->uri->segment(1)=="Offers"){echo "active";}?>" ><a  href="<?php echo base_url();?>Administration/getEventParticipants"><i class="glyphicon glyphicon-share-alt"></i> <span>Event Participants</span></a></li>
+
           <li class="<?php if($this->uri->segment(1)=="Events"){echo "active";}?>" ><a  href="<?php echo base_url();?>Events"><i class="glyphicon glyphicon-share-alt"></i> <span>Events</span></a></li>
 
           <!-- <li class="<?php if($this->uri->segment(1)=="Category"){echo "active";}?>" ><a  href="<?php echo base_url();?>Category"><i class="glyphicon glyphicon-share-alt"></i> <span>Category</span></a></li>
 
           <li class="<?php if($this->uri->segment(1)=="Subcategory"){echo "active";}?>" ><a  href="<?php echo base_url();?>Subcategory"><i class="glyphicon glyphicon-share-alt"></i> <span>Sub Category</span></a></li> -->
 
-          <li class="<?php if($this->uri->segment(1)=="SubscriptionCharges"){echo "active";}?>" ><a  href="<?php echo base_url();?>SubscriptionCharges"><i class="glyphicon glyphicon-share-alt"></i> <span>Subscription Details</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="SubscriptionCharges"){echo "active";}?>" ><a  href="<?php echo base_url();?>SubscriptionCharges"><i class="glyphicon glyphicon-share-alt"></i> <span>Subscription Plans</span></a></li>
 
           <li class="<?php if($this->uri->segment(1)=="ProductCat"){echo "active";}?>" ><a  href="<?php echo base_url();?>ProductCat"><i class="glyphicon glyphicon-share-alt"></i> <span>Product Category</span></a></li>
 
