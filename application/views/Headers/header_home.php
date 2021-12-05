@@ -518,7 +518,7 @@ i.fas {
 
     </div>
 
-
+    <a href="<?php echo base_url(); ?>Productpage/sellAnItem">Test sell</a>
 
 <div id="pop-up-one" class="pop-up-overlay" >
 

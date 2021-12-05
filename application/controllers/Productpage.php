@@ -557,4 +557,25 @@ class Productpage extends CI_Controller
 				}
 
 
+				public function sellAnItem(){
+					@$user_id = $this->session->userdata('user_id');
+					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+					$data['footer_details'] = $this->Home_model->getFooterDetail();
+					$data['logo'] =$this->Home_model->getLogo();
+					$data['chat'] =$this->Home_model->getChat($user_id);
+					$data['chat1'] =$this->Home_model->getChatbox($user_id);
+					$data['mychat'] =$this->Home_model->getMychat($user_id);
+					$data['category_list']=$this->Home_model->getCategories();
+
+					// $this->load->view('Headers/header_home',$data);
+					$this->load->view('Sellers_post',$data);
+					// $this->load->view('Footers/footer_home',$data);
+				}
+
+				public function getSubCategory(){
+					$cat_id=$_POST['cat_id'];
+					$result=$this->Home_model->get_sub_categories($cat_id);
+					echo json_encode($result);
+				}
+
 }

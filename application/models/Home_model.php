@@ -892,4 +892,26 @@ class Home_Model extends CI_Model
 		return $result;
 	}
 
+	public function getCategories(){
+		$query=$this->db->select('pro_cat_id, prod_cat_name')
+		->where_not_in('prod_cat_name',"Events")
+		->where_not_in('prod_cat_name',"Plant Subscription")
+		->where_not_in('prod_cat_name',"Offers")
+		->get('product_category');
+		$records=$query->result();
+		if($records){
+			return $records;
+		}
+	}
+
+	public function get_sub_categories($cat_id){
+		$query=$this->db->select('pro_sub_cat_id,pro_sub_cat_name')
+		->where('pro_cat_id_fk',$cat_id)
+		->get('product_sub_category');
+		$records=$query->result();
+		if($records){
+			return $records;
+		}
+	}
+
 }

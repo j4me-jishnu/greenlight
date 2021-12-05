@@ -1,83 +1,149 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title>Add Post if you are a seller</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body>
-  <fieldset>
-    <legend><h2>Your Subscription Detalis</h2></legend>
-    <p>Current Plan  :</p>
-    <p>Posts Available  :</p>
-  </fieldset>
-  <fieldset>
-    <legend><h2>Add your product</h2></legend>
-    <div class="container">
-      <div class="mb-3 row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="" placeholder="">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword">
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Category</label>
-        <div class="col-sm-10">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Choose Category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Sub Category</label>
-        <div class="col-sm-10">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Choose Sub Category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-      <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Sub-Sub Category</label>
-        <div class="col-sm-10">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Choose Sub-Sub Category</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
+
+<div id="sub-container">
+  <div id="mainMenu">
+    <i class="fas fa-chevron-left" style="color: #8e9090"></i> MAIN MENU
+  </div>
+  <hr />
+</div>
+</div>
+<!--Not Sidenav-->
+
+<div>
+  <div class="main-sec"></div>
+  <div class="breadcrumb-area">
+    <div class="overlay overlay-bg"></div>
+    <div class="container-fluid">
+      <div class="breadcrumb-content">
+        <h2 class="text-white">My Chat</h2>
+        <ul>
+          <li><a href="index.html">Home</a>
+          </li>
+          <li class="active">My Chat</li>
+        </ul>
       </div>
     </div>
-  </fieldset>
+  </div>
+  <!-- breadcrumb -->
+  <section class="compare-page-wrapper section-padding">
+    <!-- compare main wrapper start -->
+    <fieldset>
+      <legend><h2>Your Subscription Detalis</h2></legend>
+      <p>Current Plan  :</p>
+      <p>Posts Available  :</p>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-  <script type="text/javascript">
-  $.ajax({
-      url: "<?php echo base_url(); ?>Sell/get_categories",
-      type: "POST", // data type (can be get, post, put, delete)
-      data: json, // data in json format
-      success: function (data) {
-          console.log(data);
+    </fieldset>
+    <fieldset>
+      <legend><h2>Add your product</h2></legend>
+      <div class="container">
+
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-10">
+            <select class="form-group" aria-label="Default select example" id="category_select" onchange="getsub(this)">
+              <option selected>Choose Category</option>
+              <?php foreach ($category_list as $category) { ?>
+                <option value="<?php echo $category->pro_cat_id; ?>"><?php echo $category->prod_cat_name; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Sub Category</label>
+          <div class="col-sm-10">
+            <select class="form-group" aria-label="Default select example" id="sub_cat">
+              <option disabled>Select Sub category</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Product Image</label>
+          <div class="col-sm-10">
+            <input type="file" name="" value="Add Image">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="" placeholder="Name of your product">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+          <div class="col-sm-10">
+            <textarea name="name" rows="8" cols="80" placeholder="Describe your product!"></textarea>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Do you want to add offer?</label>
+          <div class="col-sm-10">
+            <input type="radio" id="html" name="is_offer" value="Yes">Yes
+            <input type="radio" id="html" name="is_offer" value="No">No
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Original price</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="og_price" placeholder="Original price" required>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Offer price</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="og_price" placeholder="Original price">
+          </div>
+        </div>
+
+      </div>
+    </fieldset>
+  </section>
+  <div class="xss">
+    <select class="reset-this-root" aria-label="" id="sub_cat">
+    </select>
+  </div>
+
+  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <!-- Popper -->
+  <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+  <!-- Range Slider -->
+  <script src="<?php echo base_url(); ?>assets/js/ion.rangeSlider.min.js"></script>
+  <!-- Swiper Slider -->
+  <script src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
+  <!-- Nice Select -->
+  <script src="<?php echo base_url(); ?>assets/js/jquery.nice-select.min.js"></script>
+  <!-- magnific popup -->
+  <script src="<?php echo base_url(); ?>assets/js/jquery.magnific-popup.min.js"></script>
+  <!-- Maps -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnd9JwZvXty-1gHZihMoFhJtCXmHfeRQg"></script> -->
+  <!-- sticky sidebar -->
+  <script src="<?php echo base_url(); ?>assets/js/sticksy.js"></script>
+  <!-- Planteco Js -->
+  <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+  <script>
+  function getsub(data){
+    var cat_id = data.value;
+    $.ajax({
+      url:"<?php echo base_url();?>Productpage/getSubCategory",
+      type: 'POST',
+      data:{
+        cat_id:cat_id,
       },
-      error: function (data) {
-        console.log(data);
+      dataType: 'json',
+      success:function(data){
+        var response = '<option disabled="disabled" value="0" selected="selected">Select</option>';
+        data.forEach((number, index) => {
+              response += '<option value='+number.pro_sub_cat_id+'>'+number.pro_sub_cat_name+'</option>';
+        });
+        $('#sub_cat').html(response);
+        $('#sub_cat').focus();
       }
-  });
-  </script>
+    });
 
-</body>
-</html>
+  }
+
+
+  </script>
