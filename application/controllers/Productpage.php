@@ -558,18 +558,24 @@ class Productpage extends CI_Controller
 
 
 				public function sellAnItem(){
-					@$user_id = $this->session->userdata('user_id');
-					$data['menu_cat'] = $this->Home_model->getMenuCatTable();
-					$data['footer_details'] = $this->Home_model->getFooterDetail();
-					$data['logo'] =$this->Home_model->getLogo();
-					$data['chat'] =$this->Home_model->getChat($user_id);
-					$data['chat1'] =$this->Home_model->getChatbox($user_id);
-					$data['mychat'] =$this->Home_model->getMychat($user_id);
-					$data['category_list']=$this->Home_model->getCategories();
+					if(isset($_SESSION['user_id'])){
 
-					// $this->load->view('Headers/header_home',$data);
-					$this->load->view('Sellers_post',$data);
-					// $this->load->view('Footers/footer_home',$data);
+						@$user_id = $this->session->userdata('user_id');
+						$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+						$data['footer_details'] = $this->Home_model->getFooterDetail();
+						$data['logo'] =$this->Home_model->getLogo();
+						$data['chat'] =$this->Home_model->getChat($user_id);
+						$data['chat1'] =$this->Home_model->getChatbox($user_id);
+						$data['mychat'] =$this->Home_model->getMychat($user_id);
+						$data['category_list']=$this->Home_model->getCategories();
+						$data['super_deals'] = $this->Home_model->getSuperDealsHome();
+
+						$this->load->view('Headers/header_home',$data);
+						$this->load->view('Sellers_post',$data);
+						$this->load->view('Footers/footer_home',$data);
+					}else{
+						redirect('Register/Login');
+					}
 				}
 
 				public function getSubCategory(){
@@ -578,4 +584,43 @@ class Productpage extends CI_Controller
 					echo json_encode($result);
 				}
 
-}
+				public function addNewPost(){
+					$user_id=$_SESSION['user_id'];
+					$file_name=$_FILES['post_image']['name'];
+					if($file_name != NULL){
+						$config['upload_path'] = './admin/assets/uploads/productlist/';
+						$config['allowed_types'] = 'gif|jpg|jpeg|png';
+						$config['file_name']=	$file_name;
+						$this->load->library('upload', $config);
+						if(!$this->upload->do_upload('post_image')){
+							$error = array('error' => $this->upload->display_errors());
+						}
+						else{
+							$data = array('post_image' => $this->upload->data());
+							$data = array(
+								'user_id'=>intval($_SESSION['user_id']),
+								'pro_sub_cat_id'=>intval($this->input->post('sub_cat_id')),
+								'pro_list_name'=>$this->input->post('product_title'),
+								'pro_list_details'=>$this->input->post('product_description'),
+								// 'is_offer'=>$this->input->post('is_offer'),
+								'prod_list_price_original'=>intval($this->input->post('og_price')),
+								'pro_list_dicount_price'=>intval($this->input->post('offer_price')),
+								'pro_list_status '=>1,
+								'pro_list_enter_date'=>date('Y-m-d H:i:s'),
+								'pro_list_img'=>$file_name,
+							);
+						}
+						$result=$this->Home_model->add_sellers_post($data);
+						if($result){
+							echo "<script>alert('Post added successfully');</script>";
+							redirect("Productpage/sellAnItem");
+						}
+						else{
+							redirect("Productpage/sellAnItem");
+						}
+					}
+				}
+				public function get_user_subscription_details(){
+					$user_id="11";
+				}
+			}

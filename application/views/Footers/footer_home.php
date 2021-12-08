@@ -2,7 +2,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <footer class="section-padding bg-light-theme pt-0 u-line bg-black">
 
-    
+
 
     <div class="container-fluid custom-container">
 
@@ -16,7 +16,7 @@
 
             <div class="logo mb-xl-20">
 
-              
+
 
             </div>
 
@@ -232,7 +232,7 @@
 
         </div>
 
-        
+
 
         <div class="col-lg-4">
 
@@ -268,13 +268,13 @@
 
         <div class="modal-body">
 
-          
+
 
           <button type="button" class="close" data-dismiss="modal">×</button>
 
           <!-- product details inner end -->
 
-          
+
 
           <div class="product-details-inner">
 
@@ -360,7 +360,7 @@
 
                     </div>
 
-                    
+
 
                   </div>
 
@@ -442,7 +442,7 @@
 
                     </div>
 
-                    
+
 
                   </div>
 
@@ -615,7 +615,7 @@ function filter(){
 
      var text = $(this).text();
 
-        (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();         
+        (text.toLowerCase().indexOf(valThis.toLowerCase()) > -1) ? $(this).show() : $(this).hide();
 
    });
 
@@ -831,7 +831,7 @@ function firstDropDown() {
 
         }, 200)
 
-        
+
 
     }
 
@@ -885,7 +885,7 @@ function secondDropDown() {
 
         }, 200)
 
-        
+
 
     }
 
@@ -935,7 +935,7 @@ function openSubmenu1(id) {
 
 
 
-    
+
 
     document.getElementById("sub-container-content").innerHTML = `<div class="sidenavContentHeader">`+console.log(id)+`</div>
 
@@ -981,7 +981,7 @@ function openAmazonMusic() {
 
       $('.loader-container').show();
 
-    },    
+    },
 
 });
 
@@ -991,7 +991,7 @@ function openAmazonMusic() {
 
         $.ajax({
 
-          
+
 
             url:"<?php echo base_url();?>product_json/",
 
@@ -1003,7 +1003,7 @@ function openAmazonMusic() {
 
             success:function(data){
 
-              var parsed_data = JSON.parse(data);  
+              var parsed_data = JSON.parse(data);
 
               $('#plantname').html('<h3>'+parsed_data[0].pro_list_name+'</h3>')
 
@@ -1027,7 +1027,7 @@ function openAmazonMusic() {
 
               }
 
-              
+
 
               var getUrl = window.location;
 
@@ -1041,17 +1041,17 @@ function openAmazonMusic() {
 
               $('#cat_1').html('<a href="">'+parsed_data[0].prod_cat_name+'</a>')
 
-              $('#cat_2').html('<a href="">'+parsed_data[0].pro_sub_cat_name+'</a>') 
+              $('#cat_2').html('<a href="">'+parsed_data[0].pro_sub_cat_name+'</a>')
 
-              $('#cat_4').html('<a href="">'+parsed_data[0].prod_cat_name+'</a>') 
+              $('#cat_4').html('<a href="">'+parsed_data[0].prod_cat_name+'</a>')
 
-              $('#cat_5').html('<a href="">'+parsed_data[0].pro_sub_cat_name+'</a>') 
+              $('#cat_5').html('<a href="">'+parsed_data[0].pro_sub_cat_name+'</a>')
 
-              $('#cat_6').html('<a href="">'+parsed_data[0].pro_list_name+'</a>') 
+              $('#cat_6').html('<a href="">'+parsed_data[0].pro_list_name+'</a>')
 
 
 
-              
+
 
             },
 
@@ -1063,7 +1063,7 @@ function openAmazonMusic() {
 
           }
 
-            
+
 
         });
 
@@ -1073,15 +1073,15 @@ function openAmazonMusic() {
 
 
 
-    
+
 
     function openSubmenu(id){
 
-      
+
 
         $.ajax({
 
-    
+
 
             url:"<?php echo base_url();?>submenu/",
 
@@ -1093,9 +1093,9 @@ function openAmazonMusic() {
 
             success:function(data){
 
-              var sess = $('#user_id').val(); 
+              var sess = $('#user_id').val();
 
-              var parsed_data = JSON.parse(data);  
+              var parsed_data = JSON.parse(data);
 
               if(Array.isArray(parsed_data) && parsed_data.length){
 
@@ -1107,9 +1107,9 @@ function openAmazonMusic() {
 
                 document.getElementById("sub-container-content").innerHTML = `<div class="sidenavContentHeader">No Menu</div>
 
-              <a href="#"><div class="sidenavContent">No Menu</div></a>`;  
+              <a href="#"><div class="sidenavContent">No Menu</div></a>`;
 
-              }  
+              }
 
             }
 
@@ -1143,7 +1143,7 @@ function openAmazonMusic() {
 
             }
 
-            
+
 
         });
 
@@ -1216,4 +1216,3 @@ if(urlsegment1 == "Search"){
 
 
 </html>
-

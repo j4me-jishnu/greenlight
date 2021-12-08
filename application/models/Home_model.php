@@ -914,4 +914,11 @@ class Home_Model extends CI_Model
 		}
 	}
 
+	public function add_sellers_post($data){
+		$result=$this->db->insert('product_list', $data);
+		if($result){
+			return true;
+		}
+	}
+
 }

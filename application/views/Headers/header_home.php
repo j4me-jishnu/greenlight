@@ -503,6 +503,8 @@ i.fas {
 
                   <a href="<?php echo base_url() ?>Sell" ><span class="custom-btn btn-14">Sell</span>&nbsp;
                   </a>
+                  <!-- <a href="<?php echo base_url() ?>Productpage/sellAnItem" ><span class="custom-btn btn-14">Sell</span>&nbsp; -->
+                  </a>
 
                 </li>
 
@@ -518,7 +520,7 @@ i.fas {
 
     </div>
 
-    <a href="<?php echo base_url(); ?>Productpage/sellAnItem">Test sell</a>
+    <!-- <a href="<?php echo base_url(); ?>Productpage/sellAnItem">Test sell</a> -->
 
 <div id="pop-up-one" class="pop-up-overlay" >
 

@@ -7,7 +7,6 @@ class Subscription_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('subscription');
 		$this->db->where('subscription_status',1);
-
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -17,7 +16,5 @@ class Subscription_model extends CI_Model
 		$result=$query->result();
 		return $result;
 	}
-
-
 
 }
