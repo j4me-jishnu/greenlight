@@ -612,7 +612,7 @@ class Productpage extends CI_Controller
 								'pro_sub_cat_id'=>intval($this->input->post('sub_cat_id')),
 								'pro_list_name'=>$this->input->post('product_title'),
 								'pro_list_details'=>$this->input->post('product_description'),
-								// 'is_offer'=>$this->input->post('is_offer'),
+								'is_offer'=>$this->input->post('is_offer'),
 								'prod_list_price_original'=>intval($this->input->post('og_price')),
 								'pro_list_dicount_price'=>intval($this->input->post('offer_price')),
 								'pro_list_status '=>1,
@@ -633,8 +633,7 @@ class Productpage extends CI_Controller
 				}
 
 				public function test(){
-					$response = $this->Home_model->deduct_remaining_post();
-					var_dump($response); die();
+					echo "hii";
 				}
 
 			}

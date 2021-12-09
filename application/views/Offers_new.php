@@ -86,8 +86,39 @@
 
 <!-- breadcrumb -->
 
+
+<section class="events-wrpap">
+  <div class="container">
+    <h3>Latest Offers</h3>
+    <div class="col-md-12">
+      <?php if(!empty($latest_offers)){ ?>
+      <div class="row">
+        <?php foreach ($latest_offers as $offer) { ?>
+        <div class="col-lg-4">
+          <div class="product-box mb-md-20">
+            <!-- <a href="<?php echo base_url(); ?>Category/getSingleEvent/<?php echo $event->event_id; ?>"> -->
+              <img src="<?php echo base_url(); ?>admin/assets/uploads/productlist/<?php echo $offer->pro_list_img; ?>" class="img-fluid full-width evnt-main-img-cmn" alt="product-img">
+              <h4 class="text-center"><?php echo $offer->pro_list_name; ?></h4>
+              <p><?php echo $offer->pro_list_details; ?></p>
+            <!-- </a> -->
+            </div>
+          </div>
+        <?php } ?>
+        </div>
+      <?php } else { ?>
+        <div class="row">
+            <div class="product-box mb-md-20">
+              <h5>No special offer available for now!</h5>
+            </div>
+        </div>
+      <?php } ?>
+      </div>
+    </section>
+
+    <br>
   <section class="events-wrpap">
     <div class="container">
+      <h3>Other offers</h3>
       <div class="col-md-12">
         <div class="row">
           <?php foreach ($offers as $offer) { ?>

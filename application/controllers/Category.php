@@ -77,6 +77,7 @@ class Category extends CI_Controller{
 		$this->load->view('Footers/footer_home',$data);
 	}
 	public function get_offer($subcategory_id){
+		$data['latest_offers']=$this->Home_model->get_latest_offers();
 		@$user_id = $this->session->userdata('user_id');
 		$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
 		$data['user_name'] = $this->Home_model->getUsername($user_id);

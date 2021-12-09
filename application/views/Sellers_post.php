@@ -5,7 +5,7 @@
   <hr />
 </div>
 </div>
-<style>
+<!-- <style>
 .select-cat-wrp .dropdown-select .dd-searchbox
 {
   display: none;
@@ -19,8 +19,9 @@
   margin-bottom:20px;
   margin-top: 30px;
 }
-</style>
+</style> -->
 <div class="edit-prf-plant-wrap col-lg-12">
+  <p id="demo"></p>
   <h2 class="text-center">Your Subscription Details</h2>
     <div class="form-group">
       <input type="hidden" id="user_id" name="" value="<?php echo $_SESSION['user_id']; ?>">
@@ -46,9 +47,12 @@
         <input type="hidden" name="category_id" id="cat_id" value="">
       </div>
 
+      <input type="hidden" name="latitude" value="" id="lat">
+      <input type="hidden" name="longitude" value="" id="long">
+
       <div class="form-group">
         <label for="exampleFormControlSelect2">Sub Category</label>
-        <select class="form-group" aria-label="Default select example" id="sub_cat" onchange="getsubcat(this)"required>
+        <select class="form-control" aria-label="Default select example" id="sub_cat" onchange="getsubcat(this)" required>
         <option>Select Sub category</option>
         </select>
         <!-- Change this value -->
@@ -97,6 +101,11 @@
 
 $(document).ready(function(){
   $('#mainDiv').hide();
+
+  var x = document.getElementById("demo");
+  getLocation();
+
+
   var user_id = parseFloat(document.getElementById('user_id').value);
   $.ajax({
     url:"<?php echo base_url();?>Payment/checkCustomerSubscriptionStatus",
@@ -106,7 +115,6 @@ $(document).ready(function(){
     },
     dataType: 'json',
     success:function(data){
-      console.log(data);
       if(parseFloat(data.pay_remaining_posts) > 0 ){
         document.getElementById('current_plan').innerHTML=data.pay_amt+' '+data.subp_name;
         document.getElementById('remaining_posts').innerHTML=data.pay_remaining_posts;
@@ -133,9 +141,8 @@ function getsub(data){
     success:function(data){
       var response = '<option value="0" selected="selected">Select</option>';
       data.forEach((number, index) => {
-        response += '<option value='+number.pro_sub_cat_id+'>'+number.pro_sub_cat_name+' disabled=false</option>';
+        response += '<option value='+number.pro_sub_cat_id+'>'+number.pro_sub_cat_name+'</option>';
       });
-      console.log(response);
       $('#sub_cat').html(response);
       $('#sub_cat').focus();
       $("#sub_cat" ).prop( "disabled", false );
@@ -146,5 +153,19 @@ function getsub(data){
 function getsubcat(data){
   var sub_cat_id=data.value;
   document.getElementById('sub_cat_id').value=sub_cat_id;
+}
+
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+function showPosition(position) {
+  document.getElementById('lat').value=position.coords.latitude;
+  document.getElementById('long').value=position.coords.longitude;
+
 }
 </script>

@@ -915,12 +915,10 @@ class Home_Model extends CI_Model
 	}
 
 	public function add_sellers_post($data){
-		$result=$this->db->insert('product_list', $data);
 		if($this->db->insert('product_list', $data)){
 			return true;
 		}
 	}
-
 
 	public function deduct_remaining_post($user_id){
 		$records=$this->db->select('*')->where('pay_user_fk',$user_id)
@@ -933,16 +931,22 @@ class Home_Model extends CI_Model
 		$data = array(
 			'pay_remaining_posts' => $remaining_count,
 		);
-		// var_dump($remaining_count); die();
 		$this->db->where('pay_user_fk', $user_id);
 		$this->db->where('pay_id', $payment_id);
 		$this->db->where('pay_enter_datetime', $response[0]['pay_enter_datetime']);
 		$query = $this->db->update('tbl_payment', $data);
 		if($query){
 			return true;
-		}else{
+		}
+		else{
 			return false;
 		}
+	}
+
+	public function get_latest_offers(){
+		$query=$this->db->select('*')->where('is_offer',1)->get('product_list');
+		$result=$query->result();
+		return $result;
 	}
 
 }
