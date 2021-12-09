@@ -46,6 +46,8 @@ class Payment extends CI_Controller
     $amt = $this->input->post('amt');
     @$user_id = $this->session->userdata('user_id');
     $sub_id = $this->input->post('sub_id');
+    $sub_remaining_posts = $this->input->post('sub_remaining_posts');
+
 
     $data = array(
       'pay_user_fk' => $user_id,
@@ -54,10 +56,17 @@ class Payment extends CI_Controller
       'pay_payment_id' => $payment_id,
       'pay_status'=> 1 ,
       'pay_enter_datetime' => date("Y-m-d h:i:s"),
+      'pay_remaining_posts' => $sub_remaining_posts
     );
     $result = $this->General_model->add_returnID('tbl_payment',$data);
     $response = $result;
     echo json_encode($response);
   }
+
+  public function checkCustomerSubscriptionStatus(){
+    $user_id=$this->input->post('user_id');
+    $subscription_details=$this->Payment_model->get_user_subscriptions($user_id);
+    echo json_encode($subscription_details);
+  }
 }
 ?>

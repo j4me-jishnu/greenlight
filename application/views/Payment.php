@@ -50,7 +50,9 @@
                     <label class="text-light-white fs-14">Package Name</label>
                     <?php foreach($subscription as $subs){ ?>
                       <input  name="#" class="form-control form-control-submit"  placeholder="Package Name" value="<?php echo $subs->subp_name ?>" readonly>
-                      <input type="hidden" name="#" id="sub_id" value="<?php echo $subs->subp_id ?>">
+                      <input type="hidden" name="#" id="sub_id" value="<?php echo $subs->subp_id; ?>">
+                      <input type="hidden" name="#" id="sub_remaining_posts" value="<?php echo $subs->subp_ads_no; ?>">
+
                     <?php } ?>
                     <div  class=""></div>
                   </div>
@@ -81,7 +83,9 @@
 </div>
 <script>
 var amt = document.getElementById('amt').value;
-var sub_id = parseInt(document.getElementById('sub_id').value);
+var sub_id = parseInt(document.getElementById('sub_id').value);
+var sub_remaining_posts= parseInt(document.getElementById('sub_remaining_posts').value);
+
 // console.log(sub_id);
 var options = {
   "key": "rzp_live_gEwPOUTLigprb3", // Enter the Key ID generated from the Dashboard
@@ -96,7 +100,12 @@ var options = {
     // console.log(response);
     jQuery.ajax({
       url:'<?php echo base_url() ?>addPayment/',
-      data:{amt:amt,pay_repo:pay_repo,sub_id:sub_id},
+      data:{
+        amt:amt,
+        pay_repo:pay_repo,
+        sub_id:sub_id,
+        sub_remaining_posts:sub_remaining_posts,
+      },
       method:"POST",
       datatype:"jsonp",
       success:function(result){

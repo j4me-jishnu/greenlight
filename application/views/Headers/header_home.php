@@ -501,9 +501,9 @@ i.fas {
 
                 <li class="user-details log2 ">
 
-                  <a href="<?php echo base_url() ?>Sell" ><span class="custom-btn btn-14">Sell</span>&nbsp;
+                  <!-- <a href="<?php echo base_url() ?>Sell" ><span class="custom-btn btn-14">Sell</span>&nbsp; -->
                   </a>
-                  <!-- <a href="<?php echo base_url() ?>Productpage/sellAnItem" ><span class="custom-btn btn-14">Sell</span>&nbsp; -->
+                  <a href="<?php echo base_url() ?>Productpage/sellAnItem" ><span class="custom-btn btn-14">Sell</span>&nbsp;
                   </a>
 
                 </li>

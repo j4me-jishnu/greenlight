@@ -916,8 +916,32 @@ class Home_Model extends CI_Model
 
 	public function add_sellers_post($data){
 		$result=$this->db->insert('product_list', $data);
-		if($result){
+		if($this->db->insert('product_list', $data)){
 			return true;
+		}
+	}
+
+
+	public function deduct_remaining_post($user_id){
+		$records=$this->db->select('*')->where('pay_user_fk',$user_id)
+		->join('subscription', 'subscription.subp_id = tbl_payment.pay_sub_fk')
+		->order_by("pay_enter_datetime", "desc")
+		->get('tbl_payment');
+		$response=$records->result_array();
+		$remaining_count = intval($response[0]['pay_remaining_posts']-1);
+		$payment_id = intval($response[0]['pay_id']);
+		$data = array(
+			'pay_remaining_posts' => $remaining_count,
+		);
+		// var_dump($remaining_count); die();
+		$this->db->where('pay_user_fk', $user_id);
+		$this->db->where('pay_id', $payment_id);
+		$this->db->where('pay_enter_datetime', $response[0]['pay_enter_datetime']);
+		$query = $this->db->update('tbl_payment', $data);
+		if($query){
+			return true;
+		}else{
+			return false;
 		}
 	}
 

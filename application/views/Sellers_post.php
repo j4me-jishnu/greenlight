@@ -21,13 +21,14 @@
 }
 </style>
 <div class="edit-prf-plant-wrap col-lg-12">
-  <h2 class="text-center">Your Subscription Detalis</h2>
+  <h2 class="text-center">Your Subscription Details</h2>
     <div class="form-group">
-      <b><p class="text-center">Current Plan  :</p></b>
-      <b><p class="text-center">Posts Available  :</p></b>
+      <input type="hidden" id="user_id" name="" value="<?php echo $_SESSION['user_id']; ?>">
+      <b><h6 class="text-center">Current Plan  :  <span id="current_plan"></span></h6></b>
+      <b><h6 class="text-center">Posts Available  :  <span id="remaining_posts"></span></h6></b>
     </div>
 </div>
-<div class="edit-prf-plant-wrap col-lg-12">
+<div class="edit-prf-plant-wrap col-lg-12" id="mainDiv">
 
   <h2 class="text-center">Add product details</h2>
 
@@ -51,7 +52,7 @@
         <option>Select Sub category</option>
         </select>
         <!-- Change this value -->
-        <input type="hidden" name="sub_cat_id" id="sub_cat_id" value="1">
+        <input type="hidden" name="sub_cat_id" id="sub_cat_id" value="22">
       </div>
 
       <div class="form-group">
@@ -93,6 +94,32 @@
   </div>
 </div>
 <script>
+
+$(document).ready(function(){
+  $('#mainDiv').hide();
+  var user_id = parseFloat(document.getElementById('user_id').value);
+  $.ajax({
+    url:"<?php echo base_url();?>Payment/checkCustomerSubscriptionStatus",
+    type: 'POST',
+    data:{
+      user_id:user_id,
+    },
+    dataType: 'json',
+    success:function(data){
+      console.log(data);
+      if(parseFloat(data.pay_remaining_posts) > 0 ){
+        document.getElementById('current_plan').innerHTML=data.pay_amt+' '+data.subp_name;
+        document.getElementById('remaining_posts').innerHTML=data.pay_remaining_posts;
+        $('#mainDiv').show();
+      }
+      else{
+        document.getElementById('current_plan').innerHTML="Select plan to post an Ad. <a href='../Subscription'>Click here</a>";
+        document.getElementById('remaining_posts').innerHTML="Sorry No Posts Available!";
+      }
+    }
+  });
+});
+
 function getsub(data){
   var cat_id = data.value;
   document.getElementById('cat_id').value=cat_id;
@@ -120,6 +147,4 @@ function getsubcat(data){
   var sub_cat_id=data.value;
   document.getElementById('sub_cat_id').value=sub_cat_id;
 }
-
-
 </script>

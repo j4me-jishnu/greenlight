@@ -561,7 +561,12 @@ class Productpage extends CI_Controller
 					if(isset($_SESSION['user_id'])){
 
 						@$user_id = $this->session->userdata('user_id');
+						$data['user_name'] = $this->Home_model->getUsername($user_id);
+						$data['menu_cate'] = $this->Home_model->getMenuCategory();
 						$data['menu_cat'] = $this->Home_model->getMenuCatTable();
+						$data['menu'] = $this->Home_model->getMenuHome();
+						$data['submenu'] = $this->Home_model->getSubMenuHome();
+						$data['location'] = $this->Home_model->getLocationDetails();
 						$data['footer_details'] = $this->Home_model->getFooterDetail();
 						$data['logo'] =$this->Home_model->getLogo();
 						$data['chat'] =$this->Home_model->getChat($user_id);
@@ -569,6 +574,11 @@ class Productpage extends CI_Controller
 						$data['mychat'] =$this->Home_model->getMychat($user_id);
 						$data['category_list']=$this->Home_model->getCategories();
 						$data['super_deals'] = $this->Home_model->getSuperDealsHome();
+						$data['user_image_header'] = $this->Home_model->getUserImage($user_id);
+						$data['footer_details'] = $this->Home_model->getFooterDetail();
+						$data['logo'] =$this->Home_model->getLogo();
+						$data['chat'] =$this->Home_model->getChat($user_id);
+						$data['chat1'] =$this->Home_model->getChatbox($user_id);
 
 						$this->load->view('Headers/header_home',$data);
 						$this->load->view('Sellers_post',$data);
@@ -611,7 +621,8 @@ class Productpage extends CI_Controller
 							);
 						}
 						$result=$this->Home_model->add_sellers_post($data);
-						if($result){
+						$result1=$this->Home_model->deduct_remaining_post($user_id);
+						if($result==true && $result1==true){
 							echo "<script>alert('Post added successfully');</script>";
 							redirect("Productpage/sellAnItem");
 						}
@@ -620,7 +631,10 @@ class Productpage extends CI_Controller
 						}
 					}
 				}
-				public function get_user_subscription_details(){
-					$user_id="11";
+
+				public function test(){
+					$response = $this->Home_model->deduct_remaining_post();
+					var_dump($response); die();
 				}
+
 			}
