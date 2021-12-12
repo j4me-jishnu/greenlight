@@ -16,12 +16,16 @@
       <div class="box">
         <div class="box-header">
           <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-6">
               <h3>Subscription Charges list</h3>
             </div>
             <div class="col-sm-2">
               <a href="<?php echo base_url();?>Administration/addSubscriptionCharges" class="btn btn-sm btn-success"><i class="fa fa-plus-square"></i> Add Subscription</a>
             </div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-danger btn-sm" name="button" id="off">Turn Off Subscription</button>
+              <button type="button" class="btn btn-success btn-sm" name="button" id="on">Turn ON Subscription</button>
+            </div>
           </div>
         </div>
         <div class="box-body">

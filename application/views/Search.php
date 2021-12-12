@@ -31,7 +31,7 @@
     </div>
   </div>
   <!-- breadcrumb -->
- 
+
 
 <!--product Start-->
   <section class="section-padding our-product bg-light-theme">
@@ -59,16 +59,21 @@
         <div class="col-xl-9 col-lg-8">
           <div class="full-width">
             <div class="row">
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" id="filter_data">
+              <div class="" id="filter_data">
                 <input type="text" id="search" value="<?php echo $search; ?>">
               </div>
             </div>
           </div>
+          <div class="container">
+  <div class="row">
+    <div class="col">
+      Column
+    </div>
+
           <div class="custom-pagination align-item-center">
             <!--<nav aria-label="Page navigation example" id="pagination_label">
             </nav>-->
             <div align="center" id="pagination_label">
-
             </div>
           </div>
         </div>
@@ -79,8 +84,8 @@
   <style>
 #loading
 {
-  text-align:center; 
-  background: url('<?php echo base_url(); ?>asset/loader.gif') no-repeat center; 
+  text-align:center;
+  background: url('<?php echo base_url(); ?>asset/loader.gif') no-repeat center;
   height: 150px;
 }
 
@@ -127,7 +132,7 @@ $( document ).ready(function() {
 
   filter_data(1);
 
- 
+
 
 
 

@@ -7,7 +7,7 @@ class Front_end_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('frnt_banner');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -20,15 +20,15 @@ class Front_end_model extends CI_Model
 	{
 		return $this->db->query($last_query)->num_rows();
 	}
-	
+
 
 	public function getMenusTable($param)
 	{
 		$this->db->select('frnt_menu.menu_id, frnt_menu.menu_name, frnt_menu.menu_link, frnt_menu.menu_entered_date, frnt_menu.menu_display_order, frnt_menu.menu_status, frnt_menu_cat.menu_cat_name')
          ->from('frnt_menu')
-         ->join('frnt_menu_cat', 'frnt_menu_cat.menu_cat_id = frnt_menu.menu_cat_id');
+         ->join('frnt_menu_cat', 'frnt_menu_cat.menu_cat_id = frnt_menu.menu_cat_id');
 		$query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -43,7 +43,7 @@ class Front_end_model extends CI_Model
          ->from('frnt_sub_menu')
          ->join('frnt_menu', 'frnt_sub_menu.menu_parent_id = frnt_menu.menu_id');
 		$query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -57,7 +57,7 @@ class Front_end_model extends CI_Model
 		->from('frnt_product_scroll')
 		->join('product_sub_category','product_sub_category.pro_sub_cat_id = frnt_product_scroll.prosco_link_psc_fk');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -70,7 +70,7 @@ class Front_end_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('frnt_menu_cat');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -84,7 +84,7 @@ class Front_end_model extends CI_Model
 		->from('frnt_hot_deals')
 		->join('product_sub_category','product_sub_category.pro_sub_cat_id = frnt_hot_deals.deal_psc_fk');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -98,7 +98,7 @@ class Front_end_model extends CI_Model
 		$this->db->from('frnt_super_deals');
 		$this->db->join('product_sub_category','product_sub_category.pro_sub_cat_id = frnt_super_deals.super_sub_category_fk');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -113,7 +113,7 @@ class Front_end_model extends CI_Model
 		->from('frnt_special_offer')
 		->join('product_sub_category','product_sub_category.pro_sub_cat_id = frnt_special_offer.spoff_psc_fk');
         $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -128,7 +128,7 @@ class Front_end_model extends CI_Model
          ->from('frnt_deal_of_day')
          ->join('product_list', 'product_list.pro_list_id = frnt_deal_of_day.dod_product_id');
          $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -143,7 +143,7 @@ class Front_end_model extends CI_Model
          ->from('frnt_latest_product')
          ->join('product_list', 'product_list.pro_list_id = frnt_latest_product.latpro_pro_id');
          $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);
@@ -158,7 +158,7 @@ class Front_end_model extends CI_Model
          ->from('frnt_various_product')
          ->join('product_list', 'product_list.pro_list_id = frnt_various_product.varpro_pro_id');
          $query = $this->db->get();
-		
+
 		$last_query=$this->db->last_query();
         $data['data'] = $query->result();
         $data['recordsTotal'] = $this->getCount($last_query);

@@ -99,6 +99,7 @@ class Home_Model extends CI_Model
 		$this->db->select('*');
 
 		$this->db->from('frnt_menu');
+		$this->db->where('menu_status',1);
 
 		$this->db->order_by('menu_display_order','asc');
 
@@ -445,6 +446,7 @@ class Home_Model extends CI_Model
 		$this->db->select('*');
 
 		$this->db->from('product_category');
+		$this->db->where('prod_cat_status', 1);
 
 		$query = $this->db->get();
 
@@ -914,8 +916,18 @@ class Home_Model extends CI_Model
 		}
 	}
 
-	public function add_sellers_post($data){
+	public function add_sellers_post($data,$location){
 		if($this->db->insert('product_list', $data)){
+			$insert_id = $this->db->insert_id();
+			$location_data=$location;
+			$location_data['prod_list_fk']=$insert_id;
+			// var_dump($location_data); die();
+			if($this->db->insert('productlist_list_location', $location_data)){
+				return true;
+			}
+			else{
+				return false;
+			}
 			return true;
 		}
 	}

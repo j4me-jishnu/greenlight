@@ -1,4 +1,53 @@
 <script>
+
+$(document).ready(function(){
+  $.ajax({
+    url:"<?php echo base_url();?>Administration/checkSubscriptionStatus/",
+    data:{},
+    method:"POST",
+    datatype:"json",
+    success:function(data){
+      if(data==0){
+        $('#off').hide();
+      }
+      else{
+        $('#on').hide();
+      }
+    }
+  });
+});
+
+$('#on').click(function(){
+  $.ajax({
+    url:"<?php echo base_url();?>Administration/turnOnSubscription/",
+    data:{},
+    method:"POST",
+    datatype:"json",
+    success:function(data){
+      if(data){
+        $('#on').hide();
+        $('#off').show();
+        alert('Subscriptions turned ON');
+      }
+    }
+  });
+});
+$('#off').click(function(){
+  $.ajax({
+    url:"<?php echo base_url();?>Administration/turnOffSubscription/",
+    data:{},
+    method:"POST",
+    datatype:"json",
+    success:function(data){
+      if(data){
+        $('#off').hide();
+        $('#on').show();
+        alert('Successfully turned OFF!');
+      }
+    }
+  });
+});
+
 var response = $("#response").val();
 if(response)
 {

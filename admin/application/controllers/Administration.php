@@ -1293,6 +1293,23 @@ class Administration extends MY_Controller {
 		redirect('/Administration/ReviewsApproval/', 'refresh');
 	}
 
+	public function checkSubscriptionStatus(){
+		$status=$this->Administration_model->checkSubscriptionStatus();
+		echo $status;
+	}
+
+	public function turnOnSubscription(){
+		$result=$this->Administration_model->turn_on_subscription();
+		$result1=$this->Administration_model->turn_on_subscription_from_menu();
+		echo $result;
+	}
+
+	public function turnOffSubscription(){
+		$result=$this->Administration_model->turn_off_subscription();
+		$result1=$this->Administration_model->turn_off_subscription_from_menu();
+		echo $result;
+	}
+
 
 
 

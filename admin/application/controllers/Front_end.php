@@ -6,7 +6,7 @@ class Front_end extends MY_Controller {
 	    $this->load->helper(array('form', 'url'));
 		if(! $this->is_logged_in()){
 			redirect('/login');
-			
+
 
 		}
 
@@ -20,16 +20,16 @@ class Front_end extends MY_Controller {
 
 	}
 	public function banners()
-	{   
+	{
 		$template['body'] = 'Front_end/Banners/list';
 		$template['script'] = 'Front_end/Banners/script';
 		$this->load->view('template',$template);
 	}
-	
+
 	public function getBanners()
 	{
 			$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -45,7 +45,7 @@ class Front_end extends MY_Controller {
 		$this->form_validation->set_rules('ban_name', 'ban_name', 'required');
         $this->form_validation->set_rules('Ban_ent_date', 'Ban_ent_date', 'required');
         $this->form_validation->set_rules('ban_seq', 'ban_seq', 'required');
-        
+
 
 		if ($this->form_validation->run() == FALSE) {
 			$template['body'] = 'Front_end/Banners/add';
@@ -56,9 +56,9 @@ class Front_end extends MY_Controller {
 			$banner_id = $this->input->post('ban_id');
 
             $banner_img = $_FILES['ban_img']['name'];
-            
+
 			$file_name = rand(1000,100000).'.png';
-			
+
 			if($banner_img != NULL){
 				$config['upload_path']          = './assets/uploads/banners';
                 $config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -122,7 +122,7 @@ class Front_end extends MY_Controller {
 	public function bannerDelete()
 	{
 	$banner_id = $this->input->post('ban_id');
-    $data = $this->General_model->delete('frnt_banner','ban_id',$banner_id);		
+    $data = $this->General_model->delete('frnt_banner','ban_id',$banner_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -141,7 +141,7 @@ class Front_end extends MY_Controller {
 	//Menus Crud
 
 	public function menus()
-	{   
+	{
 		$template['body'] = 'Front_end/Menus/list';
 		$template['script'] = 'Front_end/Menus/script';
 		$this->load->view('template',$template);
@@ -150,7 +150,7 @@ class Front_end extends MY_Controller {
 	public function getMenus()
 	{
 			$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -160,7 +160,7 @@ class Front_end extends MY_Controller {
     	$json_data = json_encode($data);
     	echo $json_data;
 	}
-	
+
 	public function addMenu()
 	{
 		$this->form_validation->set_rules('menu_name', 'menu_name', 'required');
@@ -169,7 +169,7 @@ class Front_end extends MY_Controller {
          $this->form_validation->set_rules('menu_order', 'menu_order', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$template['menu_cat'] = $this->General_model->get_all('frnt_menu_cat'); 
+			$template['menu_cat'] = $this->General_model->get_all('frnt_menu_cat');
 			$template['body'] = 'Front_end/Menus/add';
 			$template['script'] = 'Front_end/Menus/script';
 			$this->load->view('template', $template);
@@ -209,7 +209,7 @@ class Front_end extends MY_Controller {
 	{
 		$template['body'] = 'Front_end/Menus/add';
 		$template['script'] = 'Front_end/Menus/script';
-		$template['menu_cat'] = $this->General_model->get_all('frnt_menu_cat'); 
+		$template['menu_cat'] = $this->General_model->get_all('frnt_menu_cat');
 		$where=array('menu_id'=>$menu_id);
 		$template['records'] = $this->General_model->getall('frnt_menu',$where);
 		$this->load->view('template', $template);
@@ -218,7 +218,7 @@ class Front_end extends MY_Controller {
 	public function menusDelete()
 	{
 	$menu_id = $this->input->post('menu_id');
-   $data = $this->General_model->delete('frnt_menu','menu_id',$menu_id);   		
+   $data = $this->General_model->delete('frnt_menu','menu_id',$menu_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -246,7 +246,7 @@ class Front_end extends MY_Controller {
 	public function getSubmenus()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -312,7 +312,7 @@ class Front_end extends MY_Controller {
 	public function submenusDelete()
 	{
 	$menu_id = $this->input->post('sub_menu_id');
-   	$data = $this->General_model->delete('frnt_sub_menu','sub_menu_id',$menu_id);   		
+   	$data = $this->General_model->delete('frnt_sub_menu','sub_menu_id',$menu_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -341,7 +341,7 @@ class Front_end extends MY_Controller {
 	public function getProductScroll()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -405,7 +405,7 @@ class Front_end extends MY_Controller {
 	public function productscrollDelete()
 	{
 	$proscro_id = $this->input->post('proscro_id');
-   	$data = $this->General_model->delete('frnt_product_scroll','proscro_id',$proscro_id);   		
+   	$data = $this->General_model->delete('frnt_product_scroll','proscro_id',$proscro_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -433,7 +433,7 @@ class Front_end extends MY_Controller {
 	public function getMenuCategory()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -461,7 +461,7 @@ class Front_end extends MY_Controller {
 			$data  = array(
 				'menu_cat_name'=> $this->input->post('cat_name'),
 				'menu_cat_order' => $this->input->post('cat_seq'),
-		
+
 			);
 			if($cat_id)
 			{
@@ -495,7 +495,7 @@ class Front_end extends MY_Controller {
 	public function MenuCategoryDelete()
 	{
 	$menu_cat_id = $this->input->post('menu_cat_id');
-   	$data = $this->General_model->delete('frnt_menu_cat','menu_cat_id',$menu_cat_id);   		
+   	$data = $this->General_model->delete('frnt_menu_cat','menu_cat_id',$menu_cat_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -524,7 +524,7 @@ class Front_end extends MY_Controller {
 	public function getHotDeals()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -551,7 +551,7 @@ class Front_end extends MY_Controller {
 
 			$proscro_img = $_FILES['hdeal_img']['name'];
 			$file_name = rand(1000,100000).'.png';
-			
+
 			if($proscro_img != NULL){
 				$config['upload_path']          = './assets/uploads/hotdeals';
                 $config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -612,7 +612,7 @@ class Front_end extends MY_Controller {
 	public function HotDealsDelete()
 	{
 	$deal_id = $this->input->post('deal_id');
-   	$data = $this->General_model->delete('frnt_hot_deals','deal_id',$deal_id);   		
+   	$data = $this->General_model->delete('frnt_hot_deals','deal_id',$deal_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -627,10 +627,10 @@ class Front_end extends MY_Controller {
 	}
 
 
-	
+
 	//Browse By Super Deals Crud
 	public function SuperDeals()
-	{ 
+	{
 		$template['body'] = 'Front_end/Super_deals/list';
 		$template['script'] = 'Front_end/Super_deals/script';
 		$this->load->view('template',$template);
@@ -639,7 +639,7 @@ class Front_end extends MY_Controller {
 	public function getSuperDeals()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -667,7 +667,7 @@ class Front_end extends MY_Controller {
 
 			$proscro_img = $_FILES['super_img']['name'];
 			$file_name = rand(1000,1000000000).'.png';
-			
+
 			if($proscro_img != NULL){
 				$config['upload_path']          = './assets/uploads/superdeals';
                 $config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -718,7 +718,7 @@ class Front_end extends MY_Controller {
 
 
 	public function SuperDealsEdit($super_deal_id)
-	{	
+	{
 		$template['sub_cat'] = $this->General_model->get_all('product_sub_category');
 		$template['body'] = 'Front_end/Super_deals/add';
 		$template['script'] = 'Front_end/Super_deals/script';
@@ -731,7 +731,7 @@ class Front_end extends MY_Controller {
 	public function SuperDealsDelete()
 	{
 	$super_deal_id = $this->input->post('super_deal_id');
-   	$data = $this->General_model->delete('frnt_super_deals','super_deal_id',$super_deal_id);   		
+   	$data = $this->General_model->delete('frnt_super_deals','super_deal_id',$super_deal_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -748,8 +748,8 @@ class Front_end extends MY_Controller {
 
 	//Browse By Special Offers Crud
 	public function SpecialOff()
-	{   
-		
+	{
+
 		$template['body'] = 'Front_end/Special_offers/list';
 		$template['script'] = 'Front_end/Special_offers/script';
 		$this->load->view('template',$template);
@@ -758,7 +758,7 @@ class Front_end extends MY_Controller {
 	public function getSpecialOff()
 	{
 	  $param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -785,7 +785,7 @@ class Front_end extends MY_Controller {
 
 			$proscro_img = $_FILES['spoff_img']['name'];
 			$file_name = rand(1000,100000).'.png';
-			
+
 			if($proscro_img != NULL){
 				$config['upload_path']          = './assets/uploads/specialoffers';
                 $config['allowed_types']        = 'gif|jpg|jpeg|png';
@@ -847,7 +847,7 @@ class Front_end extends MY_Controller {
 	public function SpecialOffDelete()
 	{
 	$spoff_id = $this->input->post('spoff_id');
-   	$data = $this->General_model->delete('frnt_special_offer','spoff_id',$spoff_id);   		
+   	$data = $this->General_model->delete('frnt_special_offer','spoff_id',$spoff_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -864,7 +864,7 @@ class Front_end extends MY_Controller {
 
 	//Browse By Deals of the day Crud
 	public function DealsOfDay()
-	{  
+	{
 		$template['body'] = 'Front_end/Deals_of_day/list';
 		$template['script'] = 'Front_end/Deals_of_day/script';
 		$this->load->view('template',$template);
@@ -874,7 +874,7 @@ class Front_end extends MY_Controller {
 	public function getDealsOfDay()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -887,7 +887,7 @@ class Front_end extends MY_Controller {
 
 	public function addDealsOfDay()
 	{
-		
+
         $this->form_validation->set_rules('dod_discount', 'dod_discount', 'required');
 		$this->form_validation->set_rules('dod_enter_date', 'dod_enter_date', 'required');
 
@@ -906,7 +906,7 @@ class Front_end extends MY_Controller {
 				'dod_discount' => $this->input->post('dod_discount'),
 				'dod_entered_date' => $this->input->post('dod_enter_date'),
 				'dod_status' => 1,
-				
+
 			);
 			if($dod_id)
 			{
@@ -943,7 +943,7 @@ class Front_end extends MY_Controller {
 	public function DealsOfDayDelete()
 	{
 	$dod_id = $this->input->post('dod_id');
-   	$data = $this->General_model->delete('frnt_deal_of_day','dod_id',$dod_id);   		
+   	$data = $this->General_model->delete('frnt_deal_of_day','dod_id',$dod_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -959,7 +959,7 @@ class Front_end extends MY_Controller {
 
 	//Browse By Our Latest products
 	public function LatestProduct()
-	{ 
+	{
 		$template['body'] = 'Front_end/Latest_product/list';
 		$template['script'] = 'Front_end/Latest_product/script';
 		$this->load->view('template',$template);
@@ -969,7 +969,7 @@ class Front_end extends MY_Controller {
 	public function getLatestProduct()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -983,7 +983,7 @@ class Front_end extends MY_Controller {
 
 	public function addLatestProduct()
 	{
-		
+
 		$this->form_validation->set_rules('latest_pro_enter_date', 'latest_pro_enter_date', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -1000,7 +1000,7 @@ class Front_end extends MY_Controller {
 				'latpro_pro_id' => $this->input->post('product_list_id'),
 				'latpro_ent_date' => $this->input->post('latest_pro_enter_date'),
 				'latpro_status' => 1,
-				
+
 			);
 			if($latest_prod_id)
 			{
@@ -1037,7 +1037,7 @@ class Front_end extends MY_Controller {
 	public function LatestProductDelete()
 	{
 	$latpro_id = $this->input->post('latpro_id');
-   	$data = $this->General_model->delete('frnt_latest_product','latpro_id',$latpro_id);   		
+   	$data = $this->General_model->delete('frnt_latest_product','latpro_id',$latpro_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';
@@ -1054,7 +1054,7 @@ class Front_end extends MY_Controller {
 
 	//Browse By Our Various Plants
 	public function VariousPlant()
-	{ 
+	{
 		$template['body'] = 'Front_end/Various_plant/list';
 		$template['script'] = 'Front_end/Various_plant/script';
 		$this->load->view('template',$template);
@@ -1064,7 +1064,7 @@ class Front_end extends MY_Controller {
 	public function getVariousPlant()
 	{
 		$param['draw'] = (isset($_REQUEST['draw']))?$_REQUEST['draw']:'';
-      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10'; 
+      $param['length'] =(isset($_REQUEST['length']))?$_REQUEST['length']:'10';
       $param['start'] = (isset($_REQUEST['start']))?$_REQUEST['start']:'0';
       $param['order'] = (isset($_REQUEST['order'][0]['column']))?$_REQUEST['order'][0]['column']:'';
       $param['dir'] = (isset($_REQUEST['order'][0]['dir']))?$_REQUEST['order'][0]['dir']:'';
@@ -1078,7 +1078,7 @@ class Front_end extends MY_Controller {
 
 	public function addVariousPlant()
 	{
-		
+
 		$this->form_validation->set_rules('var_pro_enter_date', 'var_pro_enter_date', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
@@ -1095,7 +1095,7 @@ class Front_end extends MY_Controller {
 				'varpro_pro_id' => $this->input->post('product_list_id'),
 				'varpro_enter_date' => $this->input->post('var_pro_enter_date'),
 				'varpro_status' => 1,
-				
+
 			);
 			if($var_prod_id)
 			{
@@ -1132,7 +1132,7 @@ class Front_end extends MY_Controller {
 	public function VariousPlantDelete()
 	{
 	$varpro_id = $this->input->post('varpro_id');
-   	$data = $this->General_model->delete('frnt_various_product','varpro_id',$varpro_id);   		
+   	$data = $this->General_model->delete('frnt_various_product','varpro_id',$varpro_id);
     if($data) {
         $response['text'] = 'Deleted successfully';
         $response['type'] = 'success';

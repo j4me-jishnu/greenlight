@@ -40,6 +40,7 @@ class Home extends CI_Controller
 
 		$data['menu'] = $this->Home_model->getMenuHome();
 
+
 		$data['submenu'] = $this->Home_model->getSubMenuHome();
 
 		$data['location'] = $this->Home_model->getLocationDetails();
@@ -80,6 +81,7 @@ class Home extends CI_Controller
 
 		$data['chat1'] =$this->Home_model->getChatbox($user_id);
 
+		// echo "<pre>",print_r($data['menu']),"</pre>"; die();
 
 
 		//  var_dump($data['proscro']);

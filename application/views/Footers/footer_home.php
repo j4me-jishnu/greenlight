@@ -518,37 +518,20 @@
 
 
     function create_custom_dropdowns() {
-
     $('select').each(function (i, select) {
-
         if (!$(this).next().hasClass('dropdown-select')) {
-
             $(this).after('<div class="dropdown-select wide ' + ($(this).attr('class') || '') + '" tabindex="0"><span class="current"></span><div class="list"><ul></ul></div></div>');
-
             var dropdown = $(this).next();
-
             var options = $(select).find('option');
-
             var selected = $(this).find('option:selected');
-
             dropdown.find('.current').html(selected.data('display-text') || selected.text());
-
             options.each(function (j, o) {
-
                 var display = $(o).data('display-text') || '';
-
                 dropdown.find('ul').append('<li class="option ' + ($(o).is(':selected') ? 'selected' : '') + '" data-value="' + $(o).val() + '" data-display-text="' + display + '">' + $(o).text() + '</li>');
-
             });
-
         }
-
     });
-
-
-
     $('.dropdown-select ul').before('<div class="dd-search"><input id="txtSearchValue" autocomplete="off" onkeyup="filter()"  class="dd-searchbox" type="text"></div>');
-
 }
 
 
@@ -720,9 +703,7 @@ $(document).on('keydown', '.dropdown-select', function (event) {
 
 
 $(document).ready(function () {
-
     create_custom_dropdowns();
-
 });
 
 
@@ -732,21 +713,12 @@ $(document).ready(function () {
 function openNav() {
 
     document.getElementById("mySidenav").style.animation = "expand 0.3s forwards";
-
     //closeBtn
-
     document.getElementById("closeBtn").style.display = "block";
-
     document.getElementById("closeBtn").style.animation = "show 0.3s";
-
     //Overlay
-
     document.getElementById("overlay").style.display = "block";
-
     document.getElementById("overlay").style.animation = "show 0.3s";
-
-
-
 }
 
 

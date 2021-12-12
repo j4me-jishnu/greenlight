@@ -619,8 +619,13 @@ class Productpage extends CI_Controller
 								'pro_list_enter_date'=>date('Y-m-d H:i:s'),
 								'pro_list_img'=>$file_name,
 							);
+							$location_data=[
+								'prod_list_loc_lat'=>$this->input->post('latitude'),
+								'prod_list_loc_lon'=>$this->input->post('longitude'),
+								'prod_list_loc_status'=>1,
+							];
 						}
-						$result=$this->Home_model->add_sellers_post($data);
+						$result=$this->Home_model->add_sellers_post($data,$location_data);
 						$result1=$this->Home_model->deduct_remaining_post($user_id);
 						if($result==true && $result1==true){
 							echo "<script>alert('Post added successfully');</script>";

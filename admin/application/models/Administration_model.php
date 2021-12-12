@@ -249,4 +249,65 @@ class Administration_model extends CI_Model
 		return $data;
 	}
 
+	public function checkSubscriptionStatus(){
+		$query=$this->db->select('prod_cat_status')->where('prod_cat_name',"Plant Subscription")->get('product_category');
+		$result=$query->result();
+		return intval($result[0]->prod_cat_status);
+	}
+
+	public function turn_on_subscription(){
+		$data = array(
+			'prod_cat_status' => '1',
+		);
+		$result=$this->db->where('prod_cat_name', 'Plant Subscription')
+		->update('product_category', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public function turn_off_subscription(){
+		$data = array(
+			'prod_cat_status' => '0',
+		);
+		$result=$this->db->where('prod_cat_name', 'Plant Subscription')
+		->update('product_category', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function turn_on_subscription_from_menu(){
+		$data=[
+			'menu_status'=>1
+		];
+		$result=$this->db->where('menu_name', 'SUBSCRIPTION')
+		->update('frnt_menu', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function turn_off_subscription_from_menu(){
+		$data=[
+			'menu_status'=>0
+		];
+		$result=$this->db->where('menu_name', 'SUBSCRIPTION')
+		->update('frnt_menu', $data);
+		if($result){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 }

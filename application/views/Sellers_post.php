@@ -52,7 +52,7 @@
 
       <div class="form-group">
         <label for="exampleFormControlSelect2">Sub Category</label>
-        <select class="form-control" aria-label="Default select example" id="sub_cat" onchange="getsubcat(this)" required>
+        <select class="dropdown-select" id="sub_cat" onchange="getsubcat(this)" required>
         <option>Select Sub category</option>
         </select>
         <!-- Change this value -->
@@ -100,6 +100,7 @@
 <script>
 
 $(document).ready(function(){
+  $('#sub_cat').removeAttr('style');
   $('#mainDiv').hide();
 
   var x = document.getElementById("demo");
@@ -166,6 +167,5 @@ function getLocation() {
 function showPosition(position) {
   document.getElementById('lat').value=position.coords.latitude;
   document.getElementById('long').value=position.coords.longitude;
-
 }
 </script>
