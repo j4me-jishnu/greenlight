@@ -94,15 +94,15 @@
 
   .advertisement-banner-1 {
 
-  background-image: url("<?php echo base_url() ?>admin/assets/uploads/superdeals/<?php foreach($super_deals as $super_deals1){ echo $super_deals1->super_deal_img; } ?>");
+    background-image: url("<?php echo base_url() ?>admin/assets/uploads/superdeals/<?php foreach($super_deals as $super_deals1){ echo $super_deals1->super_deal_img; } ?>");
 
-  background-position: top;
+    background-position: top;
 
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
 
-  background-attachment: scroll;
+    background-attachment: scroll;
 
-  position: relative;
+    position: relative;
 
   }
 
@@ -124,11 +124,11 @@
 
     justify-content: center;
 
-}
+  }
 
 
 
-.loader{
+  .loader{
 
     width: 50px;
 
@@ -144,44 +144,44 @@
 
     animation: loader 1.2s linear infinite;
 
-}
+  }
 
 
 
-@keyframes loader{
+  @keyframes loader{
 
     25%{
 
-        color: #2ecc71;
+      color: #2ecc71;
 
     }
 
     50%{
 
-        color: #f1c40f;
+      color: #f1c40f;
 
     }
 
     75%{
 
-        color: #e74c3c;
+      color: #e74c3c;
 
     }
 
     to{
 
-        transform: rotate(360deg);
+      transform: rotate(360deg);
 
     }
 
-}
-i.fas {
-  display: inline-block;
-  border-radius: 100px;
-  box-shadow: 0px 0px 2px #888;
-  padding: 0.5em 0.6em;
+  }
+  i.fas {
+    display: inline-block;
+    border-radius: 100px;
+    box-shadow: 0px 0px 2px #888;
+    padding: 0.5em 0.6em;
 
-}
+  }
 
 
   </style>
@@ -198,121 +198,121 @@ i.fas {
 
   <div class="main-hed">
 
-  <header class="header">
+    <header class="header">
 
-    <div class="container-fluid custom-container">
+      <div class="container-fluid custom-container">
 
-      <div class="row">
+        <div class="row">
 
-        <div class="col-12">
+          <div class="col-12">
 
-          <div class="navigation">
+            <div class="navigation">
 
-            <div class="row">
-
-            </div>
-
-            <div class="logo">
-
-              <a href="<?php echo base_url(); ?>index.php/">
-
-                <?php foreach($logo as $logos){ ?>
-
-                <img src="<?php echo base_url(); ?>admin/assets/uploads/logo/<?php echo $logos->Logo_img ?>" class="image-fit" alt="logo">
-
-                <?php } ?>
-
-              </a>
-
-            </div>
-
-            <div class="location-mob">
-
-            <a  class="pop-up-button" href="#pop-up-one" ><i class="fas fa-map-marker-alt"></i> &nbsp;Location</a>
-
-          </div>
-
-            <div class="main-navigation">
-
-        <nav class="main ser-home">
-          <?php $url = $this->uri->segment(2);
-          $formAction = base_url()."Category/CategoryMenu/18";
-            if($url){
-                if($url == 'CategoryMenu')
-                $formAction = base_url()."Category/CategoryMenu/".$this->uri->segment(3);
-                else
-                $formAction = base_url()."Category/CategoryMenu/18"; } ?>
-<form action="<?php echo $formAction?>" method="post">
-            <div class="input-group">
-
-              <div class="input-group-append">
-
-                <button class="btn btn-outline-secondary" style="background:#57933b; color:white;" id="cur_loc" type="button" title="Click Here To get Current Location"><i class="material-icons">my_location</i></button>
+              <div class="row">
 
               </div>
-              <input type="hidden" id="location_lat" name="latitude">
-              <input type="hidden" id="location_lon" name="longitude">
-              <input type="text" readonly class="form-control" placeholder="Location" id="location_info" aria-label="Recipient's username" aria-describedby="basic-addon2">
-<button type="submit" class="searchButton">
 
-        <i class="fa fa-search"></i>
+              <div class="logo">
 
-     </button>
-            </div>
-</form>
-        </nav>
+                <a href="<?php echo base_url(); ?>index.php/">
 
-<div class="wrap dis-wrp">
+                  <?php foreach($logo as $logos){ ?>
 
-<form action="<?php echo base_url() ?>Search/index" method="get">
+                    <img src="<?php echo base_url(); ?>admin/assets/uploads/logo/<?php echo $logos->Logo_img ?>" class="image-fit" alt="logo">
 
-   <div class="search">
+                  <?php } ?>
 
-      <input type="text" class="searchTerm" name="search" placeholder="What are you looking for?">
+                </a>
 
-      <button type="submit" class="searchButton">
+              </div>
 
-        <i class="fa fa-search"></i>
+              <div class="location-mob">
 
-     </button>
+                <a  class="pop-up-button" href="#pop-up-one" ><i class="fas fa-map-marker-alt"></i> &nbsp;Location</a>
 
-   </div>
+              </div>
 
-</form>
+              <div class="main-navigation">
 
-</div>
+                <nav class="main ser-home">
+                  <?php $url = $this->uri->segment(2);
+                  $formAction = base_url()."Category/CategoryMenu/18";
+                  if($url){
+                    if($url == 'CategoryMenu')
+                    $formAction = base_url()."Category/CategoryMenu/".$this->uri->segment(3);
+                    else
+                    $formAction = base_url()."Category/CategoryMenu/18"; } ?>
+                    <form action="<?php echo $formAction?>" method="post">
+                      <div class="input-group">
 
-<ul class="log1">
+                        <div class="input-group-append">
 
-                <li class="hamburger-menu">
+                          <button class="btn btn-outline-secondary" style="background:#57933b; color:white;" id="cur_loc" type="button" title="Click Here To get Current Location"><i class="material-icons">my_location</i></button>
 
-                  <a href="#" class="menu-btn"> <span></span>
+                        </div>
+                        <input type="hidden" id="location_lat" name="latitude">
+                        <input type="hidden" id="location_lon" name="longitude">
+                        <input type="text" readonly class="form-control" placeholder="Location" id="location_info" aria-label="Recipient's username" aria-describedby="basic-addon2" style="background-color: white;">
+                        <button type="submit" class="searchButton">
 
-                    <span></span>
+                          <i class="fa fa-search"></i>
 
-                    <span></span>
+                        </button>
+                      </div>
+                    </form>
+                  </nav>
 
-                  </a>
+                  <div class="wrap dis-wrp">
 
-                </li>
+                    <form action="<?php echo base_url() ?>Search/index" method="get">
 
-                <li class="user-details log-reg-btn">
+                      <div class="search">
 
-                <?php if($this->session->userdata('name')){?>
+                        <input type="text" class="searchTerm" name="search" placeholder="What are you looking for?">
 
-                <?php } else { ?>
+                        <button type="submit" class="searchButton">
 
-                <?php } ?>
+                          <i class="fa fa-search"></i>
 
-                  <a href="<?php echo base_url(); ?>Register/Login">  <span>Login / Register</span>
+                        </button>
 
-                  </a>
+                      </div>
 
-                </li>
+                    </form>
 
-            <!--    <li class="user-details">
+                  </div>
 
-                  <a href="#">  <span>Sell</span>
+                  <ul class="log1">
+
+                    <li class="hamburger-menu">
+
+                      <a href="#" class="menu-btn"> <span></span>
+
+                        <span></span>
+
+                        <span></span>
+
+                      </a>
+
+                    </li>
+
+                    <li class="user-details log-reg-btn">
+
+                      <?php if($this->session->userdata('name')){?>
+
+                      <?php } else { ?>
+
+                      <?php } ?>
+
+                      <a href="<?php echo base_url(); ?>Register/Login">  <span>Login / Register</span>
+
+                      </a>
+
+                    </li>
+
+                    <!--    <li class="user-details">
+
+                    <a href="#">  <span>Sell</span>
 
                   </a>
 
@@ -322,57 +322,57 @@ i.fas {
 
               </ul>
 
-  <ul class="navbar-nav mr-auto nav1">
+              <ul class="navbar-nav mr-auto nav1">
 
-         <li class="nav-item active">
+                <li class="nav-item active">
 
-        <a class="nav-link " onclick="openNav()" style="cursor: pointer; display: inline-block;" href="#"><i class="fas fa-bars"></i> All <span class="sr-only">(current)</span></a>
+                  <a class="nav-link " onclick="openNav()" style="cursor: pointer; display: inline-block;" href="#"><i class="fas fa-bars"></i> All <span class="sr-only">(current)</span></a>
 
-        <?php foreach($menu_cat as $menu_category1){ ?>
+                  <?php foreach($menu_cat as $menu_category1){ ?>
 
-      <li class="nav-item active">
+                    <li class="nav-item active">
 
-        <a class="nav-link" href="<?php echo base_url(); ?>Category/CategoryMenu/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span><p></p></a>
+                      <a class="nav-link" href="<?php echo base_url(); ?>Category/CategoryMenu/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span><p></p></a>
 
-      </li>
+                    </li>
 
-      <?php } ?>
+                  <?php } ?>
 
-      <!-- </li>
+                  <!-- </li>
 
-      <li class="nav-item active">
+                  <li class="nav-item active">
 
-        <a class="nav-link" href="#">Seeds <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Seeds <span class="sr-only">(current)</span></a>
 
-      </li>
+                </li>
 
-      <li class="nav-item">
+                <li class="nav-item">
 
-        <a class="nav-link" href="#">Plants</a>
+                <a class="nav-link" href="#">Plants</a>
 
-      </li>
+              </li>
 
 
 
-    <li class="nav-item">
+              <li class="nav-item">
 
-        <a class="nav-link" href="#">Pots & Planters</a>
+              <a class="nav-link" href="#">Pots & Planters</a>
 
-      </li>
+            </li>
 
-      <li class="nav-item">
+            <li class="nav-item">
 
-        <a class="nav-link" href="#">Plant Care</a>
+            <a class="nav-link" href="#">Plant Care</a>
 
-      </li>
+          </li>
 
-      <li class="nav-item">
+          <li class="nav-item">
 
-        <a class="nav-link" href="#">Tools & Accessories</a>
+          <a class="nav-link" href="#">Tools & Accessories</a>
 
-      </li>
+        </li>
 
-      <li class="nav-item">
+        <li class="nav-item">
 
         <a class="nav-link" href="#">DIY Pest Control</a>
 
@@ -380,147 +380,149 @@ i.fas {
 
       <li class="nav-item">
 
-        <a class="nav-link" href="#">Kits</a>
+      <a class="nav-link" href="#">Kits</a>
+
+    </li>
+
+    <li class="nav-item">
+
+    <a class="nav-link" href="#">Offers</a>
+
+  </li>
+
+  <li class="nav-item">
+
+  <a class="nav-link" href="#">Plant Subscription</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#">Green Gifting</a>
+
+</li> -->
+
+
+
+
+
+
+
+</ul>
+
+
+
+</div>
+
+<div class="right-side-navigation">
+
+  <ul >
+
+    <li class="hamburger-menu">
+
+      <a href="#" class="menu-btn"> <span></span>
+
+        <span></span>
+
+        <span></span>
+
+      </a>
+
+    </li>
+
+    <li class="user-details log2">
+
+      <?php if($this->session->userdata('name')){?>
+
+
+
+        <ul class="dis-none">
+
+          <div class="row">
+
+          <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-sm"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i>
+          </a>
+        </div>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php foreach($chat1 as $msg){ ?>
+              <a class="dropdown-item" href="<?php echo base_url() ?>chatmsg/<?php echo $msg->chat_id;?>/<?php echo $msg->chat_product_id;?>" style="font-size: 12px;"><img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $msg->pro_list_img ?>" style="width:60px;height: 60px;"><?php echo $msg->first_name; ?></a>
+
+              <div class="dropdown-divider"></div>
+
+            <?php } ?>
+
+          </div>
+
+        </li>
+
+        <li class="nav-item dropdown user-drop">   <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/<?php if(!empty($user_image_header[0]->user_pimage_name)) {
+
+          echo $user_image_header[0]->user_pimage_name;
+
+        }else{
+
+          echo "account.jpeg";
+
+        } ?>" class="img-fluid usr-img" style="width:35px;height:35px;border-radius: 50%;"> </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a class="dropdown-item" href="#"><?php echo $this->session->userdata('name');?></a>
+
+          <a class="dropdown-item" href="<?php echo base_url() ?>Profile/index">View & Edit Profile</a>
+
+          <a class="dropdown-item" href="<?php echo base_url() ?>MyAds/Ads">My Ads</a>
+
+          <a class="dropdown-item" href="<?php echo base_url() ?>wishlist">Wishlist</a>
+
+          <a class="dropdown-item" href="<?php echo base_url() ?>help">Help</a>
+
+          <a class="dropdown-item" href="#">Settings</a>
+
+          <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/register/logout">Logout</a>
+
+        </div>
 
       </li>
-
- <li class="nav-item">
-
-        <a class="nav-link" href="#">Offers</a>
-
-      </li>
-
-       <li class="nav-item">
-
-        <a class="nav-link" href="#">Plant Subscription</a>
-
-      </li>
-
-       <li class="nav-item">
-
-        <a class="nav-link" href="#">Green Gifting</a>
-
-      </li> -->
-
-
-
-
-
-
 
     </ul>
 
 
-
-            </div>
-
-            <div class="right-side-navigation">
-
-              <ul >
-
-                <li class="hamburger-menu">
-
-                  <a href="#" class="menu-btn"> <span></span>
-
-                    <span></span>
-
-                    <span></span>
-
-                  </a>
-
-                </li>
-
-                <li class="user-details log2">
-
-                  <?php if($this->session->userdata('name')){?>
-
-
-
-                    <ul class="dis-none">
-
-
-                    <li class="nav-item dropdown notif"> <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-bell fa-md"><b style="color: red;"> &nbsp;&nbsp;<?php echo $chat; ?></b></i>
-                      </a>
-
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php foreach($chat1 as $msg){ ?>
-                        <a class="dropdown-item" href="<?php echo base_url() ?>chatmsg/<?php echo $msg->chat_id;?>/<?php echo $msg->chat_product_id;?>" style="font-size: 12px;"><img src="<?php echo base_url() ?>admin/assets/uploads/productlist/<?php echo $msg->pro_list_img ?>" style="width:50px;height: 50px;"><?php echo $msg->first_name; ?></a>
-
-                        <div class="dropdown-divider"></div>
-
-                      <?php } ?>
-
-                      </div>
-
-                    </li>
-
-                    <li class="nav-item dropdown user-drop">   <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/<?php if(!empty($user_image_header[0]->user_pimage_name)) {
-
-                      echo $user_image_header[0]->user_pimage_name;
-
-                    }else{
-
-                      echo "account.jpeg";
-
-                    } ?>" class="img-fluid usr-img" style="width:35px;height:35px;border-radius: 50%;"> </a>
-
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        <a class="dropdown-item" href="#"><?php echo $this->session->userdata('name');?></a>
-
-                        <a class="dropdown-item" href="<?php echo base_url() ?>Profile/index">View & Edit Profile</a>
-
-                        <a class="dropdown-item" href="<?php echo base_url() ?>MyAds/Ads">My Ads</a>
-
-                        <a class="dropdown-item" href="<?php echo base_url() ?>wishlist">Wishlist</a>
-
-                        <a class="dropdown-item" href="<?php echo base_url() ?>help">Help</a>
-
-                        <a class="dropdown-item" href="#">Settings</a>
-
-                        <div class="dropdown-divider"></div>
-
-                        <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/register/logout">Logout</a>
-
-                      </div>
-
-                    </li>
-
-                    </ul>
-
-                    <?php }else{ ?>
-
-                  <a href="<?php echo base_url(); ?>Register/Login">  <span class="custom-btn btn-14">Login / Register</span>
-
-                    <?php }?>
-
-                  </a>
-
-                </li>
-
-                <li class="user-details log2 ">
-
-                  <!-- <a href="<?php echo base_url() ?>Sell" ><span class="custom-btn btn-14">Sell</span>&nbsp; -->
-                  </a>
-                  <a href="<?php echo base_url() ?>Productpage/sellAnItem" ><span class="custom-btn btn-14">Sell</span>&nbsp;
-                  </a>
-
-                </li>
-
-              </ul>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
+  <?php }else{ ?>
+    <div class="row">
+    <a href="<?php echo base_url(); ?>Register/Login">  <span class="custom-btn btn-xs">Login / Register</span>
     </div>
 
-    <!-- <a href="<?php echo base_url(); ?>Productpage/sellAnItem">Test sell</a> -->
+    <?php }?>
+
+  </a>
+
+</li>
+
+<li class="user-details log2 ">
+<div class="">
+<a href="<?php echo base_url() ?>Productpage/sellAnItem" ><span class="custom-btn btn-14">Sell</span>&nbsp;
+</a>
+</div>
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- <a href="<?php echo base_url(); ?>Productpage/sellAnItem">Test sell</a> -->
 
 <div id="pop-up-one" class="pop-up-overlay" >
 
@@ -532,25 +534,51 @@ i.fas {
 
     <div class="ser-loc">
 
-   <select name=""   id="loc_drop">
+      <!-- <select name=""   id="loc_drop">
 
       <option>Location</option>
 
-  </select>
+    </select> -->
+    <?php $url = $this->uri->segment(2);
+    $formAction = base_url()."Category/CategoryMenu/18";
+    if($url){
+      if($url == 'CategoryMenu')
+      $formAction = base_url()."Category/CategoryMenu/".$this->uri->segment(3);
+      else
+      $formAction = base_url()."Category/CategoryMenu/18"; } ?>
+      <form action="<?php echo $formAction?>" method="post">
+        <div class="input-group">
 
-</div>
+          <div class="input-group-append">
+
+            <button class="btn btn-outline-secondary" style="background:#57933b; color:white;" id="mobile_loc" type="button" title="Click Here To get Current Location"><i class="material-icons">my_location</i></button>
+
+          </div>
+          <input type="hidden" id="mobile_location_lat" name="latitude">
+          <input type="hidden" id="mobile_location_lon" name="longitude">
+          <input type="text" readonly class="form-control" placeholder="Location" id="mobile_location_info" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <button type="submit" class="searchButton">
+
+            <i class="fa fa-search"></i>
+
+          </button>
+        </div>
+      </form>
+
+
+    </div>
 
   </div>
 
 </div>
 
-  </header>
+</header>
 
-  <section class="secnd-sec">
+<section class="secnd-sec">
 
   <div class="wrap">
 
-   <div class="search">
+    <div class="search">
 
       <input type="text" class="searchTerm" placeholder="What are you looking for?">
 
@@ -558,15 +586,15 @@ i.fas {
 
         <i class="fa fa-search"></i>
 
-     </button>
+      </button>
 
-   <a href="#" class="sell-mob-btn">  <span >Sell</span></a>
+      <a href="#" class="sell-mob-btn">  <span >Sell</span></a>
 
-   </div>
+    </div>
 
 
 
-</div>
+  </div>
 
 
 
@@ -574,81 +602,81 @@ i.fas {
 
 
 
-  <button class="navbar-toggler n2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler n2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
-    <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:white; font-size:28px;"></i></span>
+      <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:white; font-size:28px;"></i></span>
 
-  </button>
-
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <ul class="navbar-nav mr-auto nav2">
-
-         <li class="nav-item active">
-
-        <a class="nav-link " onclick="openNav()"
-
-      style="
-
-        cursor: pointer;
-
-        display: inline-block;
-
-      " href="#"><i class="fas fa-bars"></i> All <span class="sr-only">(current)</span></a>
-
-      </li>
-
-      <?php foreach($menu_cat as $menu_category1){ ?>
-
-        <!-- All the menu items comes here -->
-
-      <li class="nav-item active">
-
-        <?php if($menu_category1->pro_cat_id=='15') { ?>
-
-        <a class="nav-link" href="<?php echo base_url() ?>Category/get_offer/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
-
-      <?php }
-
-      elseif($menu_category1->pro_cat_id=='20') { ?>
-
-        <a class="nav-link" href="<?php echo base_url() ?>Category/get_events/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
+    </button>
 
 
 
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <?php }
+      <ul class="navbar-nav mr-auto nav2">
 
-      elseif($menu_category1->pro_cat_id=='16') { ?>
+        <li class="nav-item active">
 
-        <a class="nav-link" href="<?php echo base_url() ?>Subscription/getUserSubscribedPlans"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
+          <a class="nav-link " onclick="openNav()"
+
+          style="
+
+          cursor: pointer;
+
+          display: inline-block;
+
+          " href="#"><i class="fas fa-bars"></i> All <span class="sr-only">(current)</span></a>
+
+        </li>
+
+        <?php foreach($menu_cat as $menu_category1){ ?>
+
+          <!-- All the menu items comes here -->
+
+          <li class="nav-item active">
+
+            <?php if($menu_category1->pro_cat_id=='15') { ?>
+
+              <a class="nav-link" href="<?php echo base_url() ?>Category/get_offer/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
+
+            <?php }
+
+            elseif($menu_category1->pro_cat_id=='20') { ?>
+
+              <a class="nav-link" href="<?php echo base_url() ?>Category/get_events/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
 
 
 
-      </li>
+            </li>
 
-    <?php } else { ?>
+          <?php }
 
-             <a class="nav-link" href="<?php echo base_url() ?>Category/CategoryMenu/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
+          elseif($menu_category1->pro_cat_id=='16') { ?>
 
-  <?php }} ?>
+            <a class="nav-link" href="<?php echo base_url() ?>Subscription/getUserSubscribedPlans"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
 
 
+
+          </li>
+
+        <?php } else { ?>
+
+          <a class="nav-link" href="<?php echo base_url() ?>Category/CategoryMenu/<?php echo $menu_category1->pro_cat_id ?>"><?php echo $menu_category1->prod_cat_name ?><span class="sr-only">(current)</span></a>
+
+        <?php }} ?>
 
 
 
 
 
-    </ul>
 
-  </div>
 
-</nav>
+      </ul>
 
-<input type="hidden" id="user_id" value="<?php  echo $this->session->userdata('user_id'); ?>">
+    </div>
+
+  </nav>
+
+  <input type="hidden" id="user_id" value="<?php  echo $this->session->userdata('user_id'); ?>">
 
 </section>
 
@@ -660,91 +688,91 @@ i.fas {
 
 
 
-    <div id="closeBtn" onclick="closeNav()">&times;</div>
+<div id="closeBtn" onclick="closeNav()">&times;</div>
 
-    <div class="sidenav" id="mySidenav">
+<div class="sidenav" id="mySidenav">
 
-      <div class="sidenavHeader">
+  <div class="sidenavHeader">
 
 
 
-          <?php if($user_name != ""){ ?>
+    <?php if($user_name != ""){ ?>
 
-        <i class="fas fa-user-circle"></i> <?php echo $user_name[0]->first_name; ?>&nbsp;<?php echo $user_name[0]->last_name ?>
+      <i class="fas fa-user-circle"></i> <?php echo $user_name[0]->first_name; ?>&nbsp;<?php echo $user_name[0]->last_name ?>
 
-        <?php } else { ?>
+    <?php } else { ?>
 
-          <i class="fas fa-user-circle"></i> Hello, Sign In
+      <i class="fas fa-user-circle"></i> Hello, Sign In
 
-        <?php } ?>
+    <?php } ?>
 
-      </div>
+  </div>
 
-      <!--Below SideNavHeader-->
+  <!--Below SideNavHeader-->
 
-      <div id="main-container">
+  <div id="main-container">
 
-      <?php foreach($menu_cate as $menu_cates){ ?>
+    <?php foreach($menu_cate as $menu_cates){ ?>
 
-        <div class="sidenavContentHeader"><?php echo $menu_cates ->menu_cat_name ?></div>
+      <div class="sidenavContentHeader"><?php echo $menu_cates ->menu_cat_name ?></div>
 
-            <?php
+      <?php
 
-             foreach($menu as $menuho){
+      foreach($menu as $menuho){
 
-              if($menu_cates ->menu_cat_id == $menuho ->menu_cat_id){
+        if($menu_cates ->menu_cat_id == $menuho ->menu_cat_id){
 
-            ?>
+          ?>
 
-            <a href="#" onclick="openSubmenu(<?php echo $menuho ->menu_id ?>)" ><div class="sidenavRow"><?php echo $menuho ->menu_name ?><i class="fas fa-chevron-right" style="color: #8e9090"></i></div></a>
+          <a href="#" onclick="openSubmenu(<?php echo $menuho ->menu_id ?>)" ><div class="sidenavRow"><?php echo $menuho ->menu_name ?><i class="fas fa-chevron-right" style="color: #8e9090"></i></div></a>
 
-            <?php } } ?>
+        <?php } } ?>
 
 
 
         <hr />
 
-        <?php } ?>
+      <?php } ?>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-reverse-geocode-client@latest/bigdatacloud_reverse_geocode.min.js" type="text/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-reverse-geocode-client@latest/bigdatacloud_reverse_geocode.min.js" type="text/javascript"></script>
 
-      </div>
+    </div>
 
-      <!--End of first container-->
+    <!--End of first container-->
 
- <script>
-
-
+    <script>
 
 
 
 
 
-</script>
+
+
+    </script>
 
 
 
-<script>
+    <script>
 
-$('#cur_loc').click(function(){
+    $('#cur_loc').click(function(){
 
-  /*bigdatacloudapi/js-reverse-geocode-client - GitHUB*/
+      /*bigdatacloudapi/js-reverse-geocode-client - GitHUB*/
 
- /* Initialise Reverse Geocode API Client */
+      /* Initialise Reverse Geocode API Client */
 
- var reverseGeocoder=new BDCReverseGeocode();
+      var reverseGeocoder=new BDCReverseGeocode();
 
- //display output to html element
+      //display output to html element
 
 
 
- /* Get the current user's location information, based on the coordinates provided by their browser */
+      /* Get the current user's location information, based on the coordinates provided by their browser */
 
-    /* Fetching coordinates requires the user to be accessing your page over HTTPS and to allow the location prompt. */
+      /* Fetching coordinates requires the user to be accessing your page over HTTPS and to allow the location prompt. */
 
-    reverseGeocoder.getClientLocation(function(result) {
+      reverseGeocoder.getClientLocation(function(result) {
 
         /* console.log(result.longitude); */
 
@@ -767,14 +795,57 @@ $('#cur_loc').click(function(){
 
         console.log(country,state,city,neighbourhood);
 
-    });
+      });
 
 
 
 
 
-})
+    })
+    $('#mobile_loc').click(function(){
+
+      /*bigdatacloudapi/js-reverse-geocode-client - GitHUB*/
+
+      /* Initialise Reverse Geocode API Client */
+
+      var reverseGeocoder=new BDCReverseGeocode();
+
+      //display output to html element
 
 
 
-</script>
+      /* Get the current user's location information, based on the coordinates provided by their browser */
+
+      /* Fetching coordinates requires the user to be accessing your page over HTTPS and to allow the location prompt. */
+
+      reverseGeocoder.getClientLocation(function(result) {
+        /* console.log(result.longitude); */
+
+        var cur_lat = result.latitude;
+
+        var cur_lng = result.longitude;
+
+        var country = result.localityInfo.administrative[0].name;
+        document.getElementById('mobile_location_lat').value=result.latitude;
+        document.getElementById('mobile_location_lon').value=result.longitude;
+        var state = result.localityInfo.administrative[1].name;
+
+        var city = result.localityInfo.administrative[2].name;
+
+        var neighbourhood = result.localityInfo.administrative[5].name;
+
+        document.getElementById('mobile_location_info').value=neighbourhood+', '+city+', '+state+', '+country;
+
+        document.getElementById('mobile_location_info').title=neighbourhood+', '+city+', '+state+', '+country;
+
+        console.log(country,state,city,neighbourhood);
+
+      });
+
+
+
+
+
+    })
+
+  </script>

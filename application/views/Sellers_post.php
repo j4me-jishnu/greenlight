@@ -20,6 +20,7 @@
   margin-top: 30px;
 }
 </style> -->
+
 <div class="edit-prf-plant-wrap col-lg-12">
   <p id="demo"></p>
   <h2 class="text-center">Your Subscription Details</h2>
@@ -52,11 +53,11 @@
 
       <div class="form-group">
         <label for="exampleFormControlSelect2">Sub Category</label>
-        <select class="dropdown-select" id="sub_cat" onchange="getsubcat(this)" required>
+        <select class="form-control" aria-label="Default select example" id="sub_cat" onchange="getsubcat(this)" required>
         <option>Select Sub category</option>
         </select>
         <!-- Change this value -->
-        <input type="hidden" name="sub_cat_id" id="sub_cat_id" value="22">
+        <input type="hidden" name="sub_cat_id" id="sub_cat_id" value="">
       </div>
 
       <div class="form-group">
@@ -102,7 +103,6 @@
 $(document).ready(function(){
   $('#sub_cat').removeAttr('style');
   $('#mainDiv').hide();
-
   var x = document.getElementById("demo");
   getLocation();
 
@@ -130,6 +130,7 @@ $(document).ready(function(){
 });
 
 function getsub(data){
+  $("#sub_cat").val("");
   var cat_id = data.value;
   document.getElementById('cat_id').value=cat_id;
   $.ajax({

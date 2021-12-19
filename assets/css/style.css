@@ -817,7 +817,7 @@ label {
 	padding-right: 8%;
 	padding-left: 8%;
 }
-select {
+div.dropdown-select.wide.form-control {
     display: none !important;
 }
 .search {

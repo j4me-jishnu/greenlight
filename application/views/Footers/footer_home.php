@@ -487,7 +487,7 @@
 
   <!-- Nice Select -->
 
-  <script src="<?php echo base_url(); ?>assets/js/jquery.nice-select.min.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.nice-select.min.js"></script> -->
 
   <!-- magnific popup -->
 

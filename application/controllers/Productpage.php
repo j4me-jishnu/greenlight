@@ -637,8 +637,8 @@ class Productpage extends CI_Controller
 					}
 				}
 
-				public function test(){
-					echo "hii";
+				public function showMessage(){
+					$this->load->view('message');
 				}
 
 			}
