@@ -1,107 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-
 
 <head>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
   <meta name="keywords" content="#">
-
   <meta name="description" content="#">
-
   <title>Greenleafy | Homepage</title>
 
   <!-- Fav and touch icons -->
-
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="#">
-
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#">
-
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#">
-
   <link rel="apple-touch-icon-precomposed" href="#">
-
   <link rel="shortcut icon" href="#">
-
   <!-- Bootstrap -->
-
   <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Fontawesome -->
-
   <link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet">
-
   <!-- Flaticons -->
-
   <link href="<?php echo base_url(); ?>assets/css/font/flaticon.css" rel="stylesheet">
-
   <!-- Pe-icons -->
-
   <link href="<?php echo base_url(); ?>assets/css/pe-icon-7-stroke.css" rel="stylesheet">
-
   <!-- Swiper Slider -->
-
   <link href="<?php echo base_url(); ?>assets/css/swiper.min.css" rel="stylesheet">
-
   <!-- Range Slider -->
-
   <link href="<?php echo base_url(); ?>assets/css/ion.rangeSlider.min.css" rel="stylesheet">
-
   <!-- magnific popup -->
-
   <link href="<?php echo base_url(); ?>assets/css/magnific-popup.css" rel="stylesheet">
-
   <!-- Nice Select -->
-
   <link href="<?php echo base_url(); ?>assets/css/nice-select.css" rel="stylesheet">
-
   <!-- Custom Stylesheet -->
-
   <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-
   <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
-
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,500,600,700&amp;display=swap" rel="stylesheet">
-
   <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700&amp;display=swap" rel="stylesheet">
-
-
-
   <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
-
-
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-
-
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-
-
-
   <style>
-
   .advertisement-banner-1 {
 
     background-image: url("<?php echo base_url() ?>admin/assets/uploads/superdeals/<?php foreach($super_deals as $super_deals1){ echo $super_deals1->super_deal_img; } ?>");
-
     background-position: top;
-
     background-repeat: no-repeat;
-
     background-attachment: scroll;
-
     position: relative;
 
   }
@@ -111,17 +58,11 @@
   .loader-container{
 
     width: 800px;
-
     height: 200px;
-
     background-color: #ffffff;
-
     position: fixed;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
   }
@@ -131,17 +72,11 @@
   .loader{
 
     width: 50px;
-
     height: 50px;
-
     border: 5px solid;
-
     color: #3498db;
-
     border-radius: 50%;
-
     border-top-color: transparent;
-
     animation: loader 1.2s linear infinite;
 
   }
@@ -151,27 +86,19 @@
   @keyframes loader{
 
     25%{
-
       color: #2ecc71;
-
     }
 
     50%{
-
       color: #f1c40f;
-
     }
 
     75%{
-
       color: #e74c3c;
-
     }
 
     to{
-
       transform: rotate(360deg);
-
     }
 
   }
@@ -183,57 +110,33 @@
 
   }
 
-
   </style>
 
-
-
 </head>
-
-
 
 <body>
 
   <!-- Navigation -->
-
   <div class="main-hed">
-
     <header class="header">
-
       <div class="container-fluid custom-container">
-
         <div class="row">
-
           <div class="col-12">
-
             <div class="navigation">
-
               <div class="row">
-
               </div>
-
               <div class="logo">
-
                 <a href="<?php echo base_url(); ?>index.php/">
-
                   <?php foreach($logo as $logos){ ?>
-
                     <img src="<?php echo base_url(); ?>admin/assets/uploads/logo/<?php echo $logos->Logo_img ?>" class="image-fit" alt="logo">
-
                   <?php } ?>
-
                 </a>
-
               </div>
-
               <div class="location-mob">
-
                 <a  class="pop-up-button" href="#pop-up-one" ><i class="fas fa-map-marker-alt"></i> &nbsp;Location</a>
-
               </div>
 
               <div class="main-navigation">
-
                 <nav class="main ser-home">
                   <?php $url = $this->uri->segment(2);
                   $formAction = base_url()."Category/CategoryMenu/18";
@@ -244,60 +147,39 @@
                     $formAction = base_url()."Category/CategoryMenu/18"; } ?>
                     <form action="<?php echo $formAction?>" method="post">
                       <div class="input-group">
-
                         <div class="input-group-append">
-
                           <button class="btn btn-outline-secondary" style="background:#57933b; color:white;" id="cur_loc" type="button" title="Click Here To get Current Location"><i class="material-icons">my_location</i></button>
-
                         </div>
                         <input type="hidden" id="location_lat" name="latitude">
                         <input type="hidden" id="location_lon" name="longitude">
                         <input type="text" readonly class="form-control" placeholder="Location" id="location_info" aria-label="Recipient's username" aria-describedby="basic-addon2" style="background-color: white;">
                         <button type="submit" class="searchButton">
-
                           <i class="fa fa-search"></i>
-
                         </button>
                       </div>
                     </form>
                   </nav>
 
                   <div class="wrap dis-wrp">
-
                     <form action="<?php echo base_url() ?>Search/index" method="get">
-
                       <div class="search">
-
                         <input type="text" class="searchTerm" name="search" placeholder="What are you looking for?">
-
                         <button type="submit" class="searchButton">
-
                           <i class="fa fa-search"></i>
-
                         </button>
-
                       </div>
-
                     </form>
-
                   </div>
 
                   <ul class="log1">
-
                     <li class="hamburger-menu">
-
                       <a href="#" class="menu-btn"> <span></span>
-
                         <span></span>
-
                         <span></span>
-
                       </a>
-
                     </li>
 
                     <li class="user-details log-reg-btn">
-
                       <?php if($this->session->userdata('name')){?>
 
                       <?php } else { ?>
@@ -456,7 +338,7 @@
           </div>
 
         </li>
-
+        <?php if(empty($this->session->userdata('img'))){ ?>
         <li class="nav-item dropdown user-drop">   <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="<?php echo base_url() ?>admin/assets/uploads/user_profile/<?php if(!empty($user_image_header[0]->user_pimage_name)) {
 
           echo $user_image_header[0]->user_pimage_name;
@@ -466,7 +348,9 @@
           echo "account.jpeg";
 
         } ?>" class="img-fluid usr-img" style="width:35px;height:35px;border-radius: 50%;"> </a>
-
+        <?php } else { ?>
+          <li class="nav-item dropdown user-drop">   <a lass="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="<?php echo $this->session->userdata('img') ?>" class="img-fluid usr-img" style="width:35px;height:35px;border-radius: 50%;"> </a>
+          <?php } ?>  
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
           <a class="dropdown-item" href="#"><?php echo $this->session->userdata('name');?></a>
@@ -482,7 +366,7 @@
           <a class="dropdown-item" href="#">Settings</a>
 
           <div class="dropdown-divider"></div>
-
+          
           <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/register/logout">Logout</a>
 
         </div>
