@@ -25,7 +25,7 @@
 					<div class="section-2 user-page main-padding login-pad">
 						<div class="login-sec">
 							<div class="login-box">
-								<form action="<?php echo site_url();?>/Register/LoginCheck" method="POST">
+								<form action="<?php echo site_url();?>/Register/LoginCheck" method="POST" >
 									<h4 class="text-light-black fw-600">Sign in </h4>
 									<div class="row">
 										<div class="col-12">
@@ -51,12 +51,11 @@
 											<div class="form-group text-center"> <span>or</span>
 											</div>
 											<div class="form-group">
-												<button type="submit" class="btn-second-2 btn-facebook full-width"><a href="<?php echo $authURL; ?>"><img src="<?php echo base_url(); ?>assets/img/facebook-logo.svg" alt="btn logo">Continue with Facebook</button></a>
+												<a href="<?php echo $authURL; ?>"><button type="button" class="btn-second-2 btn-facebook full-width"><img src="<?php echo base_url(); ?>assets/img/facebook-logo.svg" alt="btn logo">Continue with Facebook</button></a>
 											</div>
 
 											<div class="form-group">
-												<button type="submit" class="btn-second-2 btn-google full-width">
-													<img src="<?php echo base_url(); ?>assets/img/google-logo.png" alt="btn logo">Continue with Google</button>
+												<a href="<?php echo $loginURL; ?>"><button type="button" class="btn-second-2 btn-google full-width"><img src="<?php echo base_url(); ?>assets/img/google-logo.png" alt="btn logo">Continue with Google</button></a>
 											</div>
 											<!-- Onell Social login using oneall api script below -->
 											<!-- end of oneall -->

@@ -10,10 +10,12 @@ class Register extends CI_Controller
 		parent::__construct();
 		$this->load->model('Register_Model');
 		$this->load->model('Facebook_model');
+		$this->load->model('Google_model');
 		$this->load->model('General_model');
 		$this->load->helper('url');
 		$this->load->model('Home_model');
 		$this->load->library('facebook');
+		$this->load->library('Google');
 	}
 
 	public function index()
@@ -163,7 +165,7 @@ class Register extends CI_Controller
 		$addData = array();
 
 		if($this->facebook->is_authenticated()){
-
+			//facebook login
 			$fbUserData = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,link,gender,picture');
 			$addData['oauth_provider'] = 'facebook';
 			//$addData['oauth_uid']    = !empty($fbUserData['id'])?$fbUserData['id']:'';
@@ -174,9 +176,8 @@ class Register extends CI_Controller
 			$addData['gender']        = !empty($fbUserData['gender'])?$fbUserData['gender']:'';
 			$addData['picture_url']    = !empty($fbUserData['picture']['data']['url'])?$fbUserData['picture']['data']['url']:'';
 			$addData['link_url']        = !empty($fbUserData['link'])?$fbUserData['link']:'https://www.facebook.com/';
-			$userID = $this->Facebook_model->checkUser1($addData);
 			
-
+			$userID = $this->Facebook_model->checkUser1($addData);
 			if($userID == 1){
 				//$data['fbData'] = $addData;
 				$this->session->set_userdata('user_id', $addData['oauth_uid']);
@@ -209,13 +210,66 @@ class Register extends CI_Controller
 			}
 			//$data['logoutURL'] = $this->facebook->logout_url();
 
+		}else if(isset($_GET['code'])){
+			//google login
+			if($this->google->getAuthenticate($_GET['code'])){ 
+			  // Get user info from google 
+			  $gpInfo = $this->google->getUserInfo(); 
+                 
+			  // Preparing data for database insertion 
+			  $userData['oauth_provider'] = 'google'; 
+			  $userData['oauth_uid']         = $gpInfo['id']; 
+			  $userData['first_name']     = $gpInfo['given_name']; 
+			  $userData['last_name']         = $gpInfo['family_name']; 
+			  $userData['email']             = $gpInfo['email']; 
+			  $userData['gender']         = !empty($gpInfo['gender'])?$gpInfo['gender']:''; 
+			  $userData['locale']         = !empty($gpInfo['locale'])?$gpInfo['locale']:''; 
+			  $userData['picture']         = !empty($gpInfo['picture'])?$gpInfo['picture']:''; 
+			   
+			  // Insert or update user data to the database 
+			  $userID = $this->Google_model->checkUser1($userData['oauth_uid']); 
+			  if($userID == 1){ 
+			  // Store the status and user profile info into session 
+				// $this->session->set_userdata('loggedIn', true); 
+				// $this->session->set_userdata('userData', $userData); 
+				$this->session->set_userdata('user_id', $userData['oauth_uid']);
+				$this->session->set_userdata('name', $userData['first_name'].' '.$userData['last_name']);
+				$this->session->set_userdata('img', $userData['picture']);
+				$this->session->set_userdata('provider', $userData['oauth_provider']);
+				redirect('/Home/');
+			  }
+			  else
+			  {
+				$add_google_user=array(
+					'oauth_provider' => $userData['oauth_provider'],
+					'oauth_uid' => $userData['oauth_uid'],
+					'first_name' => $userData['first_name'],
+					'last_name' => $userData['last_name'],
+					'picture' => $userData['picture'],
+					'created' => date("Y-m-d h:i:sa"),
+					'modified' => date("Y-m-d h:i:sa"),
+				);
+				$insert = $this->General_model->add('google_users',$add_google_user);
+				// $this->session->set_userdata('loggedIn', true); 
+				// $this->session->set_userdata('userData', $userData); 
+				$this->session->set_userdata('user_id', $userData['oauth_uid']);
+				$this->session->set_userdata('name', $userData['first_name'].' '.$userData['last_name']);
+				$this->session->set_userdata('img', $userData['picture']);
+				$this->session->set_userdata('provider', $userData['oauth_provider']);  
+				redirect('/Home/');
+			  }
+			  // Redirect to profile page 
+			  //redirect('/Home/');
+			}
 		}else{
 			$data['authURL'] =  $this->facebook->login_url();
+			$data['loginURL'] = $this->google->loginURL(); 
 		}
 		$this->load->view('Headers/header_home',$data);
 		$this->load->view('login',$data);
 		$this->load->view('Footers/footer_home',$data);
 	}
+	
 
 	public function reset_pass()
 
